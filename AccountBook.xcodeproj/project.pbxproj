@@ -8,14 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */; };
-		FB8BF38126D67CDE0091CC58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF38026D67CDE0091CC58 /* SceneDelegate.swift */; };
-		FB8BF38326D67CDE0091CC58 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF38226D67CDE0091CC58 /* ViewController.swift */; };
-		FB8BF38626D67CDE0091CC58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF38426D67CDE0091CC58 /* Main.storyboard */; };
 		FB8BF38926D67CDE0091CC58 /* AccountBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF38726D67CDE0091CC58 /* AccountBook.xcdatamodeld */; };
 		FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF38A26D67CE20091CC58 /* Assets.xcassets */; };
 		FB8BF38E26D67CE20091CC58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF38C26D67CE20091CC58 /* LaunchScreen.storyboard */; };
 		FB8BF39926D67CE30091CC58 /* AccountBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF39826D67CE30091CC58 /* AccountBookTests.swift */; };
 		FB8BF3A426D67CE30091CC58 /* AccountBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3A326D67CE30091CC58 /* AccountBookUITests.swift */; };
+		FB8BF3B226D681320091CC58 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3B126D681320091CC58 /* TabBarController.swift */; };
+		FB8BF3B726D685710091CC58 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3B526D685710091CC58 /* ChartViewController.swift */; };
+		FB8BF3B826D685710091CC58 /* ChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF3B626D685710091CC58 /* ChartViewController.xib */; };
+		FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3B926D696740091CC58 /* ChartViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,9 +39,6 @@
 /* Begin PBXFileReference section */
 		FB8BF37B26D67CDE0091CC58 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FB8BF38026D67CDE0091CC58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FB8BF38226D67CDE0091CC58 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FB8BF38526D67CDE0091CC58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FB8BF38826D67CDE0091CC58 /* AccountBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccountBook.xcdatamodel; sourceTree = "<group>"; };
 		FB8BF38A26D67CE20091CC58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB8BF38D26D67CE20091CC58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +49,10 @@
 		FB8BF39F26D67CE30091CC58 /* AccountBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccountBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB8BF3A326D67CE30091CC58 /* AccountBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBookUITests.swift; sourceTree = "<group>"; };
 		FB8BF3A526D67CE30091CC58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB8BF3B126D681320091CC58 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		FB8BF3B526D685710091CC58 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		FB8BF3B626D685710091CC58 /* ChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartViewController.xib; sourceTree = "<group>"; };
+		FB8BF3B926D696740091CC58 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +103,13 @@
 		FB8BF37D26D67CDE0091CC58 /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
-				FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */,
-				FB8BF38026D67CDE0091CC58 /* SceneDelegate.swift */,
-				FB8BF38226D67CDE0091CC58 /* ViewController.swift */,
-				FB8BF38426D67CDE0091CC58 /* Main.storyboard */,
-				FB8BF38A26D67CE20091CC58 /* Assets.xcassets */,
-				FB8BF38C26D67CE20091CC58 /* LaunchScreen.storyboard */,
+				FB8BF3B426D6855F0091CC58 /* ChartViewController */,
 				FB8BF38F26D67CE20091CC58 /* Info.plist */,
+				FB8BF38C26D67CE20091CC58 /* LaunchScreen.storyboard */,
+				FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */,
+				FB8BF3B126D681320091CC58 /* TabBarController.swift */,
 				FB8BF38726D67CDE0091CC58 /* AccountBook.xcdatamodeld */,
+				FB8BF3B326D684920091CC58 /* Resource */,
 			);
 			path = AccountBook;
 			sourceTree = "<group>";
@@ -129,6 +130,24 @@
 				FB8BF3A526D67CE30091CC58 /* Info.plist */,
 			);
 			path = AccountBookUITests;
+			sourceTree = "<group>";
+		};
+		FB8BF3B326D684920091CC58 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				FB8BF38A26D67CE20091CC58 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		FB8BF3B426D6855F0091CC58 /* ChartViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FB8BF3B926D696740091CC58 /* ChartViewModel.swift */,
+				FB8BF3B526D685710091CC58 /* ChartViewController.swift */,
+				FB8BF3B626D685710091CC58 /* ChartViewController.xib */,
+			);
+			path = ChartViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,8 +254,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB8BF38E26D67CE20091CC58 /* LaunchScreen.storyboard in Resources */,
+				FB8BF3B826D685710091CC58 /* ChartViewController.xib in Resources */,
 				FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */,
-				FB8BF38626D67CDE0091CC58 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,10 +280,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */,
 				FB8BF38926D67CDE0091CC58 /* AccountBook.xcdatamodeld in Sources */,
-				FB8BF38326D67CDE0091CC58 /* ViewController.swift in Sources */,
+				FB8BF3B726D685710091CC58 /* ChartViewController.swift in Sources */,
 				FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */,
-				FB8BF38126D67CDE0091CC58 /* SceneDelegate.swift in Sources */,
+				FB8BF3B226D681320091CC58 /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,14 +320,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		FB8BF38426D67CDE0091CC58 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FB8BF38526D67CDE0091CC58 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FB8BF38C26D67CE20091CC58 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -370,7 +382,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -425,7 +437,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
