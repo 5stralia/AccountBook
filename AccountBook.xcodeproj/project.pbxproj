@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,11 @@
 		FB8BF3B726D685710091CC58 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3B526D685710091CC58 /* ChartViewController.swift */; };
 		FB8BF3B826D685710091CC58 /* ChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF3B626D685710091CC58 /* ChartViewController.xib */; };
 		FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3B926D696740091CC58 /* ChartViewModel.swift */; };
+		FB8BF3BD26D92B9E0091CC58 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = FB8BF3BC26D92B9E0091CC58 /* Charts */; };
+		FB8BF3C126D92D430091CC58 /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3BF26D92D430091CC58 /* PieChartViewController.swift */; };
+		FB8BF3C226D92D430091CC58 /* PieChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF3C026D92D430091CC58 /* PieChartViewController.xib */; };
+		FB8BF3C426D92D710091CC58 /* PieChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3C326D92D710091CC58 /* PieChartViewModel.swift */; };
+		FB8BF3C726D931530091CC58 /* UIView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3C626D931530091CC58 /* UIView+Design.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,10 @@
 		FB8BF3B526D685710091CC58 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		FB8BF3B626D685710091CC58 /* ChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartViewController.xib; sourceTree = "<group>"; };
 		FB8BF3B926D696740091CC58 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
+		FB8BF3BF26D92D430091CC58 /* PieChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
+		FB8BF3C026D92D430091CC58 /* PieChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartViewController.xib; sourceTree = "<group>"; };
+		FB8BF3C326D92D710091CC58 /* PieChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewModel.swift; sourceTree = "<group>"; };
+		FB8BF3C626D931530091CC58 /* UIView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Design.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB8BF3BD26D92B9E0091CC58 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +119,7 @@
 				FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */,
 				FB8BF3B126D681320091CC58 /* TabBarController.swift */,
 				FB8BF38726D67CDE0091CC58 /* AccountBook.xcdatamodeld */,
+				FB8BF3C526D931360091CC58 /* Extension */,
 				FB8BF3B326D684920091CC58 /* Resource */,
 			);
 			path = AccountBook;
@@ -143,11 +154,30 @@
 		FB8BF3B426D6855F0091CC58 /* ChartViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FB8BF3BE26D92D2C0091CC58 /* PieChartViewController */,
 				FB8BF3B926D696740091CC58 /* ChartViewModel.swift */,
 				FB8BF3B526D685710091CC58 /* ChartViewController.swift */,
 				FB8BF3B626D685710091CC58 /* ChartViewController.xib */,
 			);
 			path = ChartViewController;
+			sourceTree = "<group>";
+		};
+		FB8BF3BE26D92D2C0091CC58 /* PieChartViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FB8BF3C326D92D710091CC58 /* PieChartViewModel.swift */,
+				FB8BF3BF26D92D430091CC58 /* PieChartViewController.swift */,
+				FB8BF3C026D92D430091CC58 /* PieChartViewController.xib */,
+			);
+			path = PieChartViewController;
+			sourceTree = "<group>";
+		};
+		FB8BF3C526D931360091CC58 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				FB8BF3C626D931530091CC58 /* UIView+Design.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +196,9 @@
 			dependencies = (
 			);
 			name = AccountBook;
+			packageProductDependencies = (
+				FB8BF3BC26D92B9E0091CC58 /* Charts */,
+			);
 			productName = AccountBook;
 			productReference = FB8BF37B26D67CDE0091CC58 /* AccountBook.app */;
 			productType = "com.apple.product-type.application";
@@ -237,6 +270,9 @@
 				Base,
 			);
 			mainGroup = FB8BF37226D67CDE0091CC58;
+			packageReferences = (
+				FB8BF3BB26D92B9E0091CC58 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = FB8BF37C26D67CDE0091CC58 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -255,6 +291,7 @@
 			files = (
 				FB8BF38E26D67CE20091CC58 /* LaunchScreen.storyboard in Resources */,
 				FB8BF3B826D685710091CC58 /* ChartViewController.xib in Resources */,
+				FB8BF3C226D92D430091CC58 /* PieChartViewController.xib in Resources */,
 				FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,9 +317,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB8BF3C726D931530091CC58 /* UIView+Design.swift in Sources */,
+				FB8BF3C126D92D430091CC58 /* PieChartViewController.swift in Sources */,
 				FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */,
 				FB8BF38926D67CDE0091CC58 /* AccountBook.xcdatamodeld in Sources */,
 				FB8BF3B726D685710091CC58 /* ChartViewController.swift in Sources */,
+				FB8BF3C426D92D710091CC58 /* PieChartViewModel.swift in Sources */,
 				FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */,
 				FB8BF3B226D681320091CC58 /* TabBarController.swift in Sources */,
 			);
@@ -609,6 +649,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FB8BF3BB26D92B9E0091CC58 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FB8BF3BC26D92B9E0091CC58 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB8BF3BB26D92B9E0091CC58 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		FB8BF38726D67CDE0091CC58 /* AccountBook.xcdatamodeld */ = {

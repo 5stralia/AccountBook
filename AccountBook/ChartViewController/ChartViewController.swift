@@ -36,7 +36,8 @@ class ChartViewController: UIViewController {
     }
 
     func fooPageViewController() {
-        let viewControllers: [UIViewController] = [UIColor.red, UIColor.black, UIColor.blue, UIColor.cyan].map {
+        let viewControllers: [UIViewController] = [PieChartViewController()] +
+            [UIColor.red, UIColor.black, UIColor.blue, UIColor.cyan].map {
             let viewController = UIViewController()
             viewController.view.backgroundColor = $0
             
