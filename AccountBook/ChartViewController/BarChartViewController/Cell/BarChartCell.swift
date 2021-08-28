@@ -8,10 +8,9 @@
 import UIKit
 
 class BarChartCell: UICollectionViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var progressBarBackgroundView: UIView!
+    @IBOutlet weak var progressBarView: UIView!
+    @IBOutlet weak var amountLabel: UILabel!
 
 }

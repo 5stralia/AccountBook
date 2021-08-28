@@ -6,24 +6,37 @@
 //
 
 import UIKit
+import Charts
 
 class BarChartViewController: UIViewController {
-
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    private let cellIdentifier = "BarChartCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.collectionView.register(UINib(nibName: self.cellIdentifier, bundle: nil),
+                                     forCellWithReuseIdentifier: self.cellIdentifier)
     }
 
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension BarChartViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: 24)
     }
-    */
+}
 
+extension BarChartViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellIdentifier, for: indexPath) as! BarChartCell
+        
+        return cell
+    }
 }
