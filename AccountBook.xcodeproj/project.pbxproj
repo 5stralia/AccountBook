@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4142F026DA9716003C6468 /* ProfileViewController.swift */; };
+		FB4142F326DA9716003C6468 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB4142F126DA9716003C6468 /* ProfileViewController.xib */; };
+		FB4142F526DA9721003C6468 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4142F426DA9721003C6468 /* ProfileViewModel.swift */; };
 		FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */; };
 		FB8BF38926D67CDE0091CC58 /* AccountBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF38726D67CDE0091CC58 /* AccountBook.xcdatamodeld */; };
 		FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF38A26D67CE20091CC58 /* Assets.xcassets */; };
@@ -54,6 +57,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB4142F026DA9716003C6468 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FB4142F126DA9716003C6468 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		FB4142F426DA9721003C6468 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		FB8BF37B26D67CDE0091CC58 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB8BF38826D67CDE0091CC58 /* AccountBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccountBook.xcdatamodel; sourceTree = "<group>"; };
@@ -114,6 +120,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB4142EF26DA96FF003C6468 /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FB4142F426DA9721003C6468 /* ProfileViewModel.swift */,
+				FB4142F026DA9716003C6468 /* ProfileViewController.swift */,
+				FB4142F126DA9716003C6468 /* ProfileViewController.xib */,
+			);
+			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
 		FB8BF37226D67CDE0091CC58 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +153,7 @@
 		FB8BF37D26D67CDE0091CC58 /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				FB4142EF26DA96FF003C6468 /* ProfileViewController */,
 				FB8BF3B426D6855F0091CC58 /* ChartViewController */,
 				FB8BF38F26D67CE20091CC58 /* Info.plist */,
 				FB8BF38C26D67CE20091CC58 /* LaunchScreen.storyboard */,
@@ -357,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB4142F326DA9716003C6468 /* ProfileViewController.xib in Resources */,
 				FB8BF3D326DA79F80091CC58 /* BarChartCell.xib in Resources */,
 				FB8BF38E26D67CE20091CC58 /* LaunchScreen.storyboard in Resources */,
 				FB8BF3E126DA8E280091CC58 /* MonthlyChartCell.xib in Resources */,
@@ -396,10 +414,12 @@
 				FB8BF3CB26DA76140091CC58 /* BarChartViewController.swift in Sources */,
 				FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */,
 				FB8BF38926D67CDE0091CC58 /* AccountBook.xcdatamodeld in Sources */,
+				FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */,
 				FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */,
 				FB8BF3CE26DA763B0091CC58 /* BarChartViewModel.swift in Sources */,
 				FB8BF3D926DA7EA90091CC58 /* MonthlyChartViewController.swift in Sources */,
 				FB8BF3B726D685710091CC58 /* ChartViewController.swift in Sources */,
+				FB4142F526DA9721003C6468 /* ProfileViewModel.swift in Sources */,
 				FB8BF3E026DA8E280091CC58 /* MonthlyChartCell.swift in Sources */,
 				FB8BF3C426D92D710091CC58 /* PieChartViewModel.swift in Sources */,
 				FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */,

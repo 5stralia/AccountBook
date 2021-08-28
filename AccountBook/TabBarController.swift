@@ -12,12 +12,17 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let profileViewController = ProfileViewController()
+        profileViewController.tabBarItem = UITabBarItem(title: nil,
+                                                        image: UIImage(systemName: "person"),
+                                                        selectedImage: UIImage(systemName: "person.fill"))
+        
         let chartViewController = ChartViewController()
         chartViewController.tabBarItem = UITabBarItem(title: nil,
                                                       image: UIImage(systemName: "chart.pie"),
                                                       selectedImage: UIImage(systemName: "chart.pie.fill"))
         
-        self.viewControllers = [chartViewController]
+        self.viewControllers = [profileViewController, chartViewController]
     }
     
 
