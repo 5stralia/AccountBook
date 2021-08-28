@@ -28,6 +28,12 @@
 		FB8BF3D226DA79F80091CC58 /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3D026DA79F80091CC58 /* BarChartCell.swift */; };
 		FB8BF3D326DA79F80091CC58 /* BarChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF3D126DA79F80091CC58 /* BarChartCell.xib */; };
 		FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3D426DA7A180091CC58 /* BarChartCellViewModel.swift */; };
+		FB8BF3D926DA7EA90091CC58 /* MonthlyChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3D726DA7EA90091CC58 /* MonthlyChartViewController.swift */; };
+		FB8BF3DA26DA7EA90091CC58 /* MonthlyChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF3D826DA7EA90091CC58 /* MonthlyChartViewController.xib */; };
+		FB8BF3DC26DA7EB60091CC58 /* MonthlyChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3DB26DA7EB60091CC58 /* MonthlyChartViewModel.swift */; };
+		FB8BF3E026DA8E280091CC58 /* MonthlyChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3DE26DA8E280091CC58 /* MonthlyChartCell.swift */; };
+		FB8BF3E126DA8E280091CC58 /* MonthlyChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF3DF26DA8E280091CC58 /* MonthlyChartCell.xib */; };
+		FB8BF3E326DA8E330091CC58 /* MonthlyChartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3E226DA8E330091CC58 /* MonthlyChartCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +80,12 @@
 		FB8BF3D026DA79F80091CC58 /* BarChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
 		FB8BF3D126DA79F80091CC58 /* BarChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarChartCell.xib; sourceTree = "<group>"; };
 		FB8BF3D426DA7A180091CC58 /* BarChartCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartCellViewModel.swift; sourceTree = "<group>"; };
+		FB8BF3D726DA7EA90091CC58 /* MonthlyChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyChartViewController.swift; sourceTree = "<group>"; };
+		FB8BF3D826DA7EA90091CC58 /* MonthlyChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonthlyChartViewController.xib; sourceTree = "<group>"; };
+		FB8BF3DB26DA7EB60091CC58 /* MonthlyChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyChartViewModel.swift; sourceTree = "<group>"; };
+		FB8BF3DE26DA8E280091CC58 /* MonthlyChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyChartCell.swift; sourceTree = "<group>"; };
+		FB8BF3DF26DA8E280091CC58 /* MonthlyChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonthlyChartCell.xib; sourceTree = "<group>"; };
+		FB8BF3E226DA8E330091CC58 /* MonthlyChartCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyChartCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +178,7 @@
 		FB8BF3B426D6855F0091CC58 /* ChartViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FB8BF3D626DA7E7C0091CC58 /* MonthlyChartViewController */,
 				FB8BF3C826DA75F30091CC58 /* BarChartViewController */,
 				FB8BF3BE26D92D2C0091CC58 /* PieChartViewController */,
 				FB8BF3B926D696740091CC58 /* ChartViewModel.swift */,
@@ -210,6 +223,27 @@
 				FB8BF3D426DA7A180091CC58 /* BarChartCellViewModel.swift */,
 				FB8BF3D026DA79F80091CC58 /* BarChartCell.swift */,
 				FB8BF3D126DA79F80091CC58 /* BarChartCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		FB8BF3D626DA7E7C0091CC58 /* MonthlyChartViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FB8BF3DD26DA8E120091CC58 /* Cell */,
+				FB8BF3DB26DA7EB60091CC58 /* MonthlyChartViewModel.swift */,
+				FB8BF3D726DA7EA90091CC58 /* MonthlyChartViewController.swift */,
+				FB8BF3D826DA7EA90091CC58 /* MonthlyChartViewController.xib */,
+			);
+			path = MonthlyChartViewController;
+			sourceTree = "<group>";
+		};
+		FB8BF3DD26DA8E120091CC58 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FB8BF3E226DA8E330091CC58 /* MonthlyChartCellViewModel.swift */,
+				FB8BF3DE26DA8E280091CC58 /* MonthlyChartCell.swift */,
+				FB8BF3DF26DA8E280091CC58 /* MonthlyChartCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -325,10 +359,12 @@
 			files = (
 				FB8BF3D326DA79F80091CC58 /* BarChartCell.xib in Resources */,
 				FB8BF38E26D67CE20091CC58 /* LaunchScreen.storyboard in Resources */,
+				FB8BF3E126DA8E280091CC58 /* MonthlyChartCell.xib in Resources */,
 				FB8BF3B826D685710091CC58 /* ChartViewController.xib in Resources */,
 				FB8BF3CC26DA76140091CC58 /* BarChartViewController.xib in Resources */,
 				FB8BF3C226D92D430091CC58 /* PieChartViewController.xib in Resources */,
 				FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */,
+				FB8BF3DA26DA7EA90091CC58 /* MonthlyChartViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,13 +390,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB8BF3C726D931530091CC58 /* UIView+Design.swift in Sources */,
+				FB8BF3DC26DA7EB60091CC58 /* MonthlyChartViewModel.swift in Sources */,
 				FB8BF3C126D92D430091CC58 /* PieChartViewController.swift in Sources */,
+				FB8BF3E326DA8E330091CC58 /* MonthlyChartCellViewModel.swift in Sources */,
 				FB8BF3CB26DA76140091CC58 /* BarChartViewController.swift in Sources */,
 				FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */,
 				FB8BF38926D67CDE0091CC58 /* AccountBook.xcdatamodeld in Sources */,
 				FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */,
 				FB8BF3CE26DA763B0091CC58 /* BarChartViewModel.swift in Sources */,
+				FB8BF3D926DA7EA90091CC58 /* MonthlyChartViewController.swift in Sources */,
 				FB8BF3B726D685710091CC58 /* ChartViewController.swift in Sources */,
+				FB8BF3E026DA8E280091CC58 /* MonthlyChartCell.swift in Sources */,
 				FB8BF3C426D92D710091CC58 /* PieChartViewModel.swift in Sources */,
 				FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */,
 				FB8BF3B226D681320091CC58 /* TabBarController.swift in Sources */,
