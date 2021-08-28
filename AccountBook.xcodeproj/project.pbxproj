@@ -10,6 +10,12 @@
 		FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4142F026DA9716003C6468 /* ProfileViewController.swift */; };
 		FB4142F326DA9716003C6468 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB4142F126DA9716003C6468 /* ProfileViewController.xib */; };
 		FB4142F526DA9721003C6468 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4142F426DA9721003C6468 /* ProfileViewModel.swift */; };
+		FB4142F926DA97B2003C6468 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4142F726DA97B2003C6468 /* ListViewController.swift */; };
+		FB4142FA26DA97B2003C6468 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB4142F826DA97B2003C6468 /* ListViewController.xib */; };
+		FB4142FC26DA97BD003C6468 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4142FB26DA97BD003C6468 /* ListViewModel.swift */; };
+		FB41430026DA9833003C6468 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4142FE26DA9833003C6468 /* SettingViewController.swift */; };
+		FB41430126DA9833003C6468 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB4142FF26DA9833003C6468 /* SettingViewController.xib */; };
+		FB41430326DA9842003C6468 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB41430226DA9842003C6468 /* SettingViewModel.swift */; };
 		FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */; };
 		FB8BF38926D67CDE0091CC58 /* AccountBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF38726D67CDE0091CC58 /* AccountBook.xcdatamodeld */; };
 		FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF38A26D67CE20091CC58 /* Assets.xcassets */; };
@@ -60,6 +66,12 @@
 		FB4142F026DA9716003C6468 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FB4142F126DA9716003C6468 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		FB4142F426DA9721003C6468 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		FB4142F726DA97B2003C6468 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		FB4142F826DA97B2003C6468 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
+		FB4142FB26DA97BD003C6468 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		FB4142FE26DA9833003C6468 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		FB4142FF26DA9833003C6468 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		FB41430226DA9842003C6468 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		FB8BF37B26D67CDE0091CC58 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB8BF38826D67CDE0091CC58 /* AccountBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccountBook.xcdatamodel; sourceTree = "<group>"; };
@@ -130,6 +142,26 @@
 			path = ProfileViewController;
 			sourceTree = "<group>";
 		};
+		FB4142F626DA97A4003C6468 /* ListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FB4142FB26DA97BD003C6468 /* ListViewModel.swift */,
+				FB4142F726DA97B2003C6468 /* ListViewController.swift */,
+				FB4142F826DA97B2003C6468 /* ListViewController.xib */,
+			);
+			path = ListViewController;
+			sourceTree = "<group>";
+		};
+		FB4142FD26DA9824003C6468 /* SettingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FB41430226DA9842003C6468 /* SettingViewModel.swift */,
+				FB4142FE26DA9833003C6468 /* SettingViewController.swift */,
+				FB4142FF26DA9833003C6468 /* SettingViewController.xib */,
+			);
+			path = SettingViewController;
+			sourceTree = "<group>";
+		};
 		FB8BF37226D67CDE0091CC58 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +185,8 @@
 		FB8BF37D26D67CDE0091CC58 /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				FB4142FD26DA9824003C6468 /* SettingViewController */,
+				FB4142F626DA97A4003C6468 /* ListViewController */,
 				FB4142EF26DA96FF003C6468 /* ProfileViewController */,
 				FB8BF3B426D6855F0091CC58 /* ChartViewController */,
 				FB8BF38F26D67CE20091CC58 /* Info.plist */,
@@ -376,10 +410,12 @@
 			files = (
 				FB4142F326DA9716003C6468 /* ProfileViewController.xib in Resources */,
 				FB8BF3D326DA79F80091CC58 /* BarChartCell.xib in Resources */,
+				FB4142FA26DA97B2003C6468 /* ListViewController.xib in Resources */,
 				FB8BF38E26D67CE20091CC58 /* LaunchScreen.storyboard in Resources */,
 				FB8BF3E126DA8E280091CC58 /* MonthlyChartCell.xib in Resources */,
 				FB8BF3B826D685710091CC58 /* ChartViewController.xib in Resources */,
 				FB8BF3CC26DA76140091CC58 /* BarChartViewController.xib in Resources */,
+				FB41430126DA9833003C6468 /* SettingViewController.xib in Resources */,
 				FB8BF3C226D92D430091CC58 /* PieChartViewController.xib in Resources */,
 				FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */,
 				FB8BF3DA26DA7EA90091CC58 /* MonthlyChartViewController.xib in Resources */,
@@ -412,10 +448,13 @@
 				FB8BF3C126D92D430091CC58 /* PieChartViewController.swift in Sources */,
 				FB8BF3E326DA8E330091CC58 /* MonthlyChartCellViewModel.swift in Sources */,
 				FB8BF3CB26DA76140091CC58 /* BarChartViewController.swift in Sources */,
+				FB41430026DA9833003C6468 /* SettingViewController.swift in Sources */,
 				FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */,
 				FB8BF38926D67CDE0091CC58 /* AccountBook.xcdatamodeld in Sources */,
 				FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */,
+				FB4142F926DA97B2003C6468 /* ListViewController.swift in Sources */,
 				FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */,
+				FB4142FC26DA97BD003C6468 /* ListViewModel.swift in Sources */,
 				FB8BF3CE26DA763B0091CC58 /* BarChartViewModel.swift in Sources */,
 				FB8BF3D926DA7EA90091CC58 /* MonthlyChartViewController.swift in Sources */,
 				FB8BF3B726D685710091CC58 /* ChartViewController.swift in Sources */,
@@ -423,6 +462,7 @@
 				FB8BF3E026DA8E280091CC58 /* MonthlyChartCell.swift in Sources */,
 				FB8BF3C426D92D710091CC58 /* PieChartViewModel.swift in Sources */,
 				FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */,
+				FB41430326DA9842003C6468 /* SettingViewModel.swift in Sources */,
 				FB8BF3B226D681320091CC58 /* TabBarController.swift in Sources */,
 				FB8BF3D226DA79F80091CC58 /* BarChartCell.swift in Sources */,
 			);
