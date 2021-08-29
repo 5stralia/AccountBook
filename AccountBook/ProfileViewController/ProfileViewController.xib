@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="AccountBook" customModuleProvider="target">
             <connections>
-                <outlet property="signOutButton" destination="Wd3-Yh-yIZ" id="OWR-Ds-sRL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,21 +18,8 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wd3-Yh-yIZ">
-                    <rect key="frame" x="184" y="433" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="signOut:" destination="-1" eventType="touchUpInside" id="pFz-EU-JJ0"/>
-                    </connections>
-                </button>
-            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstItem="Wd3-Yh-yIZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="i9k-S1-PEW"/>
-                <constraint firstItem="Wd3-Yh-yIZ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="rw8-99-zHn"/>
-            </constraints>
             <point key="canvasLocation" x="-62" y="74"/>
         </view>
     </objects>

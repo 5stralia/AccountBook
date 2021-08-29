@@ -19,6 +19,7 @@
 		FB41430A26DAA27E003C6468 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430926DAA27E003C6468 /* FirebaseCrashlytics */; };
 		FB41430C26DAA27E003C6468 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430B26DAA27E003C6468 /* FirebaseAuth */; };
 		FB41430E26DAA27E003C6468 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430D26DAA27E003C6468 /* FirebaseFirestore */; };
+		FB6DD83226DBF7F700CAE900 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = FB6DD83126DBF7F700CAE900 /* FacebookLogin */; };
 		FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */; };
 		FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF38A26D67CE20091CC58 /* Assets.xcassets */; };
 		FB8BF38E26D67CE20091CC58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF38C26D67CE20091CC58 /* LaunchScreen.storyboard */; };
@@ -159,6 +160,7 @@
 				FBD38C4B26DBC4DD00E9365F /* Differentiator in Frameworks */,
 				FBD38C2C26DB832900E9365F /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				FBD38C4926DBC4DD00E9365F /* RxDataSources in Frameworks */,
+				FB6DD83226DBF7F700CAE900 /* FacebookLogin in Frameworks */,
 				FB8BF3BD26D92B9E0091CC58 /* Charts in Frameworks */,
 				FB41430E26DAA27E003C6468 /* FirebaseFirestore in Frameworks */,
 				FB41430C26DAA27E003C6468 /* FirebaseAuth in Frameworks */,
@@ -187,7 +189,6 @@
 		FB4142EF26DA96FF003C6468 /* ProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
-				FBD38C0A26DAB29900E9365F /* SignInViewController */,
 				FB4142F426DA9721003C6468 /* ProfileViewModel.swift */,
 				FB4142F026DA9716003C6468 /* ProfileViewController.swift */,
 				FB4142F126DA9716003C6468 /* ProfileViewController.xib */,
@@ -248,6 +249,7 @@
 				FB4142EF26DA96FF003C6468 /* ProfileViewController */,
 				FB8BF3B426D6855F0091CC58 /* ChartViewController */,
 				FBD38C2D26DB862600E9365F /* AccountDetailViewController */,
+				FBD38C0A26DAB29900E9365F /* SignInViewController */,
 				FB8BF38F26D67CE20091CC58 /* Info.plist */,
 				FB8BF38C26D67CE20091CC58 /* LaunchScreen.storyboard */,
 				FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */,
@@ -484,6 +486,7 @@
 				FBD38C4126DBBD2900E9365F /* RxCocoa */,
 				FBD38C4826DBC4DD00E9365F /* RxDataSources */,
 				FBD38C4A26DBC4DD00E9365F /* Differentiator */,
+				FB6DD83126DBF7F700CAE900 /* FacebookLogin */,
 			);
 			productName = AccountBook;
 			productReference = FB8BF37B26D67CDE0091CC58 /* AccountBook.app */;
@@ -562,6 +565,7 @@
 				FBD38C0726DAB1EE00E9365F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				FBD38C3C26DBBD2900E9365F /* XCRemoteSwiftPackageReference "RxSwift" */,
 				FBD38C4726DBC4DD00E9365F /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				FB6DD83026DBF7F700CAE900 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = FB8BF37C26D67CDE0091CC58 /* Products */;
 			projectDirPath = "";
@@ -1010,6 +1014,14 @@
 				version = 8.6.1;
 			};
 		};
+		FB6DD83026DBF7F700CAE900 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 11.1.0;
+			};
+		};
 		FB8BF3BB26D92B9E0091CC58 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
@@ -1064,6 +1076,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB41430626DAA27E003C6468 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		FB6DD83126DBF7F700CAE900 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB6DD83026DBF7F700CAE900 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
 		};
 		FB8BF3BC26D92B9E0091CC58 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;

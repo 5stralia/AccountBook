@@ -43,7 +43,11 @@ class TabBarController: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
+        if Auth.auth().currentUser == nil {
+            let signInViewController = SignInViewController()
+            signInViewController.modalPresentationStyle = .fullScreen
+            self.present(signInViewController, animated: true, completion: nil)
+        }
     }
 
 }
