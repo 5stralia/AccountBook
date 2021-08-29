@@ -23,7 +23,8 @@ class TabBarController: UITabBarController {
                                                       selectedImage: UIImage(systemName: "chart.pie.fill"))
         
         let listViewController = ListViewController()
-        listViewController.tabBarItem = UITabBarItem(title: nil,
+        let listNavigationController = UINavigationController(rootViewController: listViewController)
+        listNavigationController.tabBarItem = UITabBarItem(title: nil,
                                                      image: UIImage(systemName: "note.text"),
                                                      selectedImage: UIImage(systemName: "note.text"))
         
@@ -32,7 +33,7 @@ class TabBarController: UITabBarController {
                                                         image: UIImage(systemName: "gearshape"),
                                                         selectedImage: UIImage(systemName: "gearshape.fill"))
         
-        self.viewControllers = [profileViewController, chartViewController, listViewController, settingViewController]
+        self.viewControllers = [profileViewController, chartViewController, listNavigationController, settingViewController]
     }
     
 

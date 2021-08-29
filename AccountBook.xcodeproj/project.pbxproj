@@ -52,8 +52,11 @@
 		FBD38C0E26DAB2B500E9365F /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */; };
 		FBD38C1226DB595200E9365F /* ListAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C1026DB595200E9365F /* ListAccountCell.swift */; };
 		FBD38C1326DB595200E9365F /* ListAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C1126DB595200E9365F /* ListAccountCell.xib */; };
-		FBD38C1926DB630D00E9365F /* ListSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C1726DB630D00E9365F /* ListSearchCell.swift */; };
-		FBD38C1A26DB630D00E9365F /* ListSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C1826DB630D00E9365F /* ListSearchCell.xib */; };
+		FBD38C2726DB6F1200E9365F /* ListInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C2526DB6F1200E9365F /* ListInfoCell.swift */; };
+		FBD38C2826DB6F1200E9365F /* ListInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C2626DB6F1200E9365F /* ListInfoCell.xib */; };
+		FBD38C2C26DB832900E9365F /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = FBD38C2B26DB832900E9365F /* FirebaseFirestoreSwift-Beta */; };
+		FBD38C3026DB867A00E9365F /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C2E26DB867A00E9365F /* AccountDetailViewController.swift */; };
+		FBD38C3126DB867A00E9365F /* AccountDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C2F26DB867A00E9365F /* AccountDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,8 +122,10 @@
 		FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		FBD38C1026DB595200E9365F /* ListAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountCell.swift; sourceTree = "<group>"; };
 		FBD38C1126DB595200E9365F /* ListAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListAccountCell.xib; sourceTree = "<group>"; };
-		FBD38C1726DB630D00E9365F /* ListSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSearchCell.swift; sourceTree = "<group>"; };
-		FBD38C1826DB630D00E9365F /* ListSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListSearchCell.xib; sourceTree = "<group>"; };
+		FBD38C2526DB6F1200E9365F /* ListInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfoCell.swift; sourceTree = "<group>"; };
+		FBD38C2626DB6F1200E9365F /* ListInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListInfoCell.xib; sourceTree = "<group>"; };
+		FBD38C2E26DB867A00E9365F /* AccountDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
+		FBD38C2F26DB867A00E9365F /* AccountDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +135,7 @@
 			files = (
 				FB41430A26DAA27E003C6468 /* FirebaseCrashlytics in Frameworks */,
 				FB41430826DAA27E003C6468 /* FirebaseAnalytics in Frameworks */,
+				FBD38C2C26DB832900E9365F /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				FB8BF3BD26D92B9E0091CC58 /* Charts in Frameworks */,
 				FB41430E26DAA27E003C6468 /* FirebaseFirestore in Frameworks */,
 				FB41430C26DAA27E003C6468 /* FirebaseAuth in Frameworks */,
@@ -193,6 +199,7 @@
 				FB8BF39726D67CE30091CC58 /* AccountBookTests */,
 				FB8BF3A226D67CE30091CC58 /* AccountBookUITests */,
 				FB8BF37C26D67CDE0091CC58 /* Products */,
+				FBD38C2A26DB832900E9365F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -213,6 +220,7 @@
 				FB4142F626DA97A4003C6468 /* ListViewController */,
 				FB4142EF26DA96FF003C6468 /* ProfileViewController */,
 				FB8BF3B426D6855F0091CC58 /* ChartViewController */,
+				FBD38C2D26DB862600E9365F /* AccountDetailViewController */,
 				FB8BF38F26D67CE20091CC58 /* Info.plist */,
 				FB8BF38C26D67CE20091CC58 /* LaunchScreen.storyboard */,
 				FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */,
@@ -336,7 +344,6 @@
 			isa = PBXGroup;
 			children = (
 				FBD38C1626DB62ED00E9365F /* InfoCell */,
-				FBD38C1526DB62E600E9365F /* SearchCell */,
 				FBD38C1426DB62D800E9365F /* AccountCell */,
 			);
 			path = Cell;
@@ -351,20 +358,29 @@
 			path = AccountCell;
 			sourceTree = "<group>";
 		};
-		FBD38C1526DB62E600E9365F /* SearchCell */ = {
-			isa = PBXGroup;
-			children = (
-				FBD38C1726DB630D00E9365F /* ListSearchCell.swift */,
-				FBD38C1826DB630D00E9365F /* ListSearchCell.xib */,
-			);
-			path = SearchCell;
-			sourceTree = "<group>";
-		};
 		FBD38C1626DB62ED00E9365F /* InfoCell */ = {
 			isa = PBXGroup;
 			children = (
+				FBD38C2526DB6F1200E9365F /* ListInfoCell.swift */,
+				FBD38C2626DB6F1200E9365F /* ListInfoCell.xib */,
 			);
 			path = InfoCell;
+			sourceTree = "<group>";
+		};
+		FBD38C2A26DB832900E9365F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FBD38C2D26DB862600E9365F /* AccountDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FBD38C2E26DB867A00E9365F /* AccountDetailViewController.swift */,
+				FBD38C2F26DB867A00E9365F /* AccountDetailViewController.xib */,
+			);
+			path = AccountDetailViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +393,7 @@
 				FB8BF37726D67CDE0091CC58 /* Sources */,
 				FB8BF37826D67CDE0091CC58 /* Frameworks */,
 				FB8BF37926D67CDE0091CC58 /* Resources */,
+				FBD38C2926DB74A100E9365F /* Crashlytics Run Script */,
 			);
 			buildRules = (
 			);
@@ -390,6 +407,7 @@
 				FB41430B26DAA27E003C6468 /* FirebaseAuth */,
 				FB41430D26DAA27E003C6468 /* FirebaseFirestore */,
 				FBD38C0826DAB1EF00E9365F /* GoogleSignIn */,
+				FBD38C2B26DB832900E9365F /* FirebaseFirestoreSwift-Beta */,
 			);
 			productName = AccountBook;
 			productReference = FB8BF37B26D67CDE0091CC58 /* AccountBook.app */;
@@ -491,13 +509,14 @@
 				FB8BF3E126DA8E280091CC58 /* MonthlyChartCell.xib in Resources */,
 				FB41430526DA9C79003C6468 /* GoogleService-Info.plist in Resources */,
 				FB8BF3B826D685710091CC58 /* ChartViewController.xib in Resources */,
+				FBD38C2826DB6F1200E9365F /* ListInfoCell.xib in Resources */,
 				FB8BF3CC26DA76140091CC58 /* BarChartViewController.xib in Resources */,
 				FB41430126DA9833003C6468 /* SettingViewController.xib in Resources */,
 				FB8BF3C226D92D430091CC58 /* PieChartViewController.xib in Resources */,
 				FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */,
-				FBD38C1A26DB630D00E9365F /* ListSearchCell.xib in Resources */,
 				FB8BF3DA26DA7EA90091CC58 /* MonthlyChartViewController.xib in Resources */,
 				FBD38C1326DB595200E9365F /* ListAccountCell.xib in Resources */,
+				FBD38C3126DB867A00E9365F /* AccountDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +536,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		FBD38C2926DB74A100E9365F /* Crashlytics Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Crashlytics Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FB8BF37726D67CDE0091CC58 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -531,9 +573,9 @@
 				FB41430026DA9833003C6468 /* SettingViewController.swift in Sources */,
 				FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */,
 				FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */,
-				FBD38C1926DB630D00E9365F /* ListSearchCell.swift in Sources */,
 				FB4142F926DA97B2003C6468 /* ListViewController.swift in Sources */,
 				FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */,
+				FBD38C3026DB867A00E9365F /* AccountDetailViewController.swift in Sources */,
 				FB4142FC26DA97BD003C6468 /* ListViewModel.swift in Sources */,
 				FB8BF3CE26DA763B0091CC58 /* BarChartViewModel.swift in Sources */,
 				FB8BF3D926DA7EA90091CC58 /* MonthlyChartViewController.swift in Sources */,
@@ -544,6 +586,7 @@
 				FB8BF3C426D92D710091CC58 /* PieChartViewModel.swift in Sources */,
 				FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */,
 				FB41430326DA9842003C6468 /* SettingViewModel.swift in Sources */,
+				FBD38C2726DB6F1200E9365F /* ListInfoCell.swift in Sources */,
 				FB8BF3B226D681320091CC58 /* TabBarController.swift in Sources */,
 				FB8BF3D226DA79F80091CC58 /* BarChartCell.swift in Sources */,
 			);
@@ -714,6 +757,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = BG5DA8S34C;
 				INFOPLIST_FILE = AccountBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -733,6 +777,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = BG5DA8S34C;
 				INFOPLIST_FILE = AccountBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -928,6 +973,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FBD38C0726DAB1EE00E9365F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
+		};
+		FBD38C2B26DB832900E9365F /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB41430626DAA27E003C6468 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
