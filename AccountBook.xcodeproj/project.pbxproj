@@ -57,6 +57,8 @@
 		FBD38C2C26DB832900E9365F /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = FBD38C2B26DB832900E9365F /* FirebaseFirestoreSwift-Beta */; };
 		FBD38C3026DB867A00E9365F /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C2E26DB867A00E9365F /* AccountDetailViewController.swift */; };
 		FBD38C3126DB867A00E9365F /* AccountDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C2F26DB867A00E9365F /* AccountDetailViewController.xib */; };
+		FBD38C3526DB906D00E9365F /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C3326DB906D00E9365F /* TextFieldCell.swift */; };
+		FBD38C3626DB906D00E9365F /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C3426DB906D00E9365F /* TextFieldCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +128,8 @@
 		FBD38C2626DB6F1200E9365F /* ListInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListInfoCell.xib; sourceTree = "<group>"; };
 		FBD38C2E26DB867A00E9365F /* AccountDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
 		FBD38C2F26DB867A00E9365F /* AccountDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDetailViewController.xib; sourceTree = "<group>"; };
+		FBD38C3326DB906D00E9365F /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		FBD38C3426DB906D00E9365F /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,10 +381,28 @@
 		FBD38C2D26DB862600E9365F /* AccountDetailViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FBD38C3226DB896E00E9365F /* Cell */,
 				FBD38C2E26DB867A00E9365F /* AccountDetailViewController.swift */,
 				FBD38C2F26DB867A00E9365F /* AccountDetailViewController.xib */,
 			);
 			path = AccountDetailViewController;
+			sourceTree = "<group>";
+		};
+		FBD38C3226DB896E00E9365F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FBD38C3726DB90FC00E9365F /* TextFieldCell */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		FBD38C3726DB90FC00E9365F /* TextFieldCell */ = {
+			isa = PBXGroup;
+			children = (
+				FBD38C3326DB906D00E9365F /* TextFieldCell.swift */,
+				FBD38C3426DB906D00E9365F /* TextFieldCell.xib */,
+			);
+			path = TextFieldCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -514,6 +536,7 @@
 				FB41430126DA9833003C6468 /* SettingViewController.xib in Resources */,
 				FB8BF3C226D92D430091CC58 /* PieChartViewController.xib in Resources */,
 				FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */,
+				FBD38C3626DB906D00E9365F /* TextFieldCell.xib in Resources */,
 				FB8BF3DA26DA7EA90091CC58 /* MonthlyChartViewController.xib in Resources */,
 				FBD38C1326DB595200E9365F /* ListAccountCell.xib in Resources */,
 				FBD38C3126DB867A00E9365F /* AccountDetailViewController.xib in Resources */,
@@ -571,6 +594,7 @@
 				FB8BF3E326DA8E330091CC58 /* MonthlyChartCellViewModel.swift in Sources */,
 				FB8BF3CB26DA76140091CC58 /* BarChartViewController.swift in Sources */,
 				FB41430026DA9833003C6468 /* SettingViewController.swift in Sources */,
+				FBD38C3526DB906D00E9365F /* TextFieldCell.swift in Sources */,
 				FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */,
 				FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */,
 				FB4142F926DA97B2003C6468 /* ListViewController.swift in Sources */,

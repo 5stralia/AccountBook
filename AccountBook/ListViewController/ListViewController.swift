@@ -30,8 +30,9 @@ class ListViewController: UIViewController {
                                            target: self,
                                            action: nil)
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addAccount))
+        let monthlyButton = UIBarButtonItem(title: "월별", style: .plain, target: self, action: nil)
         
-        self.navigationItem.rightBarButtonItems = [addButton, filterButton]
+        self.navigationItem.rightBarButtonItems = [addButton, monthlyButton, filterButton]
     }
     
     override func viewDidAppear(_ animated: Bool) {

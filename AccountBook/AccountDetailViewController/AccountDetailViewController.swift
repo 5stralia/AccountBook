@@ -8,10 +8,19 @@
 import UIKit
 
 class AccountDetailViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    
+    private let textFieldCellIdentifier = "TextFieldCell"
+    private let selectingCellIdentifier = "SelectingCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.register(UINib(nibName: self.textFieldCellIdentifier, bundle: nil),
+                                forCellReuseIdentifier: self.textFieldCellIdentifier)
+        self.tableView.register(UITableViewCell.self,
+                                forCellReuseIdentifier: self.selectingCellIdentifier)
+        
         self.setNavigationItems()
     }
     
@@ -31,4 +40,44 @@ class AccountDetailViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
+}
+
+extension AccountDetailViewController: UITableViewDelegate {
+    
+}
+
+extension AccountDetailViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.textFieldCellIdentifier) as! TextFieldCell
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.selectingCellIdentifier)!
+            
+            if #available(iOS 14.0, *) {
+                var content = UIListContentConfiguration.valueCell()
+                
+                content.text = "text"
+                content.secondaryText = "Second"
+                
+                cell.contentConfiguration = content
+                
+            } else {
+                cell.textLabel?.text = "textLabel"
+            }
+            
+            cell.accessoryType = .disclosureIndicator
+            
+            return cell
+        }
+    }
 }
