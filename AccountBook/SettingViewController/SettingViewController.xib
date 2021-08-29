@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingViewController" customModule="AccountBook" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="DNP-3O-Kmp" id="QMb-OD-9Q3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,20 +20,18 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hf0-lA-Ykt">
-                    <rect key="frame" x="0.0" y="84" width="414" height="30"/>
-                    <state key="normal" title="Crash"/>
-                    <connections>
-                        <action selector="crash:" destination="-1" eventType="touchUpInside" id="BTe-Rc-zE0"/>
-                    </connections>
-                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DNP-3O-Kmp">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hf0-lA-Ykt" secondAttribute="trailing" id="Lup-bZ-pVi"/>
-                <constraint firstItem="hf0-lA-Ykt" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="VYs-12-1Xa"/>
-                <constraint firstItem="hf0-lA-Ykt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fla-qx-rnA"/>
+                <constraint firstItem="DNP-3O-Kmp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="F4O-xI-OlC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DNP-3O-Kmp" secondAttribute="trailing" id="WCN-MW-B5L"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DNP-3O-Kmp" secondAttribute="bottom" id="ZXW-au-Ewe"/>
+                <constraint firstItem="DNP-3O-Kmp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vop-Tr-2w0"/>
             </constraints>
             <point key="canvasLocation" x="-13" y="62"/>
         </view>

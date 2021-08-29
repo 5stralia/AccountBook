@@ -13,8 +13,6 @@
 		FB4142F926DA97B2003C6468 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4142F726DA97B2003C6468 /* ListViewController.swift */; };
 		FB4142FA26DA97B2003C6468 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB4142F826DA97B2003C6468 /* ListViewController.xib */; };
 		FB4142FC26DA97BD003C6468 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4142FB26DA97BD003C6468 /* ListViewModel.swift */; };
-		FB41430026DA9833003C6468 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4142FE26DA9833003C6468 /* SettingViewController.swift */; };
-		FB41430126DA9833003C6468 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB4142FF26DA9833003C6468 /* SettingViewController.xib */; };
 		FB41430326DA9842003C6468 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB41430226DA9842003C6468 /* SettingViewModel.swift */; };
 		FB41430526DA9C79003C6468 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB41430426DA9C79003C6468 /* GoogleService-Info.plist */; };
 		FB41430826DAA27E003C6468 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430726DAA27E003C6468 /* FirebaseAnalytics */; };
@@ -59,6 +57,18 @@
 		FBD38C3126DB867A00E9365F /* AccountDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C2F26DB867A00E9365F /* AccountDetailViewController.xib */; };
 		FBD38C3526DB906D00E9365F /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C3326DB906D00E9365F /* TextFieldCell.swift */; };
 		FBD38C3626DB906D00E9365F /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C3426DB906D00E9365F /* TextFieldCell.xib */; };
+		FBD38C3E26DBBD2900E9365F /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FBD38C3D26DBBD2900E9365F /* RxSwift */; };
+		FBD38C4026DBBD2900E9365F /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = FBD38C3F26DBBD2900E9365F /* RxRelay */; };
+		FBD38C4226DBBD2900E9365F /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = FBD38C4126DBBD2900E9365F /* RxCocoa */; };
+		FBD38C4426DBC04E00E9365F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C4326DBC04E00E9365F /* ViewModel.swift */; };
+		FBD38C4626DBC4B400E9365F /* SettingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C4526DBC4B400E9365F /* SettingSection.swift */; };
+		FBD38C4926DBC4DD00E9365F /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = FBD38C4826DBC4DD00E9365F /* RxDataSources */; };
+		FBD38C4B26DBC4DD00E9365F /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = FBD38C4A26DBC4DD00E9365F /* Differentiator */; };
+		FBD38C5726DBC88E00E9365F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C5526DBC88E00E9365F /* TableViewCell.swift */; };
+		FBD38C5826DBC88E00E9365F /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C5626DBC88E00E9365F /* TableViewCell.xib */; };
+		FBD38C5A26DBCB3E00E9365F /* TableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C5926DBCB3E00E9365F /* TableViewCellViewModel.swift */; };
+		FBD38C5D26DBD5A300E9365F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C5B26DBD5A300E9365F /* SettingViewController.swift */; };
+		FBD38C5E26DBD5A300E9365F /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C5C26DBD5A300E9365F /* SettingViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,8 +95,6 @@
 		FB4142F726DA97B2003C6468 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		FB4142F826DA97B2003C6468 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		FB4142FB26DA97BD003C6468 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
-		FB4142FE26DA9833003C6468 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		FB4142FF26DA9833003C6468 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		FB41430226DA9842003C6468 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		FB41430426DA9C79003C6468 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB8BF37B26D67CDE0091CC58 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +138,13 @@
 		FBD38C2F26DB867A00E9365F /* AccountDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDetailViewController.xib; sourceTree = "<group>"; };
 		FBD38C3326DB906D00E9365F /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		FBD38C3426DB906D00E9365F /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
+		FBD38C4326DBC04E00E9365F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		FBD38C4526DBC4B400E9365F /* SettingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSection.swift; sourceTree = "<group>"; };
+		FBD38C5526DBC88E00E9365F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		FBD38C5626DBC88E00E9365F /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		FBD38C5926DBCB3E00E9365F /* TableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModel.swift; sourceTree = "<group>"; };
+		FBD38C5B26DBD5A300E9365F /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		FBD38C5C26DBD5A300E9365F /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,12 +152,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD38C4026DBBD2900E9365F /* RxRelay in Frameworks */,
 				FB41430A26DAA27E003C6468 /* FirebaseCrashlytics in Frameworks */,
+				FBD38C4226DBBD2900E9365F /* RxCocoa in Frameworks */,
 				FB41430826DAA27E003C6468 /* FirebaseAnalytics in Frameworks */,
+				FBD38C4B26DBC4DD00E9365F /* Differentiator in Frameworks */,
 				FBD38C2C26DB832900E9365F /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				FBD38C4926DBC4DD00E9365F /* RxDataSources in Frameworks */,
 				FB8BF3BD26D92B9E0091CC58 /* Charts in Frameworks */,
 				FB41430E26DAA27E003C6468 /* FirebaseFirestore in Frameworks */,
 				FB41430C26DAA27E003C6468 /* FirebaseAuth in Frameworks */,
+				FBD38C3E26DBBD2900E9365F /* RxSwift in Frameworks */,
 				FBD38C0926DAB1EF00E9365F /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,9 +209,11 @@
 		FB4142FD26DA9824003C6468 /* SettingViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FBD38C4C26DBC56600E9365F /* Cell */,
+				FBD38C4526DBC4B400E9365F /* SettingSection.swift */,
 				FB41430226DA9842003C6468 /* SettingViewModel.swift */,
-				FB4142FE26DA9833003C6468 /* SettingViewController.swift */,
-				FB4142FF26DA9833003C6468 /* SettingViewController.xib */,
+				FBD38C5B26DBD5A300E9365F /* SettingViewController.swift */,
+				FBD38C5C26DBD5A300E9365F /* SettingViewController.xib */,
 			);
 			path = SettingViewController;
 			sourceTree = "<group>";
@@ -220,6 +242,7 @@
 		FB8BF37D26D67CDE0091CC58 /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				FBD38C4D26DBC68F00E9365F /* Common */,
 				FB4142FD26DA9824003C6468 /* SettingViewController */,
 				FB4142F626DA97A4003C6468 /* ListViewController */,
 				FB4142EF26DA96FF003C6468 /* ProfileViewController */,
@@ -405,6 +428,32 @@
 			path = TextFieldCell;
 			sourceTree = "<group>";
 		};
+		FBD38C4C26DBC56600E9365F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		FBD38C4D26DBC68F00E9365F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FBD38C5426DBC88100E9365F /* TableViewCell */,
+				FBD38C4326DBC04E00E9365F /* ViewModel.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		FBD38C5426DBC88100E9365F /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FBD38C5926DBCB3E00E9365F /* TableViewCellViewModel.swift */,
+				FBD38C5526DBC88E00E9365F /* TableViewCell.swift */,
+				FBD38C5626DBC88E00E9365F /* TableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -430,6 +479,11 @@
 				FB41430D26DAA27E003C6468 /* FirebaseFirestore */,
 				FBD38C0826DAB1EF00E9365F /* GoogleSignIn */,
 				FBD38C2B26DB832900E9365F /* FirebaseFirestoreSwift-Beta */,
+				FBD38C3D26DBBD2900E9365F /* RxSwift */,
+				FBD38C3F26DBBD2900E9365F /* RxRelay */,
+				FBD38C4126DBBD2900E9365F /* RxCocoa */,
+				FBD38C4826DBC4DD00E9365F /* RxDataSources */,
+				FBD38C4A26DBC4DD00E9365F /* Differentiator */,
 			);
 			productName = AccountBook;
 			productReference = FB8BF37B26D67CDE0091CC58 /* AccountBook.app */;
@@ -506,6 +560,8 @@
 				FB8BF3BB26D92B9E0091CC58 /* XCRemoteSwiftPackageReference "Charts" */,
 				FB41430626DAA27E003C6468 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				FBD38C0726DAB1EE00E9365F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				FBD38C3C26DBBD2900E9365F /* XCRemoteSwiftPackageReference "RxSwift" */,
+				FBD38C4726DBC4DD00E9365F /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = FB8BF37C26D67CDE0091CC58 /* Products */;
 			projectDirPath = "";
@@ -524,6 +580,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB4142F326DA9716003C6468 /* ProfileViewController.xib in Resources */,
+				FBD38C5E26DBD5A300E9365F /* SettingViewController.xib in Resources */,
 				FB8BF3D326DA79F80091CC58 /* BarChartCell.xib in Resources */,
 				FB4142FA26DA97B2003C6468 /* ListViewController.xib in Resources */,
 				FBD38C0E26DAB2B500E9365F /* SignInViewController.xib in Resources */,
@@ -533,9 +590,9 @@
 				FB8BF3B826D685710091CC58 /* ChartViewController.xib in Resources */,
 				FBD38C2826DB6F1200E9365F /* ListInfoCell.xib in Resources */,
 				FB8BF3CC26DA76140091CC58 /* BarChartViewController.xib in Resources */,
-				FB41430126DA9833003C6468 /* SettingViewController.xib in Resources */,
 				FB8BF3C226D92D430091CC58 /* PieChartViewController.xib in Resources */,
 				FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */,
+				FBD38C5826DBC88E00E9365F /* TableViewCell.xib in Resources */,
 				FBD38C3626DB906D00E9365F /* TextFieldCell.xib in Resources */,
 				FB8BF3DA26DA7EA90091CC58 /* MonthlyChartViewController.xib in Resources */,
 				FBD38C1326DB595200E9365F /* ListAccountCell.xib in Resources */,
@@ -587,16 +644,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD38C5A26DBCB3E00E9365F /* TableViewCellViewModel.swift in Sources */,
 				FBD38C0D26DAB2B500E9365F /* SignInViewController.swift in Sources */,
 				FB8BF3C726D931530091CC58 /* UIView+Design.swift in Sources */,
 				FB8BF3DC26DA7EB60091CC58 /* MonthlyChartViewModel.swift in Sources */,
 				FB8BF3C126D92D430091CC58 /* PieChartViewController.swift in Sources */,
+				FBD38C5D26DBD5A300E9365F /* SettingViewController.swift in Sources */,
 				FB8BF3E326DA8E330091CC58 /* MonthlyChartCellViewModel.swift in Sources */,
 				FB8BF3CB26DA76140091CC58 /* BarChartViewController.swift in Sources */,
-				FB41430026DA9833003C6468 /* SettingViewController.swift in Sources */,
 				FBD38C3526DB906D00E9365F /* TextFieldCell.swift in Sources */,
 				FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */,
+				FBD38C5726DBC88E00E9365F /* TableViewCell.swift in Sources */,
 				FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */,
+				FBD38C4426DBC04E00E9365F /* ViewModel.swift in Sources */,
 				FB4142F926DA97B2003C6468 /* ListViewController.swift in Sources */,
 				FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */,
 				FBD38C3026DB867A00E9365F /* AccountDetailViewController.swift in Sources */,
@@ -608,6 +668,7 @@
 				FBD38C1226DB595200E9365F /* ListAccountCell.swift in Sources */,
 				FB8BF3E026DA8E280091CC58 /* MonthlyChartCell.swift in Sources */,
 				FB8BF3C426D92D710091CC58 /* PieChartViewModel.swift in Sources */,
+				FBD38C4626DBC4B400E9365F /* SettingSection.swift in Sources */,
 				FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */,
 				FB41430326DA9842003C6468 /* SettingViewModel.swift in Sources */,
 				FBD38C2726DB6F1200E9365F /* ListInfoCell.swift in Sources */,
@@ -965,6 +1026,22 @@
 				version = 6.0.2;
 			};
 		};
+		FBD38C3C26DBBD2900E9365F /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 6.2.0;
+			};
+		};
+		FBD38C4726DBC4DD00E9365F /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1002,6 +1079,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB41430626DAA27E003C6468 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		FBD38C3D26DBBD2900E9365F /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBD38C3C26DBBD2900E9365F /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		FBD38C3F26DBBD2900E9365F /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBD38C3C26DBBD2900E9365F /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		FBD38C4126DBBD2900E9365F /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBD38C3C26DBBD2900E9365F /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		FBD38C4826DBC4DD00E9365F /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBD38C4726DBC4DD00E9365F /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
+		};
+		FBD38C4A26DBC4DD00E9365F /* Differentiator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBD38C4726DBC4DD00E9365F /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = Differentiator;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

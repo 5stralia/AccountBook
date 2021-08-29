@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Firebase
+
 class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
@@ -29,6 +31,8 @@ class TabBarController: UITabBarController {
                                                      selectedImage: UIImage(systemName: "note.text"))
         
         let settingViewController = SettingViewController()
+        let settingViewModel = SettingViewModel()
+        settingViewController.viewModel = settingViewModel
         settingViewController.tabBarItem = UITabBarItem(title: nil,
                                                         image: UIImage(systemName: "gearshape"),
                                                         selectedImage: UIImage(systemName: "gearshape.fill"))
@@ -36,15 +40,10 @@ class TabBarController: UITabBarController {
         self.viewControllers = [profileViewController, chartViewController, listNavigationController, settingViewController]
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
     }
-    */
 
 }
