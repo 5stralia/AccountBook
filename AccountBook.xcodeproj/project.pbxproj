@@ -20,6 +20,10 @@
 		FB41430C26DAA27E003C6468 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430B26DAA27E003C6468 /* FirebaseAuth */; };
 		FB41430E26DAA27E003C6468 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430D26DAA27E003C6468 /* FirebaseFirestore */; };
 		FB6ACFA826DD064C00F3099F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6ACFA726DD064C00F3099F /* Images.xcassets */; };
+		FB6ACFAD26DD160E00F3099F /* EdittingTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACFAB26DD160E00F3099F /* EdittingTitleViewController.swift */; };
+		FB6ACFAE26DD160E00F3099F /* EdittingTitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB6ACFAC26DD160E00F3099F /* EdittingTitleViewController.xib */; };
+		FB6ACFB226DD177000F3099F /* EdittingGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACFB026DD177000F3099F /* EdittingGroupViewController.swift */; };
+		FB6ACFB326DD177000F3099F /* EdittingGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB6ACFB126DD177000F3099F /* EdittingGroupViewController.xib */; };
 		FB6DD83226DBF7F700CAE900 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = FB6DD83126DBF7F700CAE900 /* FacebookLogin */; };
 		FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */; };
 		FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF38A26D67CE20091CC58 /* Assets.xcassets */; };
@@ -100,6 +104,10 @@
 		FB41430226DA9842003C6468 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		FB41430426DA9C79003C6468 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB6ACFA726DD064C00F3099F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FB6ACFAB26DD160E00F3099F /* EdittingTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingTitleViewController.swift; sourceTree = "<group>"; };
+		FB6ACFAC26DD160E00F3099F /* EdittingTitleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EdittingTitleViewController.xib; sourceTree = "<group>"; };
+		FB6ACFB026DD177000F3099F /* EdittingGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingGroupViewController.swift; sourceTree = "<group>"; };
+		FB6ACFB126DD177000F3099F /* EdittingGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EdittingGroupViewController.xib; sourceTree = "<group>"; };
 		FB8BF37B26D67CDE0091CC58 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB8BF38A26D67CE20091CC58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -191,6 +199,7 @@
 		FB4142EF26DA96FF003C6468 /* ProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FB6ACFA926DD15CB00F3099F /* MakingAccountBook */,
 				FB4142F426DA9721003C6468 /* ProfileViewModel.swift */,
 				FB4142F026DA9716003C6468 /* ProfileViewController.swift */,
 				FB4142F126DA9716003C6468 /* ProfileViewController.xib */,
@@ -219,6 +228,33 @@
 				FBD38C5C26DBD5A300E9365F /* SettingViewController.xib */,
 			);
 			path = SettingViewController;
+			sourceTree = "<group>";
+		};
+		FB6ACFA926DD15CB00F3099F /* MakingAccountBook */ = {
+			isa = PBXGroup;
+			children = (
+				FB6ACFAF26DD174A00F3099F /* EdittingGroup */,
+				FB6ACFAA26DD15DE00F3099F /* EdittingTitle */,
+			);
+			path = MakingAccountBook;
+			sourceTree = "<group>";
+		};
+		FB6ACFAA26DD15DE00F3099F /* EdittingTitle */ = {
+			isa = PBXGroup;
+			children = (
+				FB6ACFAB26DD160E00F3099F /* EdittingTitleViewController.swift */,
+				FB6ACFAC26DD160E00F3099F /* EdittingTitleViewController.xib */,
+			);
+			path = EdittingTitle;
+			sourceTree = "<group>";
+		};
+		FB6ACFAF26DD174A00F3099F /* EdittingGroup */ = {
+			isa = PBXGroup;
+			children = (
+				FB6ACFB026DD177000F3099F /* EdittingGroupViewController.swift */,
+				FB6ACFB126DD177000F3099F /* EdittingGroupViewController.xib */,
+			);
+			path = EdittingGroup;
 			sourceTree = "<group>";
 		};
 		FB8BF37226D67CDE0091CC58 = {
@@ -595,6 +631,7 @@
 				FB8BF3E126DA8E280091CC58 /* MonthlyChartCell.xib in Resources */,
 				FB41430526DA9C79003C6468 /* GoogleService-Info.plist in Resources */,
 				FB8BF3B826D685710091CC58 /* ChartViewController.xib in Resources */,
+				FB6ACFAE26DD160E00F3099F /* EdittingTitleViewController.xib in Resources */,
 				FBD38C2826DB6F1200E9365F /* ListInfoCell.xib in Resources */,
 				FB8BF3CC26DA76140091CC58 /* BarChartViewController.xib in Resources */,
 				FB8BF3C226D92D430091CC58 /* PieChartViewController.xib in Resources */,
@@ -605,6 +642,7 @@
 				FB8BF3DA26DA7EA90091CC58 /* MonthlyChartViewController.xib in Resources */,
 				FBD38C1326DB595200E9365F /* ListAccountCell.xib in Resources */,
 				FBD38C3126DB867A00E9365F /* AccountDetailViewController.xib in Resources */,
+				FB6ACFB326DD177000F3099F /* EdittingGroupViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +690,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB6ACFB226DD177000F3099F /* EdittingGroupViewController.swift in Sources */,
 				FBD38C5A26DBCB3E00E9365F /* TableViewCellViewModel.swift in Sources */,
 				FBD38C0D26DAB2B500E9365F /* SignInViewController.swift in Sources */,
 				FB8BF3C726D931530091CC58 /* UIView+Design.swift in Sources */,
@@ -678,6 +717,7 @@
 				FB8BF3C426D92D710091CC58 /* PieChartViewModel.swift in Sources */,
 				FBD38C4626DBC4B400E9365F /* SettingSection.swift in Sources */,
 				FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */,
+				FB6ACFAD26DD160E00F3099F /* EdittingTitleViewController.swift in Sources */,
 				FB41430326DA9842003C6468 /* SettingViewModel.swift in Sources */,
 				FBD38C2726DB6F1200E9365F /* ListInfoCell.swift in Sources */,
 				FB8BF3B226D681320091CC58 /* TabBarController.swift in Sources */,

@@ -15,7 +15,8 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
 
         let profileViewController = ProfileViewController()
-        profileViewController.tabBarItem = UITabBarItem(title: nil,
+        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
+        profileNavigationController.tabBarItem = UITabBarItem(title: nil,
                                                         image: UIImage(systemName: "person"),
                                                         selectedImage: UIImage(systemName: "person.fill"))
         
@@ -37,7 +38,7 @@ class TabBarController: UITabBarController {
                                                         image: UIImage(systemName: "gearshape"),
                                                         selectedImage: UIImage(systemName: "gearshape.fill"))
         
-        self.viewControllers = [profileViewController, chartViewController, listNavigationController, settingViewController]
+        self.viewControllers = [profileNavigationController, chartViewController, listNavigationController, settingViewController]
     }
     
     override func viewDidAppear(_ animated: Bool) {
