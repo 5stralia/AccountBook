@@ -161,8 +161,10 @@ extension SignInViewController: LoginButtonDelegate {
             return
         }
         
+        guard let tokenString = AccessToken.current?.tokenString else { return }
+        
         let credential = FacebookAuthProvider
-          .credential(withAccessToken: AccessToken.current!.tokenString)
+          .credential(withAccessToken: tokenString)
         
         Auth.auth().signIn(with: credential) { authResult, error in
             if let error = error {

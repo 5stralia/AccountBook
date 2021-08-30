@@ -19,6 +19,7 @@
 		FB41430A26DAA27E003C6468 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430926DAA27E003C6468 /* FirebaseCrashlytics */; };
 		FB41430C26DAA27E003C6468 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430B26DAA27E003C6468 /* FirebaseAuth */; };
 		FB41430E26DAA27E003C6468 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430D26DAA27E003C6468 /* FirebaseFirestore */; };
+		FB6ACFA826DD064C00F3099F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6ACFA726DD064C00F3099F /* Images.xcassets */; };
 		FB6DD83226DBF7F700CAE900 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = FB6DD83126DBF7F700CAE900 /* FacebookLogin */; };
 		FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */; };
 		FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF38A26D67CE20091CC58 /* Assets.xcassets */; };
@@ -98,6 +99,7 @@
 		FB4142FB26DA97BD003C6468 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		FB41430226DA9842003C6468 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		FB41430426DA9C79003C6468 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FB6ACFA726DD064C00F3099F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FB8BF37B26D67CDE0091CC58 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB8BF38A26D67CE20091CC58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				FB8BF38A26D67CE20091CC58 /* Assets.xcassets */,
+				FB6ACFA726DD064C00F3099F /* Images.xcassets */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */,
 				FBD38C5826DBC88E00E9365F /* TableViewCell.xib in Resources */,
 				FBD38C3626DB906D00E9365F /* TextFieldCell.xib in Resources */,
+				FB6ACFA826DD064C00F3099F /* Images.xcassets in Resources */,
 				FB8BF3DA26DA7EA90091CC58 /* MonthlyChartViewController.xib in Resources */,
 				FBD38C1326DB595200E9365F /* ListAccountCell.xib in Resources */,
 				FBD38C3126DB867A00E9365F /* AccountDetailViewController.xib in Resources */,
