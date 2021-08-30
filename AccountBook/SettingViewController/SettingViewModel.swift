@@ -7,6 +7,7 @@
 
 import Foundation
 
+import FBSDKLoginKit
 import Firebase
 import RxSwift
 import RxCocoa
@@ -20,7 +21,7 @@ class SettingViewModel: ViewModel {
     
     struct Output {
         let items: BehaviorRelay<[SettingSection]>
-        let signOut: PublishRelay<Void>
+        let didSignOut: PublishRelay<Void>
     }
     
     let isSignIn: BehaviorRelay<Bool>
@@ -46,7 +47,7 @@ class SettingViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let elements = BehaviorRelay<[SettingSection]>(value: [])
         
-        let signOut = PublishRelay<Void>()
+        let didSignOut = PublishRelay<Void>()
         
         Observable.combineLatest(input.refresh, self.isSignIn.asObservable().map { _ in }).map { [weak self] (_) -> [SettingSection] in
             guard let self = self else { return [] }
@@ -70,9 +71,10 @@ class SettingViewModel: ViewModel {
                 let firebaseAuth = Auth.auth()
                 do {
                     try firebaseAuth.signOut()
+                    LoginManager().logOut()
                     
                     self.isSignIn.accept(false)
-                    signOut.accept(())
+                    didSignOut.accept(())
                 } catch let signOutError as NSError {
                     print("Error signing out: %@", signOutError)
                 }
@@ -80,6 +82,6 @@ class SettingViewModel: ViewModel {
         })
         .disposed(by: self.disposeBag)
         
-        return Output(items: elements, signOut: signOut)
+        return Output(items: elements, didSignOut: didSignOut)
     }
 }

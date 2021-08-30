@@ -36,7 +36,7 @@ class SettingViewController: UIViewController {
         
         let output = viewModel.transform(input: SettingViewModel.Input(refresh: Observable.just(()), didSelect: didSelect))
         
-        let dataSource = RxTableViewSectionedReloadDataSource<SettingSection> { dataSource, tableView, indexPath, item in
+        let dataSource = RxTableViewSectionedReloadDataSource<SettingSection>(configureCell: { dataSource, tableView, indexPath, item in
             switch item {
             case .logOutItem(let viewModel):
                 let cell = tableView.dequeueReusableCell(withIdentifier: self.tableViewCellIdentifier,
@@ -44,13 +44,16 @@ class SettingViewController: UIViewController {
                 cell.bind(to: viewModel)
                 return cell
             }
-        }
+        }, titleForHeaderInSection: { dataSource, index in
+            let section = dataSource[index]
+            return section.title
+        })
         
         output.items
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: self.disposeBag)
         
-        output.signOut
+        output.didSignOut
             .subscribe(onNext: { [weak self] in
                 let alertControl = UIAlertController(title: nil, message: "로그아웃 완료", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .default) { _ in 
