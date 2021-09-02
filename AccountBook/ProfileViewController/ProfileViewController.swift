@@ -13,6 +13,8 @@ import GoogleSignIn
 class ProfileViewController: UIViewController {
     @IBOutlet weak var signOutButton: UIButton!
     
+    var viewModel: ProfileViewModel?
+    
     private var authHandle: AuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {

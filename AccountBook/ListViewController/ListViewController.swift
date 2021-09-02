@@ -10,6 +10,8 @@ import UIKit
 class ListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var viewModel: ListViewModel?
+    
     private let infoCellIdentifier = "ListInfoCell"
     private let cellIdentifier = "ListAccountCell"
     

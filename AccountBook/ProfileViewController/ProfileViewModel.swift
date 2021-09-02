@@ -7,6 +7,28 @@
 
 import Foundation
 
-class ProfileViewModel {
+class ProfileViewModel: ViewModel, ViewModelType {
+    struct Input {
+        
+    }
+    struct Output {
+        
+    }
     
+    let database: Database
+    
+    func transform(input: Input) -> Output {
+        
+        return Output()
+    }
+    
+    init(database: Database) {
+        self.database = database
+        
+        super.init()
+    }
+    
+    func test() {
+        self.database.createTest()
+    }
 }

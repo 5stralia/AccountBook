@@ -7,6 +7,6 @@
 
 import Foundation
 
-class ListViewModel {
+class ListViewModel: ViewModel {
     
 }

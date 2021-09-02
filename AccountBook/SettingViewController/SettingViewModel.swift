@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class SettingViewModel: ViewModel {
+class SettingViewModel: ViewModel, ViewModelType {
     struct Input {
         let refresh: Observable<Void>
         let didSelect: Driver<SettingSectionItem>
@@ -29,8 +29,10 @@ class SettingViewModel: ViewModel {
     
     let disposeBag = DisposeBag()
     
-    init() {
+    override init() {
         self.isSignIn = BehaviorRelay<Bool>(value: Auth.auth().currentUser != nil)
+        
+        super.init()
         
         self.authHandle = Auth.auth().addStateDidChangeListener { auth, user in
             // 로그인 상태 변경 리스너

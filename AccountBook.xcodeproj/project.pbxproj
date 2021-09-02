@@ -24,6 +24,9 @@
 		FB6ACFAE26DD160E00F3099F /* EdittingTitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB6ACFAC26DD160E00F3099F /* EdittingTitleViewController.xib */; };
 		FB6ACFB226DD177000F3099F /* EdittingGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACFB026DD177000F3099F /* EdittingGroupViewController.swift */; };
 		FB6ACFB326DD177000F3099F /* EdittingGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB6ACFB126DD177000F3099F /* EdittingGroupViewController.xib */; };
+		FB6ACFB626DFC6EE00F3099F /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACFB526DFC6EE00F3099F /* TabBarViewModel.swift */; };
+		FB6ACFB926DFC89000F3099F /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACFB826DFC89000F3099F /* Database.swift */; };
+		FB6ACFBB26E0D36800F3099F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACFBA26E0D36700F3099F /* ViewController.swift */; };
 		FB6DD83226DBF7F700CAE900 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = FB6DD83126DBF7F700CAE900 /* FacebookLogin */; };
 		FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */; };
 		FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF38A26D67CE20091CC58 /* Assets.xcassets */; };
@@ -108,6 +111,9 @@
 		FB6ACFAC26DD160E00F3099F /* EdittingTitleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EdittingTitleViewController.xib; sourceTree = "<group>"; };
 		FB6ACFB026DD177000F3099F /* EdittingGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingGroupViewController.swift; sourceTree = "<group>"; };
 		FB6ACFB126DD177000F3099F /* EdittingGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EdittingGroupViewController.xib; sourceTree = "<group>"; };
+		FB6ACFB526DFC6EE00F3099F /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		FB6ACFB826DFC89000F3099F /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		FB6ACFBA26E0D36700F3099F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FB8BF37B26D67CDE0091CC58 /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB8BF38A26D67CE20091CC58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -257,6 +263,23 @@
 			path = EdittingGroup;
 			sourceTree = "<group>";
 		};
+		FB6ACFB426DFC6D200F3099F /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				FB6ACFB526DFC6EE00F3099F /* TabBarViewModel.swift */,
+				FB8BF3B126D681320091CC58 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		FB6ACFB726DFC7F500F3099F /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				FB6ACFB826DFC89000F3099F /* Database.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		FB8BF37226D67CDE0091CC58 = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +304,8 @@
 		FB8BF37D26D67CDE0091CC58 /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				FB6ACFB726DFC7F500F3099F /* Database */,
+				FB6ACFB426DFC6D200F3099F /* TabBar */,
 				FBD38C4D26DBC68F00E9365F /* Common */,
 				FB4142FD26DA9824003C6468 /* SettingViewController */,
 				FB4142F626DA97A4003C6468 /* ListViewController */,
@@ -291,7 +316,6 @@
 				FB8BF38F26D67CE20091CC58 /* Info.plist */,
 				FB8BF38C26D67CE20091CC58 /* LaunchScreen.storyboard */,
 				FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */,
-				FB8BF3B126D681320091CC58 /* TabBarController.swift */,
 				FB41430426DA9C79003C6468 /* GoogleService-Info.plist */,
 				FB8BF3C526D931360091CC58 /* Extension */,
 				FB8BF3B326D684920091CC58 /* Resource */,
@@ -481,6 +505,7 @@
 			children = (
 				FBD38C5426DBC88100E9365F /* TableViewCell */,
 				FBD38C4326DBC04E00E9365F /* ViewModel.swift */,
+				FB6ACFBA26E0D36700F3099F /* ViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -694,6 +719,7 @@
 				FBD38C5A26DBCB3E00E9365F /* TableViewCellViewModel.swift in Sources */,
 				FBD38C0D26DAB2B500E9365F /* SignInViewController.swift in Sources */,
 				FB8BF3C726D931530091CC58 /* UIView+Design.swift in Sources */,
+				FB6ACFB926DFC89000F3099F /* Database.swift in Sources */,
 				FB8BF3DC26DA7EB60091CC58 /* MonthlyChartViewModel.swift in Sources */,
 				FB8BF3C126D92D430091CC58 /* PieChartViewController.swift in Sources */,
 				FBD38C5D26DBD5A300E9365F /* SettingViewController.swift in Sources */,
@@ -714,6 +740,7 @@
 				FB4142F526DA9721003C6468 /* ProfileViewModel.swift in Sources */,
 				FBD38C1226DB595200E9365F /* ListAccountCell.swift in Sources */,
 				FB8BF3E026DA8E280091CC58 /* MonthlyChartCell.swift in Sources */,
+				FB6ACFBB26E0D36800F3099F /* ViewController.swift in Sources */,
 				FB8BF3C426D92D710091CC58 /* PieChartViewModel.swift in Sources */,
 				FBD38C4626DBC4B400E9365F /* SettingSection.swift in Sources */,
 				FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */,
@@ -721,6 +748,7 @@
 				FB41430326DA9842003C6468 /* SettingViewModel.swift in Sources */,
 				FBD38C2726DB6F1200E9365F /* ListInfoCell.swift in Sources */,
 				FB8BF3B226D681320091CC58 /* TabBarController.swift in Sources */,
+				FB6ACFB626DFC6EE00F3099F /* TabBarViewModel.swift in Sources */,
 				FB8BF3D226DA79F80091CC58 /* BarChartCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

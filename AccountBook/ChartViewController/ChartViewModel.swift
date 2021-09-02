@@ -7,6 +7,6 @@
 
 import Foundation
 
-class ChartViewModel {
+class ChartViewModel: ViewModel {
     
 }

@@ -31,6 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let tabBarController = TabBarController()
+        let db = Firestore.firestore()
+        let database = Database(db: db)
+        let tabBarViewModel = TabBarViewModel(database: database)
+        tabBarController.viewModel = tabBarViewModel
+        
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
