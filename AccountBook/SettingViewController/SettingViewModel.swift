@@ -21,7 +21,6 @@ class SettingViewModel: ViewModel, ViewModelType {
     
     struct Output {
         let items: BehaviorRelay<[SettingSection]>
-        let didSignOut: PublishRelay<Void>
     }
     
     let isSignIn: BehaviorRelay<Bool>
@@ -49,8 +48,6 @@ class SettingViewModel: ViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         let elements = BehaviorRelay<[SettingSection]>(value: [])
         
-        let didSignOut = PublishRelay<Void>()
-        
         Observable.combineLatest(input.refresh, self.isSignIn.asObservable().map { _ in }).map { [weak self] (_) -> [SettingSection] in
             guard let self = self else { return [] }
             
@@ -76,7 +73,6 @@ class SettingViewModel: ViewModel, ViewModelType {
                     LoginManager().logOut()
                     
                     self.isSignIn.accept(false)
-                    didSignOut.accept(())
                 } catch let signOutError as NSError {
                     print("Error signing out: %@", signOutError)
                 }
@@ -84,6 +80,6 @@ class SettingViewModel: ViewModel, ViewModelType {
         })
         .disposed(by: self.disposeBag)
         
-        return Output(items: elements, didSignOut: didSignOut)
+        return Output(items: elements)
     }
 }

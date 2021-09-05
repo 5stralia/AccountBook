@@ -52,18 +52,5 @@ class SettingViewController: UIViewController {
         output.items
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: self.disposeBag)
-        
-        output.didSignOut
-            .subscribe(onNext: { [weak self] in
-                let alertControl = UIAlertController(title: nil, message: "로그아웃 완료", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default) { _ in 
-                    let signInViewController = SignInViewController()
-                    signInViewController.modalPresentationStyle = .fullScreen
-                    self?.present(signInViewController, animated: true, completion: nil)
-                }
-                alertControl.addAction(okAction)
-                self?.present(alertControl, animated: true, completion: nil)
-            })
-            .disposed(by: self.disposeBag)
     }
 }

@@ -9,8 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EdittingTitleViewController" customModule="AccountBook" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroCreatingGroupViewController" customModule="AccountBook" customModuleProvider="target">
             <connections>
+                <outlet property="startButton" destination="fg3-2d-WCQ" id="cXo-Xx-5tW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,38 +21,38 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvU-k3-RPF">
-                    <rect key="frame" x="87" y="415" width="240" height="66"/>
+                    <rect key="frame" x="87" y="396.5" width="240" height="103"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 가계부를 시작하세요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9B-JM-bMP">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="23"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                            <color key="textColor" systemColor="systemBackgroundColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tCr-5F-ZCJ">
-                            <rect key="frame" x="0.0" y="32" width="240" height="34"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="-1" id="fnM-3l-P9I"/>
-                            </connections>
-                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fg3-2d-WCQ">
+                            <rect key="frame" x="95" y="53.5" width="50" height="49"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="GEw-EH-hDV"/>
+                                <constraint firstAttribute="width" constant="50" id="XpK-tw-eAl"/>
+                            </constraints>
+                            <color key="tintColor" systemColor="systemBackgroundColor"/>
+                            <state key="normal" backgroundImage="arrowtriangle.right.circle.fill" catalog="system"/>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="O9B-JM-bMP" firstAttribute="leading" secondItem="cvU-k3-RPF" secondAttribute="leading" id="00p-5c-SoM"/>
-                        <constraint firstAttribute="bottom" secondItem="tCr-5F-ZCJ" secondAttribute="bottom" id="96t-0v-L6h"/>
+                        <constraint firstAttribute="bottom" secondItem="fg3-2d-WCQ" secondAttribute="bottom" id="9dY-2O-KcS"/>
                         <constraint firstItem="O9B-JM-bMP" firstAttribute="top" secondItem="cvU-k3-RPF" secondAttribute="top" id="Cbc-4G-Gjs"/>
                         <constraint firstAttribute="trailing" secondItem="O9B-JM-bMP" secondAttribute="trailing" id="E7x-Qx-z4n"/>
-                        <constraint firstItem="tCr-5F-ZCJ" firstAttribute="top" secondItem="O9B-JM-bMP" secondAttribute="bottom" constant="11" id="dFA-tK-AR3"/>
-                        <constraint firstAttribute="trailing" secondItem="tCr-5F-ZCJ" secondAttribute="trailing" id="h3I-7t-048"/>
+                        <constraint firstItem="fg3-2d-WCQ" firstAttribute="top" secondItem="O9B-JM-bMP" secondAttribute="bottom" constant="30" id="TlH-MR-yAs"/>
+                        <constraint firstItem="fg3-2d-WCQ" firstAttribute="centerX" secondItem="cvU-k3-RPF" secondAttribute="centerX" id="dKW-ME-K1d"/>
                         <constraint firstAttribute="width" constant="240" id="l1l-Gs-hrx"/>
-                        <constraint firstItem="tCr-5F-ZCJ" firstAttribute="leading" secondItem="cvU-k3-RPF" secondAttribute="leading" id="pg4-yV-ho7"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemIndigoColor"/>
             <constraints>
                 <constraint firstItem="cvU-k3-RPF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Atd-hE-68d"/>
                 <constraint firstItem="cvU-k3-RPF" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="fMG-Mc-5QA"/>
@@ -60,8 +61,12 @@
         </view>
     </objects>
     <resources>
+        <image name="arrowtriangle.right.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

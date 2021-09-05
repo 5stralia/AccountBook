@@ -24,7 +24,16 @@ class TabBarController: UITabBarController {
     var disposeBag = DisposeBag()
     
     private func bind(to viewModel: TabBarViewModel) {
-        let output = viewModel.transform(input: TabBarViewModel.Input())
+        let output = viewModel.transform(input: TabBarViewModel.Input(
+                                            viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in },
+                                            viewWillDisappear: self.rx.viewWillDisappear.asObservable().map { _ in }))
+        output.presentSignIn
+            .subscribe(onNext: { [weak self] in
+                let signInViewController = SignInViewController()
+                signInViewController.modalPresentationStyle = .fullScreen
+                self?.present(signInViewController, animated: true, completion: nil)
+            })
+            .disposed(by: self.disposeBag)
         
         output.items.map { viewModels in
             return viewModels.compactMap { viewModel -> UIViewController? in
@@ -77,16 +86,6 @@ class TabBarController: UITabBarController {
         .disposed(by: self.disposeBag)
         
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if Auth.auth().currentUser == nil {
-            let signInViewController = SignInViewController()
-            signInViewController.modalPresentationStyle = .fullScreen
-            self.present(signInViewController, animated: true, completion: nil)
-        }
     }
 
 }

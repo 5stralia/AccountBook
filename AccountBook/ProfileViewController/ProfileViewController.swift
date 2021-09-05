@@ -8,40 +8,36 @@
 import UIKit
 
 import Firebase
-import GoogleSignIn
+import RxSwift
+import RxCocoa
 
 class ProfileViewController: UIViewController {
     @IBOutlet weak var signOutButton: UIButton!
     
-    var viewModel: ProfileViewModel?
-    
-    private var authHandle: AuthStateDidChangeListenerHandle?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.authHandle = Auth.auth().addStateDidChangeListener { auth, user in
-            // 로그인 상태 변경 리스너
+    var viewModel: ProfileViewModel? {
+        willSet {
+            if let profileViewModel = newValue {
+                self.bind(to: profileViewModel)
+            }
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let edittingTitleViewController = EdittingTitleViewController()
-        self.navigationController?.pushViewController(edittingTitleViewController, animated: true)
-    }
+    var disposeBag = DisposeBag()
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    private func bind(to viewModel: ProfileViewModel) {
+        let output = viewModel.transform(
+            input: ProfileViewModel.Input(viewWillAppear: self.rx.viewWillAppear
+                                            .asObservable()
+                                            .map { _ in }))
         
-        if let handle = self.authHandle {
-            Auth.auth().removeStateDidChangeListener(handle)
-        }
+        output.presentIntroCreating.asObservable()
+            .subscribe(onNext: { [weak self] introCreatingGroupViewModel in
+                let introCreatingGroupViewController = IntroCreatingGroupViewController()
+                introCreatingGroupViewController.viewModel = introCreatingGroupViewModel
+                let navigationController = UINavigationController(rootViewController: introCreatingGroupViewController)
+                navigationController.modalPresentationStyle = .fullScreen
+                self?.present(navigationController, animated: true, completion: nil)
+            })
+            .disposed(by: self.disposeBag)
     }
 }

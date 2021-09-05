@@ -20,8 +20,8 @@
 		FB41430C26DAA27E003C6468 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430B26DAA27E003C6468 /* FirebaseAuth */; };
 		FB41430E26DAA27E003C6468 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430D26DAA27E003C6468 /* FirebaseFirestore */; };
 		FB6ACFA826DD064C00F3099F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6ACFA726DD064C00F3099F /* Images.xcassets */; };
-		FB6ACFAD26DD160E00F3099F /* EdittingTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACFAB26DD160E00F3099F /* EdittingTitleViewController.swift */; };
-		FB6ACFAE26DD160E00F3099F /* EdittingTitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB6ACFAC26DD160E00F3099F /* EdittingTitleViewController.xib */; };
+		FB6ACFAD26DD160E00F3099F /* IntroCreatingGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACFAB26DD160E00F3099F /* IntroCreatingGroupViewController.swift */; };
+		FB6ACFAE26DD160E00F3099F /* IntroCreatingGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB6ACFAC26DD160E00F3099F /* IntroCreatingGroupViewController.xib */; };
 		FB6ACFB226DD177000F3099F /* EdittingGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACFB026DD177000F3099F /* EdittingGroupViewController.swift */; };
 		FB6ACFB326DD177000F3099F /* EdittingGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB6ACFB126DD177000F3099F /* EdittingGroupViewController.xib */; };
 		FB6ACFB626DFC6EE00F3099F /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACFB526DFC6EE00F3099F /* TabBarViewModel.swift */; };
@@ -54,6 +54,12 @@
 		FB8BF3E026DA8E280091CC58 /* MonthlyChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3DE26DA8E280091CC58 /* MonthlyChartCell.swift */; };
 		FB8BF3E126DA8E280091CC58 /* MonthlyChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF3DF26DA8E280091CC58 /* MonthlyChartCell.xib */; };
 		FB8BF3E326DA8E330091CC58 /* MonthlyChartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3E226DA8E330091CC58 /* MonthlyChartCellViewModel.swift */; };
+		FBA26E3926E1FE4100969785 /* EdittingGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E3826E1FE4000969785 /* EdittingGroupViewModel.swift */; };
+		FBA26E3C26E1FE9600969785 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E3B26E1FE9600969785 /* Group.swift */; };
+		FBA26E3E26E4FB4600969785 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E3D26E4FB4600969785 /* UIViewController+Rx.swift */; };
+		FBA26E4026E5034C00969785 /* IntroCreatingGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E3F26E5034C00969785 /* IntroCreatingGroupViewModel.swift */; };
+		FBA26E4226E5183E00969785 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4126E5183E00969785 /* DatabaseError.swift */; };
+		FBA26E4526E51FFC00969785 /* ABUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4426E51FFC00969785 /* ABUser.swift */; };
 		FBD38C0926DAB1EF00E9365F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FBD38C0826DAB1EF00E9365F /* GoogleSignIn */; };
 		FBD38C0D26DAB2B500E9365F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C0B26DAB2B500E9365F /* SignInViewController.swift */; };
 		FBD38C0E26DAB2B500E9365F /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */; };
@@ -107,8 +113,8 @@
 		FB41430226DA9842003C6468 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		FB41430426DA9C79003C6468 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB6ACFA726DD064C00F3099F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		FB6ACFAB26DD160E00F3099F /* EdittingTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingTitleViewController.swift; sourceTree = "<group>"; };
-		FB6ACFAC26DD160E00F3099F /* EdittingTitleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EdittingTitleViewController.xib; sourceTree = "<group>"; };
+		FB6ACFAB26DD160E00F3099F /* IntroCreatingGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCreatingGroupViewController.swift; sourceTree = "<group>"; };
+		FB6ACFAC26DD160E00F3099F /* IntroCreatingGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IntroCreatingGroupViewController.xib; sourceTree = "<group>"; };
 		FB6ACFB026DD177000F3099F /* EdittingGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingGroupViewController.swift; sourceTree = "<group>"; };
 		FB6ACFB126DD177000F3099F /* EdittingGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EdittingGroupViewController.xib; sourceTree = "<group>"; };
 		FB6ACFB526DFC6EE00F3099F /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
@@ -145,6 +151,12 @@
 		FB8BF3DE26DA8E280091CC58 /* MonthlyChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyChartCell.swift; sourceTree = "<group>"; };
 		FB8BF3DF26DA8E280091CC58 /* MonthlyChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonthlyChartCell.xib; sourceTree = "<group>"; };
 		FB8BF3E226DA8E330091CC58 /* MonthlyChartCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyChartCellViewModel.swift; sourceTree = "<group>"; };
+		FBA26E3826E1FE4000969785 /* EdittingGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingGroupViewModel.swift; sourceTree = "<group>"; };
+		FBA26E3B26E1FE9600969785 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		FBA26E3D26E4FB4600969785 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		FBA26E3F26E5034C00969785 /* IntroCreatingGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCreatingGroupViewModel.swift; sourceTree = "<group>"; };
+		FBA26E4126E5183E00969785 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
+		FBA26E4426E51FFC00969785 /* ABUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABUser.swift; sourceTree = "<group>"; };
 		FBD38C0B26DAB2B500E9365F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		FBD38C1026DB595200E9365F /* ListAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountCell.swift; sourceTree = "<group>"; };
@@ -240,23 +252,25 @@
 			isa = PBXGroup;
 			children = (
 				FB6ACFAF26DD174A00F3099F /* EdittingGroup */,
-				FB6ACFAA26DD15DE00F3099F /* EdittingTitle */,
+				FB6ACFAA26DD15DE00F3099F /* IntroCreatingGroup */,
 			);
 			path = MakingAccountBook;
 			sourceTree = "<group>";
 		};
-		FB6ACFAA26DD15DE00F3099F /* EdittingTitle */ = {
+		FB6ACFAA26DD15DE00F3099F /* IntroCreatingGroup */ = {
 			isa = PBXGroup;
 			children = (
-				FB6ACFAB26DD160E00F3099F /* EdittingTitleViewController.swift */,
-				FB6ACFAC26DD160E00F3099F /* EdittingTitleViewController.xib */,
+				FBA26E3F26E5034C00969785 /* IntroCreatingGroupViewModel.swift */,
+				FB6ACFAB26DD160E00F3099F /* IntroCreatingGroupViewController.swift */,
+				FB6ACFAC26DD160E00F3099F /* IntroCreatingGroupViewController.xib */,
 			);
-			path = EdittingTitle;
+			path = IntroCreatingGroup;
 			sourceTree = "<group>";
 		};
 		FB6ACFAF26DD174A00F3099F /* EdittingGroup */ = {
 			isa = PBXGroup;
 			children = (
+				FBA26E3826E1FE4000969785 /* EdittingGroupViewModel.swift */,
 				FB6ACFB026DD177000F3099F /* EdittingGroupViewController.swift */,
 				FB6ACFB126DD177000F3099F /* EdittingGroupViewController.xib */,
 			);
@@ -276,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				FB6ACFB826DFC89000F3099F /* Database.swift */,
+				FBA26E4126E5183E00969785 /* DatabaseError.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -304,6 +319,8 @@
 		FB8BF37D26D67CDE0091CC58 /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				FBA26E4326E51F9C00969785 /* User */,
+				FBA26E3A26E1FE8900969785 /* Model */,
 				FB6ACFB726DFC7F500F3099F /* Database */,
 				FB6ACFB426DFC6D200F3099F /* TabBar */,
 				FBD38C4D26DBC68F00E9365F /* Common */,
@@ -313,12 +330,12 @@
 				FB8BF3B426D6855F0091CC58 /* ChartViewController */,
 				FBD38C2D26DB862600E9365F /* AccountDetailViewController */,
 				FBD38C0A26DAB29900E9365F /* SignInViewController */,
+				FB8BF3C526D931360091CC58 /* Extension */,
+				FB8BF3B326D684920091CC58 /* Resource */,
 				FB8BF38F26D67CE20091CC58 /* Info.plist */,
 				FB8BF38C26D67CE20091CC58 /* LaunchScreen.storyboard */,
 				FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */,
 				FB41430426DA9C79003C6468 /* GoogleService-Info.plist */,
-				FB8BF3C526D931360091CC58 /* Extension */,
-				FB8BF3B326D684920091CC58 /* Resource */,
 			);
 			path = AccountBook;
 			sourceTree = "<group>";
@@ -377,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				FB8BF3C626D931530091CC58 /* UIView+Design.swift */,
+				FBA26E3D26E4FB4600969785 /* UIViewController+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -421,6 +439,22 @@
 				FB8BF3DF26DA8E280091CC58 /* MonthlyChartCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		FBA26E3A26E1FE8900969785 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FBA26E3B26E1FE9600969785 /* Group.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FBA26E4326E51F9C00969785 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				FBA26E4426E51FFC00969785 /* ABUser.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		FBD38C0A26DAB29900E9365F /* SignInViewController */ = {
@@ -656,7 +690,7 @@
 				FB8BF3E126DA8E280091CC58 /* MonthlyChartCell.xib in Resources */,
 				FB41430526DA9C79003C6468 /* GoogleService-Info.plist in Resources */,
 				FB8BF3B826D685710091CC58 /* ChartViewController.xib in Resources */,
-				FB6ACFAE26DD160E00F3099F /* EdittingTitleViewController.xib in Resources */,
+				FB6ACFAE26DD160E00F3099F /* IntroCreatingGroupViewController.xib in Resources */,
 				FBD38C2826DB6F1200E9365F /* ListInfoCell.xib in Resources */,
 				FB8BF3CC26DA76140091CC58 /* BarChartViewController.xib in Resources */,
 				FB8BF3C226D92D430091CC58 /* PieChartViewController.xib in Resources */,
@@ -725,6 +759,8 @@
 				FBD38C5D26DBD5A300E9365F /* SettingViewController.swift in Sources */,
 				FB8BF3E326DA8E330091CC58 /* MonthlyChartCellViewModel.swift in Sources */,
 				FB8BF3CB26DA76140091CC58 /* BarChartViewController.swift in Sources */,
+				FBA26E3C26E1FE9600969785 /* Group.swift in Sources */,
+				FBA26E4026E5034C00969785 /* IntroCreatingGroupViewModel.swift in Sources */,
 				FBD38C3526DB906D00E9365F /* TextFieldCell.swift in Sources */,
 				FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */,
 				FBD38C5726DBC88E00E9365F /* TableViewCell.swift in Sources */,
@@ -735,16 +771,20 @@
 				FBD38C3026DB867A00E9365F /* AccountDetailViewController.swift in Sources */,
 				FB4142FC26DA97BD003C6468 /* ListViewModel.swift in Sources */,
 				FB8BF3CE26DA763B0091CC58 /* BarChartViewModel.swift in Sources */,
+				FBA26E3926E1FE4100969785 /* EdittingGroupViewModel.swift in Sources */,
 				FB8BF3D926DA7EA90091CC58 /* MonthlyChartViewController.swift in Sources */,
 				FB8BF3B726D685710091CC58 /* ChartViewController.swift in Sources */,
 				FB4142F526DA9721003C6468 /* ProfileViewModel.swift in Sources */,
 				FBD38C1226DB595200E9365F /* ListAccountCell.swift in Sources */,
 				FB8BF3E026DA8E280091CC58 /* MonthlyChartCell.swift in Sources */,
+				FBA26E4526E51FFC00969785 /* ABUser.swift in Sources */,
 				FB6ACFBB26E0D36800F3099F /* ViewController.swift in Sources */,
+				FBA26E4226E5183E00969785 /* DatabaseError.swift in Sources */,
 				FB8BF3C426D92D710091CC58 /* PieChartViewModel.swift in Sources */,
 				FBD38C4626DBC4B400E9365F /* SettingSection.swift in Sources */,
 				FB8BF37F26D67CDE0091CC58 /* AppDelegate.swift in Sources */,
-				FB6ACFAD26DD160E00F3099F /* EdittingTitleViewController.swift in Sources */,
+				FB6ACFAD26DD160E00F3099F /* IntroCreatingGroupViewController.swift in Sources */,
+				FBA26E3E26E4FB4600969785 /* UIViewController+Rx.swift in Sources */,
 				FB41430326DA9842003C6468 /* SettingViewModel.swift in Sources */,
 				FBD38C2726DB6F1200E9365F /* ListInfoCell.swift in Sources */,
 				FB8BF3B226D681320091CC58 /* TabBarController.swift in Sources */,

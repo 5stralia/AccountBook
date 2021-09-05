@@ -7,28 +7,65 @@
 
 import Foundation
 
+import RxSwift
+import RxCocoa
+
 class ProfileViewModel: ViewModel, ViewModelType {
     struct Input {
-        
+        let viewWillAppear: Observable<Void>
     }
     struct Output {
-        
+        let group: Observable<Group>
+        let presentIntroCreating: PublishRelay<IntroCreatingGroupViewModel>
     }
     
     let database: Database
+    let user: ABUser
     
-    func transform(input: Input) -> Output {
-        
-        return Output()
-    }
+    var disposeBag = DisposeBag()
     
-    init(database: Database) {
+    init(database: Database, user: ABUser) {
         self.database = database
+        self.user = user
         
         super.init()
     }
     
-    func test() {
-        self.database.createTest()
+    func transform(input: Input) -> Output {
+        let group = Observable.combineLatest(input.viewWillAppear,
+                                             self.user.uid.asObservable()) { _, uid in
+            return uid
+        }
+        .flatMap { [weak self] uid -> Single<Group> in
+            guard let self = self,
+                  let uid = uid
+            else { return Single.never() }
+            
+            return self.database.currentGroup(uid: uid)
+        }
+        .debug()
+        
+        let presentIntroCreating = PublishRelay<IntroCreatingGroupViewModel>()
+        
+        group.subscribe { [weak self] event in
+            guard let self = self else { return }
+            
+            switch event {
+            case .error(let err):
+                switch err {
+                case DatabaseError.emptyGroups:
+                    presentIntroCreating.accept(IntroCreatingGroupViewModel(database: self.database, user: self.user))
+                default:
+                    break
+                }
+                
+            default:
+                break
+            }
+        }
+        .disposed(by: self.disposeBag)
+        
+        return Output(group: group,
+                      presentIntroCreating: presentIntroCreating)
     }
 }
