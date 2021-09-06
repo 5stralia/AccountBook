@@ -60,6 +60,10 @@
 		FBA26E4026E5034C00969785 /* IntroCreatingGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E3F26E5034C00969785 /* IntroCreatingGroupViewModel.swift */; };
 		FBA26E4226E5183E00969785 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4126E5183E00969785 /* DatabaseError.swift */; };
 		FBA26E4526E51FFC00969785 /* ABUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4426E51FFC00969785 /* ABUser.swift */; };
+		FBA26E4926E619AB00969785 /* EdittingNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4726E619AB00969785 /* EdittingNameViewController.swift */; };
+		FBA26E4A26E619AB00969785 /* EdittingNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA26E4826E619AB00969785 /* EdittingNameViewController.xib */; };
+		FBA26E4C26E619CD00969785 /* EdittingNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4B26E619CD00969785 /* EdittingNameViewModel.swift */; };
+		FBA26E4E26E62D5500969785 /* Int+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4D26E62D5500969785 /* Int+Format.swift */; };
 		FBD38C0926DAB1EF00E9365F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FBD38C0826DAB1EF00E9365F /* GoogleSignIn */; };
 		FBD38C0D26DAB2B500E9365F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C0B26DAB2B500E9365F /* SignInViewController.swift */; };
 		FBD38C0E26DAB2B500E9365F /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */; };
@@ -157,6 +161,10 @@
 		FBA26E3F26E5034C00969785 /* IntroCreatingGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCreatingGroupViewModel.swift; sourceTree = "<group>"; };
 		FBA26E4126E5183E00969785 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		FBA26E4426E51FFC00969785 /* ABUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABUser.swift; sourceTree = "<group>"; };
+		FBA26E4726E619AB00969785 /* EdittingNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingNameViewController.swift; sourceTree = "<group>"; };
+		FBA26E4826E619AB00969785 /* EdittingNameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EdittingNameViewController.xib; sourceTree = "<group>"; };
+		FBA26E4B26E619CD00969785 /* EdittingNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingNameViewModel.swift; sourceTree = "<group>"; };
+		FBA26E4D26E62D5500969785 /* Int+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Format.swift"; sourceTree = "<group>"; };
 		FBD38C0B26DAB2B500E9365F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		FBD38C1026DB595200E9365F /* ListAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountCell.swift; sourceTree = "<group>"; };
@@ -251,6 +259,7 @@
 		FB6ACFA926DD15CB00F3099F /* MakingAccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				FBA26E4626E6147C00969785 /* EdittingName */,
 				FB6ACFAF26DD174A00F3099F /* EdittingGroup */,
 				FB6ACFAA26DD15DE00F3099F /* IntroCreatingGroup */,
 			);
@@ -395,6 +404,7 @@
 			children = (
 				FB8BF3C626D931530091CC58 /* UIView+Design.swift */,
 				FBA26E3D26E4FB4600969785 /* UIViewController+Rx.swift */,
+				FBA26E4D26E62D5500969785 /* Int+Format.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -455,6 +465,16 @@
 				FBA26E4426E51FFC00969785 /* ABUser.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		FBA26E4626E6147C00969785 /* EdittingName */ = {
+			isa = PBXGroup;
+			children = (
+				FBA26E4B26E619CD00969785 /* EdittingNameViewModel.swift */,
+				FBA26E4726E619AB00969785 /* EdittingNameViewController.swift */,
+				FBA26E4826E619AB00969785 /* EdittingNameViewController.xib */,
+			);
+			path = EdittingName;
 			sourceTree = "<group>";
 		};
 		FBD38C0A26DAB29900E9365F /* SignInViewController */ = {
@@ -682,6 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB4142F326DA9716003C6468 /* ProfileViewController.xib in Resources */,
+				FBA26E4A26E619AB00969785 /* EdittingNameViewController.xib in Resources */,
 				FBD38C5E26DBD5A300E9365F /* SettingViewController.xib in Resources */,
 				FB8BF3D326DA79F80091CC58 /* BarChartCell.xib in Resources */,
 				FB4142FA26DA97B2003C6468 /* ListViewController.xib in Resources */,
@@ -749,6 +770,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBA26E4926E619AB00969785 /* EdittingNameViewController.swift in Sources */,
 				FB6ACFB226DD177000F3099F /* EdittingGroupViewController.swift in Sources */,
 				FBD38C5A26DBCB3E00E9365F /* TableViewCellViewModel.swift in Sources */,
 				FBD38C0D26DAB2B500E9365F /* SignInViewController.swift in Sources */,
@@ -762,6 +784,7 @@
 				FBA26E3C26E1FE9600969785 /* Group.swift in Sources */,
 				FBA26E4026E5034C00969785 /* IntroCreatingGroupViewModel.swift in Sources */,
 				FBD38C3526DB906D00E9365F /* TextFieldCell.swift in Sources */,
+				FBA26E4E26E62D5500969785 /* Int+Format.swift in Sources */,
 				FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */,
 				FBD38C5726DBC88E00E9365F /* TableViewCell.swift in Sources */,
 				FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */,
@@ -789,6 +812,7 @@
 				FBD38C2726DB6F1200E9365F /* ListInfoCell.swift in Sources */,
 				FB8BF3B226D681320091CC58 /* TabBarController.swift in Sources */,
 				FB6ACFB626DFC6EE00F3099F /* TabBarViewModel.swift in Sources */,
+				FBA26E4C26E619CD00969785 /* EdittingNameViewModel.swift in Sources */,
 				FB8BF3D226DA79F80091CC58 /* BarChartCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

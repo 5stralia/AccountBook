@@ -33,8 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = TabBarController()
         let db = Firestore.firestore()
         let database = Database(db: db)
-        let uid = Auth.auth().currentUser?.uid
-        let user = ABUser(uid: uid)
+        let user = ABUser(user: Auth.auth().currentUser)
         user.addStateDidChangeListener()
         let tabBarViewModel = TabBarViewModel(database: database, user: user)
         tabBarController.viewModel = tabBarViewModel

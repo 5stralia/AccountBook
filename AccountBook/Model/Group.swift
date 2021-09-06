@@ -45,6 +45,18 @@ enum FeeType: String, Codable {
     case bimonthly
     case yealy
     case quarterly
+    
+    var korean: String {
+        switch self {
+        case .daily: return "매일"
+        case .weekly: return "매주"
+        case .biweekly: return "격주"
+        case .monthly: return "매달"
+        case .bimonthly: return "격달"
+        case .yealy: return "매년"
+        case .quarterly: return "분기별"
+        }
+    }
 }
 
 enum GroupRole: String, Codable {
