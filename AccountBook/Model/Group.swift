@@ -17,8 +17,6 @@ struct Group: Codable {
     var fee_type: FeeType = .monthly
     var fee_day: Int = 1
     var calculate_day: Int = 1
-    var users: [GroupUser] = []
-    var accounts: [GroupAccount] = []
 }
 
 // MARK: - GroupAccount

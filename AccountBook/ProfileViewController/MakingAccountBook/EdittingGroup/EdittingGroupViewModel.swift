@@ -52,19 +52,12 @@ final class EdittingGroupViewModel: ViewModel, ViewModelType {
             input.feeDaySelection.asObservable(),
             input.message.asObservable(),
             input.calculateDaySelection.asObservable()) { uid, name, fee, feeType, feeDay, message, calculateDay -> Group in
-            let user = GroupUser(uid: uid,
-                                 name: "그룹장",
-                                 unpaid_amount: 0,
-                                 role: .all)
-            
             return Group(name: name,
                          message: message,
                          fee: fee,
                          fee_type: feeType,
                          fee_day: feeDay,
-                         calculate_day: calculateDay,
-                         users: [user],
-                         accounts: [])
+                         calculate_day: calculateDay)
         }
         .bind(to: newGroup)
         .disposed(by: self.disposeBag)

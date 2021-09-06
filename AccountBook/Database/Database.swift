@@ -28,8 +28,8 @@ final class Database {
     private func documentID(_ creatingGroup: Group, uid: String) -> Single<String> {
         return Single.create { single in
             do {
-                let docRef: DocumentReference? = self.db.collection("groups").document()
-                try docRef?.setData(from: creatingGroup) { error in
+                let docRef: DocumentReference = self.db.collection("groups").document()
+                try docRef.setData(from: creatingGroup) { error in
                     if let error = error {
                         Crashlytics.crashlytics().log("Error adding document: \(error)")
                         Crashlytics.crashlytics().record(error: NSError(domain: "Create Group Fail",
@@ -37,8 +37,23 @@ final class Database {
                                                                         userInfo: nil))
                         
                         single(.failure(error))
+                        
                     } else {
-                        single(.success(docRef!.documentID))
+                        do {
+                            try docRef.collection("Users").document().setData(
+                                from: GroupUser(uid: uid,
+                                                name: "그룹장",
+                                                unpaid_amount: 0,
+                                                role: .all)) { setUserError in
+                                if let setUserError = setUserError {
+                                    single(.failure(setUserError))
+                                } else {
+                                    single(.success(docRef.documentID))
+                                }
+                            }
+                        } catch let error {
+                            single(.failure(error))
+                        }
                     }
                 }
             } catch let error {
