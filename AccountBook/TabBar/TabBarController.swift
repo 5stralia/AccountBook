@@ -27,14 +27,6 @@ class TabBarController: UITabBarController {
         let output = viewModel.transform(input: TabBarViewModel.Input(
                                             viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in },
                                             viewWillDisappear: self.rx.viewWillDisappear.asObservable().map { _ in }))
-        output.presentSignIn
-            .subscribe(onNext: { [weak self] in
-                let signInViewController = SignInViewController()
-                signInViewController.modalPresentationStyle = .fullScreen
-                self?.present(signInViewController, animated: true, completion: nil)
-            })
-            .disposed(by: self.disposeBag)
-        
         output.items.map { viewModels in
             return viewModels.compactMap { viewModel -> UIViewController? in
                 switch viewModel {
@@ -69,13 +61,18 @@ class TabBarController: UITabBarController {
                     
                 case let settingViewModel as SettingViewModel:
                     let settingViewController = SettingViewController()
-                    let settingViewModel = settingViewModel
                     settingViewController.viewModel = settingViewModel
                     settingViewController.tabBarItem = UITabBarItem(title: nil,
                                                                     image: UIImage(systemName: "gearshape"),
                                                                     selectedImage: UIImage(systemName: "gearshape.fill"))
                     
                     return settingViewController
+                    
+                case let signInViewModel as SignInViewModel:
+                    let signInViewController = SignInViewController()
+                    signInViewController.viewModel = signInViewModel
+                    
+                    return signInViewController
                     
                 default:
                     return nil
@@ -85,7 +82,9 @@ class TabBarController: UITabBarController {
         .bind(to: self.rx.viewControllers)
         .disposed(by: self.disposeBag)
         
-        
+        output.items.map { $0.contains(where: { $0 is SignInViewModel }) }.asObservable()
+            .bind(to: self.tabBar.rx.isHidden)
+            .disposed(by: self.disposeBag)
     }
 
 }

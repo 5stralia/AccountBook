@@ -64,6 +64,7 @@
 		FBA26E4A26E619AB00969785 /* EdittingNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA26E4826E619AB00969785 /* EdittingNameViewController.xib */; };
 		FBA26E4C26E619CD00969785 /* EdittingNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4B26E619CD00969785 /* EdittingNameViewModel.swift */; };
 		FBA26E4E26E62D5500969785 /* Int+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4D26E62D5500969785 /* Int+Format.swift */; };
+		FBA26E5026E7A72E00969785 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4F26E7A72E00969785 /* SignInViewModel.swift */; };
 		FBD38C0926DAB1EF00E9365F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FBD38C0826DAB1EF00E9365F /* GoogleSignIn */; };
 		FBD38C0D26DAB2B500E9365F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C0B26DAB2B500E9365F /* SignInViewController.swift */; };
 		FBD38C0E26DAB2B500E9365F /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */; };
@@ -165,6 +166,7 @@
 		FBA26E4826E619AB00969785 /* EdittingNameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EdittingNameViewController.xib; sourceTree = "<group>"; };
 		FBA26E4B26E619CD00969785 /* EdittingNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingNameViewModel.swift; sourceTree = "<group>"; };
 		FBA26E4D26E62D5500969785 /* Int+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Format.swift"; sourceTree = "<group>"; };
+		FBA26E4F26E7A72E00969785 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		FBD38C0B26DAB2B500E9365F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		FBD38C1026DB595200E9365F /* ListAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountCell.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 		FBD38C0A26DAB29900E9365F /* SignInViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FBA26E4F26E7A72E00969785 /* SignInViewModel.swift */,
 				FBD38C0B26DAB2B500E9365F /* SignInViewController.swift */,
 				FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */,
 			);
@@ -784,6 +787,7 @@
 				FBA26E3C26E1FE9600969785 /* Group.swift in Sources */,
 				FBA26E4026E5034C00969785 /* IntroCreatingGroupViewModel.swift in Sources */,
 				FBD38C3526DB906D00E9365F /* TextFieldCell.swift in Sources */,
+				FBA26E5026E7A72E00969785 /* SignInViewModel.swift in Sources */,
 				FBA26E4E26E62D5500969785 /* Int+Format.swift in Sources */,
 				FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */,
 				FBD38C5726DBC88E00E9365F /* TableViewCell.swift in Sources */,

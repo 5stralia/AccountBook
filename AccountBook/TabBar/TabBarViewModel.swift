@@ -17,7 +17,6 @@ class TabBarViewModel: ViewModel, ViewModelType {
         let viewWillDisappear: Observable<Void>
     }
     struct Output {
-        let presentSignIn: Observable<Void>
         let items: BehaviorRelay<[ViewModel]>
     }
     
@@ -35,28 +34,34 @@ class TabBarViewModel: ViewModel, ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        let profileViewModel = ProfileViewModel(database: self.database, user: self.user)
-        let chartViewModel = ChartViewModel()
-        let listViewModel = ListViewModel()
-        let settingViewModel = SettingViewModel()
+        let elements = BehaviorRelay<[ViewModel]>(value: [])
         
-        let viewModels: [ViewModel] = [
-            profileViewModel,
-            chartViewModel,
-            listViewModel,
-            settingViewModel
-        ]
+        let group = BehaviorSubject<Group?>(value: nil)
         
-        let items = BehaviorRelay<[ViewModel]>(value: viewModels)
-        
-        let presentSignIn = Observable.combineLatest(input.viewWillAppear,
-                                 self.user.uid.asObservable()) { _, uid in
-            return uid
+        Observable.combineLatest(self.user.user.asObservable(),
+                                 group.asObservable()) { [weak self] (user, group) -> [ViewModel] in
+            guard let self = self else { return [] }
+            
+            if let _ = user {
+                let profileViewModel = ProfileViewModel(database: self.database, user: self.user)
+                let chartViewModel = ChartViewModel()
+                let listViewModel = ListViewModel()
+                let settingViewModel = SettingViewModel()
+                
+                return [
+                    profileViewModel,
+                    chartViewModel,
+                    listViewModel,
+                    settingViewModel
+                ]
+                
+            } else {
+                return [SignInViewModel()]
+            }
         }
-        .filter { $0 == nil }
-        .map { _ in }
+        .bind(to: elements)
+        .disposed(by: self.disposeBag)
         
-        return Output(presentSignIn: presentSignIn,
-                      items: items)
+        return Output(items: elements)
     }
 }

@@ -13,18 +13,21 @@ import RxSwift
 final class ABUser {
     var uid: BehaviorSubject<String?>
     var name: BehaviorSubject<String?>
+    var user: BehaviorSubject<User?>
     
     private var authHandle: AuthStateDidChangeListenerHandle?
     
     init(user: User?) {
         self.uid = BehaviorSubject<String?>(value: user?.uid)
         self.name = BehaviorSubject<String?>(value: user?.displayName)
+        self.user = BehaviorSubject<User?>(value: user)
     }
     
     func addStateDidChangeListener() {
         self.authHandle = Auth.auth().addStateDidChangeListener { auth, user in
             self.uid.onNext(user?.uid)
             self.name.onNext(user?.displayName)
+            self.user.onNext(user)
         }
     }
     
