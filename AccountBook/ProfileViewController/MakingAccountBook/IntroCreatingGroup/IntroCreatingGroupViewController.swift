@@ -39,9 +39,10 @@ class IntroCreatingGroupViewController: UIViewController {
         .disposed(by: self.disposeBag)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
     }
 }

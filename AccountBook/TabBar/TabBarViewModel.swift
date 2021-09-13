@@ -22,7 +22,6 @@ class TabBarViewModel: ViewModel, ViewModelType {
     
     let database: Database
     let user: ABUser
-    var viewModels: [ViewModel] = []
     
     var disposeBag = DisposeBag()
     
@@ -36,31 +35,40 @@ class TabBarViewModel: ViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         let elements = BehaviorRelay<[ViewModel]>(value: [])
         
-        let group = BehaviorSubject<Group?>(value: nil)
+        // FIXME: 그룹 생성 후에 새로고침
+        let group =  self.user.user.asObservable()
+            .flatMap { [weak self] user -> Single<Group?> in
+                guard let self = self, let uid = user?.uid else { return Single.never() }
+                return self.database.currentGroup(uid: uid)
+            }
         
         Observable.combineLatest(self.user.user.asObservable(),
                                  group.asObservable()) { [weak self] (user, group) -> [ViewModel] in
             guard let self = self else { return [] }
             
             if let _ = user {
-                let profileViewModel = ProfileViewModel(database: self.database, user: self.user)
-                let chartViewModel = ChartViewModel()
-                let listViewModel = ListViewModel()
-                let settingViewModel = SettingViewModel()
-                
-                return [
-                    profileViewModel,
-                    chartViewModel,
-                    listViewModel,
-                    settingViewModel
-                ]
+                if let _ = group {
+                    let profileViewModel = ProfileViewModel(database: self.database, user: self.user)
+                    let chartViewModel = ChartViewModel()
+                    let listViewModel = ListViewModel()
+                    let settingViewModel = SettingViewModel()
+                    
+                    return [
+                        profileViewModel,
+                        chartViewModel,
+                        listViewModel,
+                        settingViewModel
+                    ]
+                } else {
+                    return [IntroCreatingGroupViewModel(database: self.database, user: self.user)]
+                }
                 
             } else {
                 return [SignInViewModel()]
             }
         }
         .bind(to: elements)
-        .disposed(by: self.disposeBag)
+        .disposed(by: self.disposeBag) 
         
         return Output(items: elements)
     }

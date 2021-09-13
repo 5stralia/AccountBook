@@ -95,19 +95,19 @@ final class Database {
         }
     }
     
-    func currentGroup(uid: String) -> Single<Group> {
+    func currentGroup(uid: String) -> Single<Group?> {
         return self.groupIDs(uid: uid)
             .flatMap { [weak self] in
                 guard let self = self else { return Single.never() }
                 if let id = $0.first {
                     return self.group(groupID: id)
                 } else {
-                    return Single.error(DatabaseError.emptyGroups)
+                    return Single.just(nil)
                 }
             }
     }
     
-    private func group(groupID: String) -> Single<Group> {
+    private func group(groupID: String) -> Single<Group?> {
         return Single.create { single in
             let docRef = self.db.collection("groups").document(groupID)
             docRef.getDocument { document, error in
@@ -142,12 +142,11 @@ final class Database {
                    if let groupIDs = document.data()?["groups"] as? [String] {
                     single(.success(groupIDs))
                    } else {
-                    single(.success([]))
+                    single(.failure(DatabaseError.decodingFail))
                    }
                     
                 } else {
-                    // FIXME: 에러 타입 정의
-                    single(.failure(DatabaseError.emptyGroups))
+                    single(.success([]))
                 }
             }
             

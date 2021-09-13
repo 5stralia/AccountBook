@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 
 class TabBarController: UITabBarController {
+    private let indicator = UIActivityIndicatorView()
     
     var viewModel: TabBarViewModel? {
         willSet {
@@ -27,6 +28,15 @@ class TabBarController: UITabBarController {
         let output = viewModel.transform(input: TabBarViewModel.Input(
                                             viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in },
                                             viewWillDisappear: self.rx.viewWillDisappear.asObservable().map { _ in }))
+        
+        output.items.subscribe(onNext: { [weak self] viewModels in
+            if viewModels.isEmpty {
+                self?.indicator.startAnimating()
+            } else {
+                self?.indicator.stopAnimating()
+            }
+        })
+        
         output.items.map { viewModels in
             return viewModels.compactMap { viewModel -> UIViewController? in
                 switch viewModel {
@@ -74,6 +84,14 @@ class TabBarController: UITabBarController {
                     
                     return signInViewController
                     
+                case let introCreatingGroupViewModel as IntroCreatingGroupViewModel:
+                    let introCreatingGroupViewController = IntroCreatingGroupViewController()
+                    introCreatingGroupViewController.viewModel = introCreatingGroupViewModel
+                    
+                    let creatingGroupNavigationController = UINavigationController(rootViewController: introCreatingGroupViewController)
+                    
+                    return creatingGroupNavigationController
+                    
                 default:
                     return nil
                 }
@@ -87,4 +105,18 @@ class TabBarController: UITabBarController {
             .disposed(by: self.disposeBag)
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.indicator.hidesWhenStopped = true
+        
+        self.view.addSubview(self.indicator)
+        self.indicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.indicator.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.indicator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.indicator.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.indicator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
+        ])
+    }
 }

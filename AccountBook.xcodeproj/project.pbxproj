@@ -330,18 +330,17 @@
 		FB8BF37D26D67CDE0091CC58 /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
-				FBA26E4326E51F9C00969785 /* User */,
-				FBA26E3A26E1FE8900969785 /* Model */,
-				FB6ACFB726DFC7F500F3099F /* Database */,
-				FB6ACFB426DFC6D200F3099F /* TabBar */,
+				FB8BF3C526D931360091CC58 /* Extension */,
+				FBA26E5126ECA65400969785 /* Util */,
 				FBD38C4D26DBC68F00E9365F /* Common */,
+				FBA26E3A26E1FE8900969785 /* Model */,
+				FB6ACFB426DFC6D200F3099F /* TabBar */,
 				FB4142FD26DA9824003C6468 /* SettingViewController */,
 				FB4142F626DA97A4003C6468 /* ListViewController */,
 				FB4142EF26DA96FF003C6468 /* ProfileViewController */,
 				FB8BF3B426D6855F0091CC58 /* ChartViewController */,
 				FBD38C2D26DB862600E9365F /* AccountDetailViewController */,
 				FBD38C0A26DAB29900E9365F /* SignInViewController */,
-				FB8BF3C526D931360091CC58 /* Extension */,
 				FB8BF3B326D684920091CC58 /* Resource */,
 				FB8BF38F26D67CE20091CC58 /* Info.plist */,
 				FB8BF38C26D67CE20091CC58 /* LaunchScreen.storyboard */,
@@ -461,14 +460,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		FBA26E4326E51F9C00969785 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				FBA26E4426E51FFC00969785 /* ABUser.swift */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
 		FBA26E4626E6147C00969785 /* EdittingName */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +468,15 @@
 				FBA26E4826E619AB00969785 /* EdittingNameViewController.xib */,
 			);
 			path = EdittingName;
+			sourceTree = "<group>";
+		};
+		FBA26E5126ECA65400969785 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				FB6ACFB726DFC7F500F3099F /* Database */,
+				FBA26E4426E51FFC00969785 /* ABUser.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		FBD38C0A26DAB29900E9365F /* SignInViewController */ = {

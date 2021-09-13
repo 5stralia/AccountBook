@@ -15,8 +15,7 @@ class ProfileViewModel: ViewModel, ViewModelType {
         let viewWillAppear: Observable<Void>
     }
     struct Output {
-        let group: Observable<Group>
-        let presentIntroCreating: PublishRelay<IntroCreatingGroupViewModel>
+        let group: Observable<Group?>
     }
     
     let database: Database
@@ -36,36 +35,14 @@ class ProfileViewModel: ViewModel, ViewModelType {
                                              self.user.uid.asObservable()) { _, uid in
             return uid
         }
-        .flatMap { [weak self] uid -> Single<Group> in
+        .flatMap { [weak self] uid -> Single<Group?> in
             guard let self = self,
                   let uid = uid
             else { return Single.never() }
             
             return self.database.currentGroup(uid: uid)
         }
-        .debug()
         
-        let presentIntroCreating = PublishRelay<IntroCreatingGroupViewModel>()
-        
-        group.subscribe { [weak self] event in
-            guard let self = self else { return }
-            
-            switch event {
-            case .error(let err):
-                switch err {
-                case DatabaseError.emptyGroups:
-                    presentIntroCreating.accept(IntroCreatingGroupViewModel(database: self.database, user: self.user))
-                default:
-                    break
-                }
-                
-            default:
-                break
-            }
-        }
-        .disposed(by: self.disposeBag)
-        
-        return Output(group: group,
-                      presentIntroCreating: presentIntroCreating)
+        return Output(group: group)
     }
 }
