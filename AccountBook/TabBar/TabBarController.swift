@@ -31,13 +31,22 @@ class TabBarController: UITabBarController {
         
         output.items.subscribe(onNext: { [weak self] viewModels in
             if viewModels.isEmpty {
+                self?.tabBar.isHidden = true
                 self?.indicator.startAnimating()
             } else {
+                self?.tabBar.isHidden = false
                 self?.indicator.stopAnimating()
             }
         })
+        .disposed(by: self.disposeBag)
         
         output.items.map { viewModels in
+            guard !viewModels.isEmpty
+            else {
+                return [UIStoryboard(name: "LaunchScreen", bundle: nil)
+                    .instantiateViewController(withIdentifier: "LaunchScreen")]
+            }
+            
             return viewModels.compactMap { viewModel -> UIViewController? in
                 switch viewModel {
                 case let profileViewModel as ProfileViewModel:

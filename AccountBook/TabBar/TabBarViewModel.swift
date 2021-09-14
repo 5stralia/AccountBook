@@ -38,7 +38,7 @@ class TabBarViewModel: ViewModel, ViewModelType {
         // FIXME: 그룹 생성 후에 새로고침
         let group =  self.user.user.asObservable()
             .flatMap { [weak self] user -> Single<Group?> in
-                guard let self = self, let uid = user?.uid else { return Single.never() }
+                guard let self = self, let uid = user?.uid else { return Single.just(nil) }
                 return self.database.currentGroup(uid: uid)
             }
         
