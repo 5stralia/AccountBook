@@ -22,6 +22,7 @@ class TabBarViewModel: ViewModel, ViewModelType {
     
     let database: Database
     let user: ABUser
+    // FIXME: 그룹을 여기에서 관리해야 탭 아이콘들 전부 연동 될 것 같음.
     
     var disposeBag = DisposeBag()
     
