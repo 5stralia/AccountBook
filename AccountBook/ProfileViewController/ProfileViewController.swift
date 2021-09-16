@@ -12,12 +12,15 @@ import RxSwift
 import RxCocoa
 
 class ProfileViewController: UIViewController {
-    @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak var groupNameLabel: UILabel!
     
     var viewModel: ProfileViewModel? {
         willSet {
             if let profileViewModel = newValue {
-                self.bind(to: profileViewModel)
+                self.rx.viewDidLoad.subscribe(onNext: { [weak self] in
+                    self?.bind(to: profileViewModel)
+                })
+                .disposed(by: self.disposeBag)
             }
         }
     }
@@ -29,5 +32,10 @@ class ProfileViewController: UIViewController {
             input: ProfileViewModel.Input(viewWillAppear: self.rx.viewWillAppear
                                             .asObservable()
                                             .map { _ in }))
+        
+        output.group
+            .compactMap { $0?.name }
+            .bind(to: self.groupNameLabel.rx.text)
+            .disposed(by: self.disposeBag)
     }
 }

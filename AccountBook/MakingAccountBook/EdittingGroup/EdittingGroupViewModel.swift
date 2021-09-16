@@ -7,6 +7,7 @@
 
 import Foundation
 
+import Firebase
 import RxSwift
 import RxCocoa
 
@@ -26,17 +27,19 @@ final class EdittingGroupViewModel: ViewModel, ViewModelType {
         let feeDay: Driver<Int>
         let calculateDay: Driver<Int>
         let shouldSubmit: Observable<Bool>
-        let close: PublishRelay<Void>
         let alert: PublishRelay<String>
     }
     
     let database: Database
-    let user: ABUser
+    let user: Observable<User?>
+    let group: BehaviorSubject<Group?>
+    
     var disposeBag = DisposeBag()
     
-    init(database: Database, user: ABUser) {
+    init(database: Database, user: Observable<User?>, group: BehaviorSubject<Group?>) {
         self.database = database
         self.user = user
+        self.group = group
         
         super.init()
     }
@@ -45,7 +48,7 @@ final class EdittingGroupViewModel: ViewModel, ViewModelType {
         let newGroup = BehaviorRelay<Group>(value: Group())
         
         Observable.combineLatest(
-            self.user.uid.compactMap { $0 }.asObservable(),
+            self.user.compactMap { $0?.uid },
             input.name.asObservable(),
             input.fee.asObservable(),
             input.feeTypeSelection.asObservable(),
@@ -68,18 +71,25 @@ final class EdittingGroupViewModel: ViewModel, ViewModelType {
             return !name.isEmpty
         }
         
-        let close = PublishRelay<Void>()
         let alert = PublishRelay<String>()
         
-        input.createGroup.asObservable().flatMap { [weak self] _ -> Single<Void> in
-            guard let self = self,
-                  let uid = try? self.user.uid.value() else { return Single.never() }
-            return self.database.createGroup(newGroup.value, uid: uid)
+        Observable.combineLatest(input.createGroup.asObservable().map { _ in },
+                                 self.user.compactMap { $0?.uid },
+                                 newGroup.asObservable()) { [weak self] _, uid, newGroup -> Completable in
+            guard let self = self else { return Completable.never() }
+            
+            return self.database.createGroup(newGroup, uid: uid)
         }
         .subscribe { event in
             switch event {
-            case .next:
-                close.accept(())
+            case .next(let completable):
+                completable.subscribe {
+                    self.group.onNext(newGroup.value)
+                } onError: { _ in
+                    alert.accept("에러가 발생했습니다. 잠시후 다시 시도해주세요.")
+                }
+                .disposed(by: self.disposeBag)
+                
             case .error:
                 alert.accept("에러가 발생했습니다. 잠시후 다시 시도해주세요.")
             case .completed:
@@ -92,7 +102,6 @@ final class EdittingGroupViewModel: ViewModel, ViewModelType {
                       feeDay: input.feeDaySelection,
                       calculateDay: input.calculateDaySelection,
                       shouldSubmit: shouldSubmit,
-                      close: close,
                       alert: alert)
     }
     

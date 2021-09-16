@@ -66,13 +66,8 @@ class EdittingGroupViewController: UIViewController {
         
         output.shouldSubmit.bind(to: self.submitButton.rx.isEnabled).disposed(by: self.dispostBag)
         
-        output.close.asObservable()
-            .subscribe(onNext: { [weak self] in
-                self?.navigationController?.dismiss(animated: true, completion: nil)
-            })
-            .disposed(by: self.dispostBag)
-        
         output.alert.asObservable()
+            .observe(on: MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] message in
                 let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)

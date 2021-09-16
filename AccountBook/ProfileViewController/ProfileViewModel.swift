@@ -7,6 +7,7 @@
 
 import Foundation
 
+import Firebase
 import RxSwift
 import RxCocoa
 
@@ -19,30 +20,20 @@ class ProfileViewModel: ViewModel, ViewModelType {
     }
     
     let database: Database
-    let user: ABUser
+    let user: Observable<User?>
+    let group: Observable<Group?>
     
     var disposeBag = DisposeBag()
     
-    init(database: Database, user: ABUser) {
+    init(database: Database, user: Observable<User?>, group: Observable<Group?>) {
         self.database = database
         self.user = user
+        self.group = group
         
         super.init()
     }
     
     func transform(input: Input) -> Output {
-        let group = Observable.combineLatest(input.viewWillAppear,
-                                             self.user.uid.asObservable()) { _, uid in
-            return uid
-        }
-        .flatMap { [weak self] uid -> Single<Group?> in
-            guard let self = self,
-                  let uid = uid
-            else { return Single.never() }
-            
-            return self.database.currentGroup(uid: uid)
-        }
-        
-        return Output(group: group)
+        return Output(group: self.group)
     }
 }

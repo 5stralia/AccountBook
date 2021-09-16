@@ -21,35 +21,56 @@ class TabBarViewModel: ViewModel, ViewModelType {
     }
     
     let database: Database
-    let user: ABUser
-    // FIXME: 그룹을 여기에서 관리해야 탭 아이콘들 전부 연동 될 것 같음.
+    let user = BehaviorSubject<User?>(value: Auth.auth().currentUser)
+    let group = BehaviorSubject<Group?>(value: nil)
     
     var disposeBag = DisposeBag()
     
-    init(database: Database, user: ABUser) {
+    private var authHandle: AuthStateDidChangeListenerHandle?
+    
+    init(database: Database) {
         self.database = database
-        self.user = user
         
         super.init()
+        
+        self.authHandle = Auth.auth().addStateDidChangeListener { auth, user in
+            self.user.onNext(user)
+        }
+    }
+    
+    deinit {
+        if let handle = self.authHandle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
+    }
+    
+    func addStateDidChangeListener() {
+        self.authHandle = Auth.auth().addStateDidChangeListener { auth, user in
+            self.user.onNext(user)
+        }
     }
     
     func transform(input: Input) -> Output {
         let elements = BehaviorRelay<[ViewModel]>(value: [])
         
         // FIXME: 그룹 생성 후에 새로고침
-        let group =  self.user.user.asObservable()
+        self.user.asObservable()
             .flatMap { [weak self] user -> Single<Group?> in
                 guard let self = self, let uid = user?.uid else { return Single.just(nil) }
                 return self.database.currentGroup(uid: uid)
             }
+            .bind(to: self.group)
+            .disposed(by: self.disposeBag)
         
-        Observable.combineLatest(self.user.user.asObservable(),
-                                 group.asObservable()) { [weak self] (user, group) -> [ViewModel] in
+        Observable.combineLatest(self.user.asObservable(),
+                                 self.group.asObservable()) { [weak self] (user, group) -> [ViewModel] in
             guard let self = self else { return [] }
             
             if let _ = user {
                 if let _ = group {
-                    let profileViewModel = ProfileViewModel(database: self.database, user: self.user)
+                    let profileViewModel = ProfileViewModel(database: self.database,
+                                                            user: self.user.asObservable(),
+                                                            group: self.group.asObservable())
                     let chartViewModel = ChartViewModel()
                     let listViewModel = ListViewModel()
                     let settingViewModel = SettingViewModel()
@@ -61,7 +82,9 @@ class TabBarViewModel: ViewModel, ViewModelType {
                         settingViewModel
                     ]
                 } else {
-                    return [IntroCreatingGroupViewModel(database: self.database, user: self.user)]
+                    return [IntroCreatingGroupViewModel(database: self.database,
+                                                        user: self.user.asObservable(),
+                                                        group: self.group)]
                 }
                 
             } else {

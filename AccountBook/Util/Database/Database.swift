@@ -18,9 +18,9 @@ final class Database {
         self.db = db
     }
     
-    func createGroup(_ group: Group, uid: String) -> Single<Void> {
-        return self.documentID(group, uid: uid)
-            .flatMap { documentID -> Single<Void> in
+    func createGroup(_ creatingGroup: Group, uid: String) -> Completable {
+        return self.documentID(creatingGroup, uid: uid)
+            .flatMapCompletable { documentID in
                 self.addGroup(to: uid, documentID: documentID)
             }
     }
@@ -64,8 +64,8 @@ final class Database {
         }
     }
     
-    private func addGroup(to uid: String, documentID: String) -> Single<Void> {
-        return Single.create { single in
+    private func addGroup(to uid: String, documentID: String) -> Completable {
+        return Completable.create { completable in
             let docRef = self.db.collection("Users").document(uid)
             docRef.getDocument { document, error in
                 if let document = document, document.exists {
@@ -73,9 +73,9 @@ final class Database {
                         "groups": FieldValue.arrayUnion([documentID])
                     ]) { updateError in
                         if let updateError = updateError {
-                            single(.failure(updateError))
+                            completable(.error(updateError))
                         } else {
-                            single(.success(()))
+                            completable(.completed)
                         }
                     }
                 } else {
@@ -83,9 +83,9 @@ final class Database {
                         "groups": [documentID]
                     ]) { setDataError in
                         if let setDataError = setDataError {
-                            single(.failure(setDataError))
+                            completable(.error(setDataError))
                         } else {
-                            single(.success(()))
+                            completable(.completed)
                         }
                     }
                 }
