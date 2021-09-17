@@ -34,7 +34,7 @@ struct GroupUser: Codable {
     var uid: String
     var name: String
     var unpaid_amount: Int
-    var role: GroupRole
+    var role: [GroupRole]
 }
 
 enum FeeType: String, Codable {
@@ -60,7 +60,6 @@ enum FeeType: String, Codable {
 }
 
 enum GroupRole: String, Codable {
-    case all
-    case reader
-    case writer
+    case admin
+    case manager
 }

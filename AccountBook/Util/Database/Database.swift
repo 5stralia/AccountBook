@@ -44,7 +44,7 @@ final class Database {
                                 from: GroupUser(uid: uid,
                                                 name: "그룹장",
                                                 unpaid_amount: 0,
-                                                role: .all)) { setUserError in
+                                                role: [.admin, .manager])) { setUserError in
                                 if let setUserError = setUserError {
                                     single(.failure(setUserError))
                                 } else {
