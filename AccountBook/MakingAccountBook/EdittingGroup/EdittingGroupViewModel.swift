@@ -14,9 +14,9 @@ import RxCocoa
 final class EdittingGroupViewModel: ViewModel, ViewModelType {
     struct Input {
         let image: Driver<Data>
-        let name: Driver<String>
-        let fee: Driver<Int>
-        let message: Driver<String>
+        let name: Driver<String?>
+        let fee: Driver<Int?>
+        let message: Driver<String?>
         let feeTypeSelection: Driver<FeeType>
         let feeDaySelection: Driver<Int>
         let calculateDaySelection: Driver<Int>
@@ -48,16 +48,15 @@ final class EdittingGroupViewModel: ViewModel, ViewModelType {
         let newGroup = BehaviorRelay<Group>(value: Group())
         
         Observable.combineLatest(
-            self.user.compactMap { $0?.uid },
             input.name.asObservable(),
             input.fee.asObservable(),
             input.feeTypeSelection.asObservable(),
             input.feeDaySelection.asObservable(),
             input.message.asObservable(),
-            input.calculateDaySelection.asObservable()) { uid, name, fee, feeType, feeDay, message, calculateDay -> Group in
-            return Group(name: name,
-                         message: message,
-                         fee: fee,
+            input.calculateDaySelection.asObservable()) { name, fee, feeType, feeDay, message, calculateDay -> Group in
+            return Group(name: name ?? "",
+                         message: message ?? "",
+                         fee: fee ?? 0,
                          fee_type: feeType,
                          fee_day: feeDay,
                          calculate_day: calculateDay)
@@ -67,36 +66,42 @@ final class EdittingGroupViewModel: ViewModel, ViewModelType {
         
         let shouldSubmit = Observable.combineLatest(
             input.name.asObservable(),
-            input.fee.asObservable()) { name, fee in
-            return !name.isEmpty
+            input.fee.asObservable()) { name, fee -> Bool in
+            if let name = name, !name.isEmpty,
+               let _ = fee {
+                return true
+            } else {
+                return false
+            }
         }
         
         let alert = PublishRelay<String>()
         
-        Observable.combineLatest(input.createGroup.asObservable().map { _ in },
-                                 self.user.compactMap { $0?.uid },
-                                 newGroup.asObservable()) { [weak self] _, uid, newGroup -> Completable in
-            guard let self = self else { return Completable.never() }
-            
-            return self.database.createGroup(newGroup, uid: uid)
-        }
-        .subscribe { event in
-            switch event {
-            case .next(let completable):
-                completable.subscribe {
-                    self.group.onNext(newGroup.value)
-                } onError: { _ in
-                    alert.accept("에러가 발생했습니다. 잠시후 다시 시도해주세요.")
-                }
-                .disposed(by: self.disposeBag)
-                
-            case .error:
-                alert.accept("에러가 발생했습니다. 잠시후 다시 시도해주세요.")
-            case .completed:
-                break
+        input.createGroup.asObservable()
+            .flatMap {
+                return Observable.zip(newGroup.asObservable(), self.user).take(1)
             }
-        }
-        .disposed(by: self.disposeBag)
+            .subscribe { event in
+                switch event {
+                case .next((let newGroup, let user)):
+                if let uid = user?.uid {
+                    self.database.createGroup(newGroup, uid: uid)
+                        .subscribe {
+                            self.group.onNext(newGroup)
+                        } onError: { _ in
+                            alert.accept("그룹 생성에 실패했습니다. 잠시후 다시 시도해주세요.")
+                        }
+                        .disposed(by: self.disposeBag)
+
+                }
+                case .error:
+                    alert.accept("그룹 생성에 실패했습니다. 잠시후 다시 시도해주세요.")
+                default:
+                    break
+                }
+            }
+            .disposed(by: self.disposeBag)
+        
         
         return Output(feeType: input.feeTypeSelection.map { $0.rawValue },
                       feeDay: input.feeDaySelection,
