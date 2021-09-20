@@ -30,22 +30,18 @@ final class EdittingGroupViewModel: ViewModel, ViewModelType {
         let alert: PublishRelay<String>
     }
     
-    let database: Database
-    let user: Observable<User?>
-    let group: BehaviorSubject<Group?>
+    let provider: ABProvider
     
     var disposeBag = DisposeBag()
     
-    init(database: Database, user: Observable<User?>, group: BehaviorSubject<Group?>) {
-        self.database = database
-        self.user = user
-        self.group = group
+    init(provider: ABProvider) {
+        self.provider = provider
         
         super.init()
     }
     
     func transform(input: Input) -> Output {
-        let newGroup = BehaviorRelay<Group>(value: Group())
+        let newGroup = BehaviorRelay<GroupDocumentModel>(value: GroupDocumentModel())
         
         Observable.combineLatest(
             input.name.asObservable(),
@@ -53,8 +49,8 @@ final class EdittingGroupViewModel: ViewModel, ViewModelType {
             input.feeTypeSelection.asObservable(),
             input.feeDaySelection.asObservable(),
             input.message.asObservable(),
-            input.calculateDaySelection.asObservable()) { name, fee, feeType, feeDay, message, calculateDay -> Group in
-            return Group(name: name ?? "",
+            input.calculateDaySelection.asObservable()) { name, fee, feeType, feeDay, message, calculateDay -> GroupDocumentModel in
+            return GroupDocumentModel(name: name ?? "",
                          message: message ?? "",
                          fee: fee ?? 0,
                          fee_type: feeType,
@@ -79,15 +75,15 @@ final class EdittingGroupViewModel: ViewModel, ViewModelType {
         
         input.createGroup.asObservable()
             .flatMap {
-                return Observable.zip(newGroup.asObservable(), self.user).take(1)
+                return Observable.zip(newGroup.asObservable(), self.provider.user).take(1)
             }
             .subscribe { event in
                 switch event {
                 case .next((let newGroup, let user)):
                 if let uid = user?.uid {
-                    self.database.createGroup(newGroup, uid: uid)
+                    self.provider.api.createGroup(newGroup, uid: uid)
                         .subscribe {
-                            self.group.onNext(newGroup)
+                            self.provider.group.groupDocumentModel.onNext(newGroup)
                         } onError: { _ in
                             alert.accept("그룹 생성에 실패했습니다. 잠시후 다시 시도해주세요.")
                         }

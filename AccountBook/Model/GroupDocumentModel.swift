@@ -9,8 +9,8 @@ import Foundation
 
 import Firebase
 
-// MARK: - Group
-struct Group: Codable {
+// MARK: - GroupDocumentModel
+struct GroupDocumentModel: Codable {
     var name: String = ""
     var message: String = ""
     var fee: Int = 0
@@ -20,7 +20,7 @@ struct Group: Codable {
 }
 
 // MARK: - GroupAccount
-struct GroupAccount: Codable {
+struct AccountDocumentModel: Codable {
     var date: Date
     var name: String
     var amount: Int
@@ -30,7 +30,7 @@ struct GroupAccount: Codable {
 }
 
 // MARK: - GroupUser
-struct GroupUser: Codable {
+struct MemberDocumentModel: Codable {
     var uid: String
     var name: String
     var unpaid_amount: Int

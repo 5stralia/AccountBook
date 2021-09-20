@@ -32,8 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarController = TabBarController()
         let db = Firestore.firestore()
-        let database = Database(db: db)
-        let tabBarViewModel = TabBarViewModel(database: database)
+        let api = ABAPI(db: db)
+        let provider = ABProvider(user: Auth.auth().currentUser, api: api)
+        provider.setUP()
+        let tabBarViewModel = TabBarViewModel(provider: provider)
         tabBarController.viewModel = tabBarViewModel
         
         window?.rootViewController = tabBarController

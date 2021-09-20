@@ -56,15 +56,15 @@ class EdittingGroupViewController: UIViewController {
         let output = viewModel.transform(
             input: EdittingGroupViewModel.Input(
                 image: self.imageView.rx.observe(Optional<UIImage>.self, "image").compactMap({ $0??.pngData() }).asDriver(onErrorJustReturn: Data()),
-                name: self.nameTextField.rx.text.asDriver(),
-                fee: self.feeTextField.rx.text.map {
+                name: self.nameTextField.rx.text.distinctUntilChanged().asDriver(onErrorJustReturn: nil),
+                fee: self.feeTextField.rx.text.distinctUntilChanged().map {
                     if let text = $0, let fee = Int(text) {
                         return fee
                     } else {
                         return nil
                     }
                 }.asDriver(onErrorJustReturn: 0),
-                message: self.messageTextField.rx.text.asDriver(),
+                message: self.messageTextField.rx.text.distinctUntilChanged().asDriver(onErrorJustReturn: nil),
                 feeTypeSelection: feeType.asDriver(onErrorJustReturn: .monthly),
                 feeDaySelection: feeDay.asDriver(onErrorJustReturn: 1),
                 calculateDaySelection: calculateDay.asDriver(onErrorJustReturn: 1),

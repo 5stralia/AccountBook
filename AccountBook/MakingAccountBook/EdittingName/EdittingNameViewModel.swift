@@ -21,11 +21,11 @@ final class EdittingNameViewModel: ViewModel, ViewModelType {
         let userNameText: BehaviorSubject<String?>
     }
     
-    let database: Database
+    let database: ABAPI
     let user: ABUser
-    let createdGroup: Group
+    let createdGroup: GroupDocumentModel
     
-    init(database: Database, user: ABUser, createdGroup: Group) {
+    init(database: ABAPI, user: ABUser, createdGroup: GroupDocumentModel) {
         self.database = database
         self.user = user
         self.createdGroup = createdGroup

@@ -19,24 +19,18 @@ class IntroCreatingGroupViewModel: ViewModel, ViewModelType {
         let presentEdittingGroup: Driver<EdittingGroupViewModel>
     }
     
-    let database: Database
-    let user: Observable<User?>
-    let group: BehaviorSubject<Group?>
+    let provider: ABProvider
     
-    init(database: Database, user: Observable<User?>, group: BehaviorSubject<Group?>) {
-        self.database = database
-        self.user = user
-        self.group = group
+    init(provider: ABProvider) {
+        self.provider = provider
         
         super.init()
     }
     
     func transform(input: Input) -> Output {
-        let database = self.database
-        
         let presentEdittingGroup = input.tappedStartButton.flatMap { [weak self] _ -> Driver<EdittingGroupViewModel> in
             guard let self = self else { return Driver.never() }
-            return Driver.just(EdittingGroupViewModel(database: database, user: self.user, group: self.group))
+            return Driver.just(EdittingGroupViewModel(provider: self.provider))
         }
         
         return Output(presentEdittingGroup: presentEdittingGroup)

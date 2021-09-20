@@ -16,24 +16,20 @@ class ProfileViewModel: ViewModel, ViewModelType {
         let viewWillAppear: Observable<Void>
     }
     struct Output {
-        let group: Observable<Group?>
+        let group: Observable<GroupDocumentModel?>
     }
     
-    let database: Database
-    let user: Observable<User?>
-    let group: Observable<Group?>
+    let provider: ABProvider
     
     var disposeBag = DisposeBag()
     
-    init(database: Database, user: Observable<User?>, group: Observable<Group?>) {
-        self.database = database
-        self.user = user
-        self.group = group
+    init(provider: ABProvider) {
+        self.provider = provider
         
         super.init()
     }
     
     func transform(input: Input) -> Output {
-        return Output(group: self.group)
+        return Output(group: self.provider.group.groupDocumentModel)
     }
 }

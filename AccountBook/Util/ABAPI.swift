@@ -11,21 +11,21 @@ import Firebase
 import FirebaseFirestoreSwift
 import RxSwift
 
-final class Database {
+final class ABAPI {
     let db: Firestore
     
     init(db: Firestore) {
         self.db = db
     }
     
-    func createGroup(_ creatingGroup: Group, uid: String) -> Completable {
+    func createGroup(_ creatingGroup: GroupDocumentModel, uid: String) -> Completable {
         return self.documentID(creatingGroup, uid: uid)
             .flatMapCompletable { documentID in
                 self.addGroup(to: uid, documentID: documentID)
             }
     }
     
-    private func documentID(_ creatingGroup: Group, uid: String) -> Single<String> {
+    private func documentID(_ creatingGroup: GroupDocumentModel, uid: String) -> Single<String> {
         return Single.create { single in
             do {
                 let docRef: DocumentReference = self.db.collection("groups").document()
@@ -40,8 +40,8 @@ final class Database {
                         
                     } else {
                         do {
-                            try docRef.collection("Users").document().setData(
-                                from: GroupUser(uid: uid,
+                            try docRef.collection("Members").document().setData(
+                                from: MemberDocumentModel(uid: uid,
                                                 name: "그룹장",
                                                 unpaid_amount: 0,
                                                 role: [.admin, .manager])) { setUserError in
@@ -95,7 +95,7 @@ final class Database {
         }
     }
     
-    func currentGroup(uid: String) -> Single<Group?> {
+    func currentGroup(uid: String) -> Single<GroupDocumentModel?> {
         return self.groupIDs(uid: uid)
             .flatMap { [weak self] in
                 guard let self = self else { return Single.never() }
@@ -107,7 +107,7 @@ final class Database {
             }
     }
     
-    private func group(groupID: String) -> Single<Group?> {
+    func group(groupID: String) -> Single<GroupDocumentModel?> {
         return Single.create { single in
             let docRef = self.db.collection("groups").document(groupID)
             docRef.getDocument { document, error in
@@ -115,7 +115,7 @@ final class Database {
                     single(.failure(error))
                 } else if let document = document, document.exists {
                     do {
-                        if let group = try document.data(as: Group.self) {
+                        if let group = try document.data(as: GroupDocumentModel.self) {
                             single(.success(group))
                         } else {
                             single(.failure(DatabaseError.decodingFail))
@@ -131,7 +131,7 @@ final class Database {
         }
     }
     
-    private func groupIDs(uid: String) -> Single<[String]> {
+    func groupIDs(uid: String) -> Single<[String]> {
         return Single.create { single in
             let docRef = self.db.collection("Users").document(uid)
             docRef.getDocument { document, error in
