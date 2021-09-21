@@ -95,18 +95,6 @@ final class ABAPI {
         }
     }
     
-    func currentGroup(uid: String) -> Single<GroupDocumentModel?> {
-        return self.groupIDs(uid: uid)
-            .flatMap { [weak self] in
-                guard let self = self else { return Single.never() }
-                if let id = $0.first {
-                    return self.group(groupID: id)
-                } else {
-                    return Single.just(nil)
-                }
-            }
-    }
-    
     func group(groupID: String) -> Single<GroupDocumentModel?> {
         return Single.create { single in
             let docRef = self.db.collection("groups").document(groupID)
