@@ -7,13 +7,33 @@
 
 import UIKit
 
+import RxCocoa
+import RxDataSources
+import RxSwift
+
 class ListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var viewModel: ListViewModel?
+    var viewModel: ListViewModel? {
+        willSet {
+            if let listViewModel = newValue {
+                self.rx.viewDidLoad
+                    .subscribe(onNext: { [weak self] in
+                        self?.bind(to: listViewModel)
+                    })
+                    .disposed(by: self.disposeBag)
+            }
+        }
+    }
     
     private let infoCellIdentifier = "ListInfoCell"
     private let cellIdentifier = "ListAccountCell"
+    
+    var disposeBag = DisposeBag()
+    
+    private func bind(to viewModel: ListViewModel) {
+        let output = viewModel.transform(input: ListViewModel.Input(viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in }))
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

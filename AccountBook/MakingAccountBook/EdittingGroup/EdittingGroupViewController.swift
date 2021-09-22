@@ -11,8 +11,6 @@ import RxSwift
 import RxCocoa
 
 class EdittingGroupViewController: UIViewController {
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageSetButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
@@ -37,18 +35,13 @@ class EdittingGroupViewController: UIViewController {
     var dispostBag = DisposeBag()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.navigationController?.navigationBar.isHidden = true
+        super.viewDidLoad();
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+        self.navigationController?.navigationBar.isHidden = false
     }
 
     private func bind(to viewModel: EdittingGroupViewModel) {
-        self.backButton.rx.tap.asObservable().map { _ in }
-            .subscribe(onNext: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
-            })
-            .disposed(by: self.dispostBag)
-        
         let feeType = Observable.just(FeeType.monthly)
         let feeDay = Observable.just(1)
         let calculateDay = Observable.just(1)
@@ -68,9 +61,9 @@ class EdittingGroupViewController: UIViewController {
                 feeTypeSelection: feeType.asDriver(onErrorJustReturn: .monthly),
                 feeDaySelection: feeDay.asDriver(onErrorJustReturn: 1),
                 calculateDaySelection: calculateDay.asDriver(onErrorJustReturn: 1),
-                createGroup: self.submitButton.rx.tap.asDriver()))
+                createGroup: self.navigationItem.rightBarButtonItem!.rx.tap.asDriver()))
         
-        output.shouldSubmit.bind(to: self.submitButton.rx.isEnabled).disposed(by: self.dispostBag)
+        output.shouldSubmit.bind(to: self.navigationItem.rightBarButtonItem!.rx.isEnabled).disposed(by: self.dispostBag)
         
         output.alert.asObservable()
             .observe(on: MainScheduler.asyncInstance)

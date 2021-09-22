@@ -11,9 +11,9 @@ import Firebase
 import RxSwift
 
 final class ABProvider {
-    let user: BehaviorSubject<User?>
     let api: ABAPI
     
+    let user: BehaviorSubject<User?>
     let group = Group()
     
     var disposeBag = DisposeBag()
@@ -41,12 +41,24 @@ final class ABProvider {
                   let user = user else { return Single.never() }
             return self.api.groupIDs(uid: user.uid)
         }
-        .flatMap { [weak self] gids -> Single<GroupDocumentModel?> in
-            guard let self = self,
-                  let gid = gids.first else { return Single.never() }
+        .compactMap { $0.first }
+        .bind(to: self.group.gid)
+        .disposed(by: self.disposeBag)
+        
+        self.group.gid
+        .flatMap { [weak self] gid -> Single<GroupDocumentModel?> in
+            guard let self = self, let gid = gid else { return Single.never() }
             return self.api.group(groupID: gid)
         }
         .bind(to: self.group.groupDocumentModel)
         .disposed(by: self.disposeBag)
+    }
+    
+    func requestAccounts() {
+        guard let gid = try? self.group.gid.value() else { return }
+        
+        self.api.requestAccounts(gid: gid).asObservable()
+            .bind(to: self.group.accounts)
+            .disposed(by: self.disposeBag)
     }
 }

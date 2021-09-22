@@ -40,7 +40,7 @@ final class ABAPI {
                         
                     } else {
                         do {
-                            try docRef.collection("Members").document().setData(
+                            try docRef.collection("members").document().setData(
                                 from: MemberDocumentModel(uid: uid,
                                                 name: "그룹장",
                                                 unpaid_amount: 0,
@@ -121,7 +121,7 @@ final class ABAPI {
     
     func groupIDs(uid: String) -> Single<[String]> {
         return Single.create { single in
-            let docRef = self.db.collection("Users").document(uid)
+            let docRef = self.db.collection("users").document(uid)
             docRef.getDocument { document, error in
                 if let error = error {
                     single(.failure(error))
@@ -135,6 +135,24 @@ final class ABAPI {
                     
                 } else {
                     single(.success([]))
+                }
+            }
+            
+            return Disposables.create { }
+        }
+    }
+    
+    func requestAccounts(gid: String) -> Single<[AccountDocumentModel]> {
+        return Single.create { single in
+            let docRef = self.db.collection("groups").document(gid)
+            docRef.collection("accounts").getDocuments() { querySnapshot, error in
+                if let error = error {
+                    return single(.failure(error))
+                } else {
+                    let accountDocumentModels = querySnapshot!.documents.compactMap {
+                        try? $0.data(as: AccountDocumentModel.self)
+                    }
+                    return single(.success(accountDocumentModels))
                 }
             }
             

@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 
 struct Group {
+    let gid = BehaviorSubject<String?>(value: nil)
     let groupDocumentModel = BehaviorSubject<GroupDocumentModel?>(value: nil)
     let accounts = BehaviorSubject<[AccountDocumentModel]>(value: [])
     let members = BehaviorSubject<[MemberDocumentModel]>(value: [])

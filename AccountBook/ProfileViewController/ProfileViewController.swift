@@ -12,7 +12,6 @@ import RxSwift
 import RxCocoa
 
 class ProfileViewController: UIViewController {
-    @IBOutlet weak var groupNameLabel: UILabel!
     
     var viewModel: ProfileViewModel? {
         willSet {
@@ -29,13 +28,11 @@ class ProfileViewController: UIViewController {
     
     private func bind(to viewModel: ProfileViewModel) {
         let output = viewModel.transform(
-            input: ProfileViewModel.Input(viewWillAppear: self.rx.viewWillAppear
-                                            .asObservable()
-                                            .map { _ in }))
+            input: ProfileViewModel.Input(viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in }))
         
         output.group
             .compactMap { $0?.name }
-            .bind(to: self.groupNameLabel.rx.text)
+            .bind(to: self.rx.title)
             .disposed(by: self.disposeBag)
     }
 }
