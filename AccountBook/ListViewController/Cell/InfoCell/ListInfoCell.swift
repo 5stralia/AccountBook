@@ -7,6 +7,6 @@
 
 import UIKit
 
-class ListInfoCell: UICollectionViewCell {
+class ListInfoCell: UITableViewCell {
 
 }

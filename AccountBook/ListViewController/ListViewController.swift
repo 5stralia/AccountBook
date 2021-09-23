@@ -12,7 +12,7 @@ import RxDataSources
 import RxSwift
 
 class ListViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     
     var viewModel: ListViewModel? {
         willSet {
@@ -33,15 +33,37 @@ class ListViewController: UIViewController {
     
     private func bind(to viewModel: ListViewModel) {
         let output = viewModel.transform(input: ListViewModel.Input(viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in }))
+        
+        let dataSource = RxTableViewSectionedReloadDataSource<ListSection>(configureCell: { dataSource, tableView, indexPath, item in
+            switch item {
+            case .infoItem(let viewModel):
+                let cell = tableView.dequeueReusableCell(withIdentifier: self.infoCellIdentifier, for: indexPath) as! ListInfoCell
+                
+                return cell
+                
+            case .accountItem(let viewModel):
+                let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as! ListAccountCell
+                
+                cell.bind(to: viewModel)
+                
+                return cell
+            }
+        })
+        
+        output.items
+            .bind(to: self.tableView.rx.items(dataSource: dataSource))
+            .disposed(by: self.disposeBag)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView.register(UINib(nibName: self.infoCellIdentifier, bundle: nil),
-                                     forCellWithReuseIdentifier: self.infoCellIdentifier)
-        self.collectionView.register(UINib(nibName: self.cellIdentifier, bundle: nil),
-                                     forCellWithReuseIdentifier: self.cellIdentifier)
+        self.tableView.register(UINib(nibName: self.infoCellIdentifier, bundle: nil),
+                                forCellReuseIdentifier: self.infoCellIdentifier)
+        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil),
+                                forCellReuseIdentifier: self.cellIdentifier)
+        
+        self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         
         self.setNavigationItems()
     }
@@ -73,39 +95,16 @@ class ListViewController: UIViewController {
     }
 }
 
-extension ListViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0 {
-            return CGSize(width: collectionView.bounds.width, height: 122)
-        } else {
-            return CGSize(width: collectionView.bounds.width, height: 50)
-        }
-    }
-}
-
-extension ListViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+extension ListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 15
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 122
         } else {
             return 50
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.infoCellIdentifier, for: indexPath) as! ListInfoCell
-            
-            return cell
-            
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellIdentifier, for: indexPath) as! ListAccountCell
-            
-            return cell
         }
     }
 }

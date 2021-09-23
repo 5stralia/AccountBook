@@ -19,7 +19,7 @@ enum ListSectionItem {
     case accountItem(viewModel: ListAccountCellViewModel)
 }
 
-extension ListSectionItem: Identifiable {
+extension ListSectionItem: IdentifiableType {
     typealias Identity = String
     
     var identity: Identity {
@@ -27,10 +27,10 @@ extension ListSectionItem: Identifiable {
         case .infoItem:
             return "info"
         case .accountItem(let viewModel):
-            return viewModel.date.value ?? ""
-            + viewModel.category.value ?? ""
-            + viewModel.title.value ?? ""
-            + viewModel.amount.value ?? ""
+            return (viewModel.date.value ?? "")
+            + (viewModel.category.value ?? "")
+            + (viewModel.title.value ?? "")
+            + (viewModel.amount.value ?? "")
         }
     }
 }

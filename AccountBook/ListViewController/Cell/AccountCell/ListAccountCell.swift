@@ -2,7 +2,7 @@
 //  ListAccountCell.swift
 //  AccountBook
 //
-//  Created by 최호주 on 2021/08/29.
+//  Created by 최호주 on 2021/09/23.
 //
 
 import UIKit
@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class ListAccountCell: UICollectionViewCell {
+class ListAccountCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
