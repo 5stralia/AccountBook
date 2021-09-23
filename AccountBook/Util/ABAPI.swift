@@ -66,7 +66,7 @@ final class ABAPI {
     
     private func addGroup(to uid: String, documentID: String) -> Completable {
         return Completable.create { completable in
-            let docRef = self.db.collection("Users").document(uid)
+            let docRef = self.db.collection("users").document(uid)
             docRef.getDocument { document, error in
                 if let document = document, document.exists {
                     docRef.updateData([
