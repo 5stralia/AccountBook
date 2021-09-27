@@ -16,8 +16,6 @@ final class ListAccountCellViewModel {
     let title = BehaviorRelay<String?>(value: nil)
     let amount = BehaviorRelay<String?>(value: nil)
     
-    var disposeBag = DisposeBag()
-    
     init(date: String, category: String, title: String, amount: String) {
         self.date.accept(date)
         self.category.accept(category)

@@ -20,8 +20,8 @@ final class ABProvider {
     
     private var authHandle: AuthStateDidChangeListenerHandle?
     
-    init(user: User?, api: ABAPI) {
-        self.user = BehaviorSubject<User?>(value: user)
+    init(api: ABAPI) {
+        self.user = BehaviorSubject<User?>(value: nil)
         self.api = api
         
         self.authHandle = Auth.auth().addStateDidChangeListener { auth, user in
@@ -52,13 +52,22 @@ final class ABProvider {
         }
         .bind(to: self.group.groupDocumentModel)
         .disposed(by: self.disposeBag)
+        
+        self.group.gid.subscribe(onNext: { [weak self] gid in
+            guard let _ = gid else { return }
+            self?.requestAccounts()
+        })
+            .disposed(by: self.disposeBag)
     }
     
     func requestAccounts() {
         guard let gid = try? self.group.gid.value() else { return }
         
         self.api.requestAccounts(gid: gid).asObservable()
-            .bind(to: self.group.accounts)
+            .debug()
+            .subscribe(onNext: { [weak self] accounts in
+                self?.group.accounts.onNext(accounts)
+            })
             .disposed(by: self.disposeBag)
     }
 }

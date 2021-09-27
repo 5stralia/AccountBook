@@ -24,4 +24,10 @@ class ListAccountCell: UITableViewCell {
         viewModel.title.bind(to: self.titleLabel.rx.text).disposed(by: self.disposeBag)
         viewModel.amount.bind(to: self.amountLabel.rx.text).disposed(by: self.disposeBag)
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.disposeBag = DisposeBag()
+    }
 }

@@ -7,11 +7,27 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 class AccountDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+    var viewModel: AccountDetailViewModel? {
+        willSet {
+            if let accountDetailViewModel = newValue {
+                self.rx.viewDidLoad.subscribe(onNext: {
+                    self.bind(to: accountDetailViewModel)
+                })
+                    .disposed(by: self.disposeBag)
+            }
+        }
+    }
+    
     private let textFieldCellIdentifier = "TextFieldCell"
     private let selectingCellIdentifier = "SelectingCell"
+    
+    var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +38,10 @@ class AccountDetailViewController: UIViewController {
                                 forCellReuseIdentifier: self.selectingCellIdentifier)
         
         self.setNavigationItems()
+    }
+    
+    private func bind(to viewModel: AccountDetailViewModel) {
+        
     }
     
     private func setNavigationItems() {

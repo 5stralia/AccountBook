@@ -38,7 +38,7 @@ class ListViewModel: ViewModel, ViewModelType {
             items.append(.info(title: "Info", items: [.infoItem(viewModel: ListInfoCellViewModel())]))
             
             let formatter = DateFormatter()
-            formatter.dateFormat = "MM/DD"
+            formatter.dateFormat = "MM/dd"
             
             let accountItems = accounts.map { account -> ListSectionItem in
                 return .accountItem(viewModel: ListAccountCellViewModel(date: formatter.string(from: account.date),

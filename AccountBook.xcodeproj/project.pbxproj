@@ -70,6 +70,8 @@
 		FBA26E4C26E619CD00969785 /* EdittingNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4B26E619CD00969785 /* EdittingNameViewModel.swift */; };
 		FBA26E4E26E62D5500969785 /* Int+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4D26E62D5500969785 /* Int+Format.swift */; };
 		FBA26E5026E7A72E00969785 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4F26E7A72E00969785 /* SignInViewModel.swift */; };
+		FBC12AB22701D52C00EE698F /* AccountDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC12AB12701D52C00EE698F /* AccountDetailViewModel.swift */; };
+		FBC12AB42701D60A00EE698F /* TextFieldCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC12AB32701D60A00EE698F /* TextFieldCellViewModel.swift */; };
 		FBD38C0926DAB1EF00E9365F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FBD38C0826DAB1EF00E9365F /* GoogleSignIn */; };
 		FBD38C0D26DAB2B500E9365F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C0B26DAB2B500E9365F /* SignInViewController.swift */; };
 		FBD38C0E26DAB2B500E9365F /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */; };
@@ -177,6 +179,8 @@
 		FBA26E4B26E619CD00969785 /* EdittingNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingNameViewModel.swift; sourceTree = "<group>"; };
 		FBA26E4D26E62D5500969785 /* Int+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Format.swift"; sourceTree = "<group>"; };
 		FBA26E4F26E7A72E00969785 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		FBC12AB12701D52C00EE698F /* AccountDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewModel.swift; sourceTree = "<group>"; };
+		FBC12AB32701D60A00EE698F /* TextFieldCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCellViewModel.swift; sourceTree = "<group>"; };
 		FBD38C0B26DAB2B500E9365F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		FBD38C1026DB595200E9365F /* ListAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountCell.swift; sourceTree = "<group>"; };
@@ -542,6 +546,7 @@
 			isa = PBXGroup;
 			children = (
 				FBD38C3226DB896E00E9365F /* Cell */,
+				FBC12AB12701D52C00EE698F /* AccountDetailViewModel.swift */,
 				FBD38C2E26DB867A00E9365F /* AccountDetailViewController.swift */,
 				FBD38C2F26DB867A00E9365F /* AccountDetailViewController.xib */,
 			);
@@ -559,6 +564,7 @@
 		FBD38C3726DB90FC00E9365F /* TextFieldCell */ = {
 			isa = PBXGroup;
 			children = (
+				FBC12AB32701D60A00EE698F /* TextFieldCellViewModel.swift */,
 				FBD38C3326DB906D00E9365F /* TextFieldCell.swift */,
 				FBD38C3426DB906D00E9365F /* TextFieldCell.xib */,
 			);
@@ -812,6 +818,7 @@
 				FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */,
 				FBD38C4426DBC04E00E9365F /* ViewModel.swift in Sources */,
 				FB4142F926DA97B2003C6468 /* ListViewController.swift in Sources */,
+				FBC12AB22701D52C00EE698F /* AccountDetailViewModel.swift in Sources */,
 				FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */,
 				FBD38C3026DB867A00E9365F /* AccountDetailViewController.swift in Sources */,
 				FB4142FC26DA97BD003C6468 /* ListViewModel.swift in Sources */,
@@ -823,6 +830,7 @@
 				FB4142F526DA9721003C6468 /* ProfileViewModel.swift in Sources */,
 				FBD38C1226DB595200E9365F /* ListAccountCell.swift in Sources */,
 				FB8BF3E026DA8E280091CC58 /* MonthlyChartCell.swift in Sources */,
+				FBC12AB42701D60A00EE698F /* TextFieldCellViewModel.swift in Sources */,
 				FBA26E4526E51FFC00969785 /* ABUser.swift in Sources */,
 				FB6ACFBB26E0D36800F3099F /* ViewController.swift in Sources */,
 				FB86871226F8CE02006E4FC5 /* ABProvider.swift in Sources */,

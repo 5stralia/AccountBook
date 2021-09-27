@@ -7,19 +7,15 @@
 
 import UIKit
 
+import RxRelay
+import RxSwift
+
 class TextFieldCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    var disposeBag = DisposeBag()
     
+    func bind(to viewModel: TextFieldCellViewModel) {
+        viewModel.text.bind(to: self.textField.rx.text).disposed(by: self.disposeBag)
+    }
 }
