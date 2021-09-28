@@ -64,7 +64,6 @@ final class ABProvider {
         guard let gid = try? self.group.gid.value() else { return }
         
         self.api.requestAccounts(gid: gid).asObservable()
-            .debug()
             .subscribe(onNext: { [weak self] accounts in
                 self?.group.accounts.onNext(accounts)
             })

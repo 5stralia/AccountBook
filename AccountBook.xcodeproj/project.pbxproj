@@ -72,6 +72,16 @@
 		FBA26E5026E7A72E00969785 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA26E4F26E7A72E00969785 /* SignInViewModel.swift */; };
 		FBC12AB22701D52C00EE698F /* AccountDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC12AB12701D52C00EE698F /* AccountDetailViewModel.swift */; };
 		FBC12AB42701D60A00EE698F /* TextFieldCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC12AB32701D60A00EE698F /* TextFieldCellViewModel.swift */; };
+		FBC12AB62703222F00EE698F /* AccountDetailSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC12AB52703222F00EE698F /* AccountDetailSection.swift */; };
+		FBC12ABA2703282D00EE698F /* AccountDetailSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC12AB82703282D00EE698F /* AccountDetailSelectionCell.swift */; };
+		FBC12ABB2703282D00EE698F /* AccountDetailSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBC12AB92703282D00EE698F /* AccountDetailSelectionCell.xib */; };
+		FBC12ABD2703284200EE698F /* AccountDetailSelectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC12ABC2703284200EE698F /* AccountDetailSelectionCellViewModel.swift */; };
+		FBC12AC52703365D00EE698F /* AccountDetailDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC12AC32703365D00EE698F /* AccountDetailDateCell.swift */; };
+		FBC12AC62703365D00EE698F /* AccountDetailDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBC12AC42703365D00EE698F /* AccountDetailDateCell.xib */; };
+		FBC12AC92703405E00EE698F /* AccountDetailSegmentCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC12AC82703405E00EE698F /* AccountDetailSegmentCellViewModel.swift */; };
+		FBC12ACC270340A000EE698F /* AccountDetailSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC12ACA270340A000EE698F /* AccountDetailSegmentCell.swift */; };
+		FBC12ACD270340A000EE698F /* AccountDetailSegmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBC12ACB270340A000EE698F /* AccountDetailSegmentCell.xib */; };
+		FBC12ACF2703481E00EE698F /* AccountDetailDateCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC12ACE2703481D00EE698F /* AccountDetailDateCellViewModel.swift */; };
 		FBD38C0926DAB1EF00E9365F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FBD38C0826DAB1EF00E9365F /* GoogleSignIn */; };
 		FBD38C0D26DAB2B500E9365F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD38C0B26DAB2B500E9365F /* SignInViewController.swift */; };
 		FBD38C0E26DAB2B500E9365F /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */; };
@@ -181,6 +191,16 @@
 		FBA26E4F26E7A72E00969785 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		FBC12AB12701D52C00EE698F /* AccountDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewModel.swift; sourceTree = "<group>"; };
 		FBC12AB32701D60A00EE698F /* TextFieldCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCellViewModel.swift; sourceTree = "<group>"; };
+		FBC12AB52703222F00EE698F /* AccountDetailSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailSection.swift; sourceTree = "<group>"; };
+		FBC12AB82703282D00EE698F /* AccountDetailSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailSelectionCell.swift; sourceTree = "<group>"; };
+		FBC12AB92703282D00EE698F /* AccountDetailSelectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDetailSelectionCell.xib; sourceTree = "<group>"; };
+		FBC12ABC2703284200EE698F /* AccountDetailSelectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailSelectionCellViewModel.swift; sourceTree = "<group>"; };
+		FBC12AC32703365D00EE698F /* AccountDetailDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailDateCell.swift; sourceTree = "<group>"; };
+		FBC12AC42703365D00EE698F /* AccountDetailDateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDetailDateCell.xib; sourceTree = "<group>"; };
+		FBC12AC82703405E00EE698F /* AccountDetailSegmentCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailSegmentCellViewModel.swift; sourceTree = "<group>"; };
+		FBC12ACA270340A000EE698F /* AccountDetailSegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailSegmentCell.swift; sourceTree = "<group>"; };
+		FBC12ACB270340A000EE698F /* AccountDetailSegmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDetailSegmentCell.xib; sourceTree = "<group>"; };
+		FBC12ACE2703481D00EE698F /* AccountDetailDateCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailDateCellViewModel.swift; sourceTree = "<group>"; };
 		FBD38C0B26DAB2B500E9365F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FBD38C0C26DAB2B500E9365F /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		FBD38C1026DB595200E9365F /* ListAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountCell.swift; sourceTree = "<group>"; };
@@ -496,6 +516,36 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		FBC12AB7270327A500EE698F /* SelectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				FBC12ABC2703284200EE698F /* AccountDetailSelectionCellViewModel.swift */,
+				FBC12AB82703282D00EE698F /* AccountDetailSelectionCell.swift */,
+				FBC12AB92703282D00EE698F /* AccountDetailSelectionCell.xib */,
+			);
+			path = SelectionCell;
+			sourceTree = "<group>";
+		};
+		FBC12AC0270335E300EE698F /* DateCell */ = {
+			isa = PBXGroup;
+			children = (
+				FBC12ACE2703481D00EE698F /* AccountDetailDateCellViewModel.swift */,
+				FBC12AC32703365D00EE698F /* AccountDetailDateCell.swift */,
+				FBC12AC42703365D00EE698F /* AccountDetailDateCell.xib */,
+			);
+			path = DateCell;
+			sourceTree = "<group>";
+		};
+		FBC12AC72703404D00EE698F /* SegmentCell */ = {
+			isa = PBXGroup;
+			children = (
+				FBC12AC82703405E00EE698F /* AccountDetailSegmentCellViewModel.swift */,
+				FBC12ACA270340A000EE698F /* AccountDetailSegmentCell.swift */,
+				FBC12ACB270340A000EE698F /* AccountDetailSegmentCell.xib */,
+			);
+			path = SegmentCell;
+			sourceTree = "<group>";
+		};
 		FBD38C0A26DAB29900E9365F /* SignInViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +596,7 @@
 			isa = PBXGroup;
 			children = (
 				FBD38C3226DB896E00E9365F /* Cell */,
+				FBC12AB52703222F00EE698F /* AccountDetailSection.swift */,
 				FBC12AB12701D52C00EE698F /* AccountDetailViewModel.swift */,
 				FBD38C2E26DB867A00E9365F /* AccountDetailViewController.swift */,
 				FBD38C2F26DB867A00E9365F /* AccountDetailViewController.xib */,
@@ -556,6 +607,9 @@
 		FBD38C3226DB896E00E9365F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				FBC12AC72703404D00EE698F /* SegmentCell */,
+				FBC12AC0270335E300EE698F /* DateCell */,
+				FBC12AB7270327A500EE698F /* SelectionCell */,
 				FBD38C3726DB90FC00E9365F /* TextFieldCell */,
 			);
 			path = Cell;
@@ -727,8 +781,10 @@
 			files = (
 				FB4142F326DA9716003C6468 /* ProfileViewController.xib in Resources */,
 				FBA26E4A26E619AB00969785 /* EdittingNameViewController.xib in Resources */,
+				FBC12AC62703365D00EE698F /* AccountDetailDateCell.xib in Resources */,
 				FBD38C5E26DBD5A300E9365F /* SettingViewController.xib in Resources */,
 				FB8BF3D326DA79F80091CC58 /* BarChartCell.xib in Resources */,
+				FBC12ABB2703282D00EE698F /* AccountDetailSelectionCell.xib in Resources */,
 				FB4142FA26DA97B2003C6468 /* ListViewController.xib in Resources */,
 				FBD38C0E26DAB2B500E9365F /* SignInViewController.xib in Resources */,
 				FB8BF38E26D67CE20091CC58 /* LaunchScreen.storyboard in Resources */,
@@ -745,6 +801,7 @@
 				FB6ACFA826DD064C00F3099F /* Images.xcassets in Resources */,
 				FB8BF3DA26DA7EA90091CC58 /* MonthlyChartViewController.xib in Resources */,
 				FBD38C1326DB595200E9365F /* ListAccountCell.xib in Resources */,
+				FBC12ACD270340A000EE698F /* AccountDetailSegmentCell.xib in Resources */,
 				FBD38C3126DB867A00E9365F /* AccountDetailViewController.xib in Resources */,
 				FB6ACFB326DD177000F3099F /* EdittingGroupViewController.xib in Resources */,
 			);
@@ -797,6 +854,7 @@
 				FBA26E4926E619AB00969785 /* EdittingNameViewController.swift in Sources */,
 				FB6ACFB226DD177000F3099F /* EdittingGroupViewController.swift in Sources */,
 				FBD38C5A26DBCB3E00E9365F /* TableViewCellViewModel.swift in Sources */,
+				FBC12AB62703222F00EE698F /* AccountDetailSection.swift in Sources */,
 				FBD38C0D26DAB2B500E9365F /* SignInViewController.swift in Sources */,
 				FB8BF3C726D931530091CC58 /* UIView+Design.swift in Sources */,
 				FB6ACFB926DFC89000F3099F /* ABAPI.swift in Sources */,
@@ -817,18 +875,23 @@
 				FBD38C5726DBC88E00E9365F /* TableViewCell.swift in Sources */,
 				FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */,
 				FBD38C4426DBC04E00E9365F /* ViewModel.swift in Sources */,
+				FBC12ACF2703481E00EE698F /* AccountDetailDateCellViewModel.swift in Sources */,
 				FB4142F926DA97B2003C6468 /* ListViewController.swift in Sources */,
 				FBC12AB22701D52C00EE698F /* AccountDetailViewModel.swift in Sources */,
 				FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */,
 				FBD38C3026DB867A00E9365F /* AccountDetailViewController.swift in Sources */,
 				FB4142FC26DA97BD003C6468 /* ListViewModel.swift in Sources */,
 				FB8BF3CE26DA763B0091CC58 /* BarChartViewModel.swift in Sources */,
+				FBC12ABA2703282D00EE698F /* AccountDetailSelectionCell.swift in Sources */,
 				FBA26E3926E1FE4100969785 /* EdittingGroupViewModel.swift in Sources */,
 				FB8BF3D926DA7EA90091CC58 /* MonthlyChartViewController.swift in Sources */,
+				FBC12AC92703405E00EE698F /* AccountDetailSegmentCellViewModel.swift in Sources */,
 				FB8BF3B726D685710091CC58 /* ChartViewController.swift in Sources */,
 				FB3A9A9826FB55C700DA7B26 /* ListSection.swift in Sources */,
 				FB4142F526DA9721003C6468 /* ProfileViewModel.swift in Sources */,
+				FBC12AC52703365D00EE698F /* AccountDetailDateCell.swift in Sources */,
 				FBD38C1226DB595200E9365F /* ListAccountCell.swift in Sources */,
+				FBC12ABD2703284200EE698F /* AccountDetailSelectionCellViewModel.swift in Sources */,
 				FB8BF3E026DA8E280091CC58 /* MonthlyChartCell.swift in Sources */,
 				FBC12AB42701D60A00EE698F /* TextFieldCellViewModel.swift in Sources */,
 				FBA26E4526E51FFC00969785 /* ABUser.swift in Sources */,
@@ -845,6 +908,7 @@
 				FB8BF3B226D681320091CC58 /* TabBarController.swift in Sources */,
 				FB6ACFB626DFC6EE00F3099F /* TabBarViewModel.swift in Sources */,
 				FBA26E4C26E619CD00969785 /* EdittingNameViewModel.swift in Sources */,
+				FBC12ACC270340A000EE698F /* AccountDetailSegmentCell.swift in Sources */,
 				FB8BF3D226DA79F80091CC58 /* BarChartCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

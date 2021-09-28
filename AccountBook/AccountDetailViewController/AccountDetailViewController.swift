@@ -8,6 +8,7 @@
 import UIKit
 
 import RxCocoa
+import RxDataSources
 import RxSwift
 
 class AccountDetailViewController: UIViewController {
@@ -24,24 +25,58 @@ class AccountDetailViewController: UIViewController {
         }
     }
     
-    private let textFieldCellIdentifier = "TextFieldCell"
-    private let selectingCellIdentifier = "SelectingCell"
-    
     var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.register(UINib(nibName: self.textFieldCellIdentifier, bundle: nil),
-                                forCellReuseIdentifier: self.textFieldCellIdentifier)
-        self.tableView.register(UITableViewCell.self,
-                                forCellReuseIdentifier: self.selectingCellIdentifier)
+        self.tableView.register(UINib(nibName: CellItem.textField.identifier, bundle: nil),
+                                forCellReuseIdentifier: CellItem.textField.identifier)
+        self.tableView.register(UINib(nibName: CellItem.selection.identifier, bundle: nil),
+                                forCellReuseIdentifier: CellItem.selection.identifier)
+        self.tableView.register(UINib(nibName: CellItem.date.identifier, bundle: nil),
+                                forCellReuseIdentifier: CellItem.date.identifier)
+        self.tableView.register(UINib(nibName: CellItem.segment.identifier, bundle: nil),
+                                forCellReuseIdentifier: CellItem.segment.identifier)
         
         self.setNavigationItems()
     }
     
     private func bind(to viewModel: AccountDetailViewModel) {
+        let output = viewModel.transform(input: AccountDetailViewModel.Input())
         
+        let datasource = RxTableViewSectionedReloadDataSource<AccountDetailSection>(configureCell: { datasource, tableView, indexPath, item in
+            switch item {
+            case .textfieldItem(let viewModel):
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellItem.textField.identifier, for: indexPath) as! TextFieldCell
+                cell.bind(to: viewModel)
+                return cell
+                
+            case .selectionItem(let viewModel):
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellItem.selection.identifier, for: indexPath) as! AccountDetailSelectionCell
+                cell.bind(to: viewModel)
+                return cell
+                
+            case .multiSelectionItem(let viewModel):
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellItem.selection.identifier, for: indexPath) as! AccountDetailSelectionCell
+                cell.bind(to: viewModel)
+                return cell
+                
+            case .dateItem(let viewModel):
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellItem.date.identifier, for: indexPath) as! AccountDetailDateCell
+                cell.bind(to: viewModel)
+                return cell
+                
+            case .segmentItem(let viewModel):
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellItem.segment.identifier, for: indexPath) as! AccountDetailSegmentCell
+                cell.bind(to: viewModel)
+                return cell
+            }
+        })
+        
+        output.items
+            .bind(to: self.tableView.rx.items(dataSource: datasource))
+            .disposed(by: self.disposeBag)
     }
     
     private func setNavigationItems() {
@@ -62,42 +97,20 @@ class AccountDetailViewController: UIViewController {
 
 }
 
-extension AccountDetailViewController: UITableViewDelegate {
-    
-}
-
-extension AccountDetailViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.textFieldCellIdentifier) as! TextFieldCell
-            
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.selectingCellIdentifier)!
-            
-            if #available(iOS 14.0, *) {
-                var content = UIListContentConfiguration.valueCell()
-                
-                content.text = "text"
-                content.secondaryText = "Second"
-                
-                cell.contentConfiguration = content
-                
-            } else {
-                cell.textLabel?.text = "textLabel"
+extension AccountDetailViewController {
+    enum CellItem {
+        case textField
+        case selection
+        case date
+        case segment
+        
+        var identifier: String {
+            switch self {
+            case .textField: return "TextFieldCell"
+            case .selection: return "AccountDetailSelectionCell"
+            case .date: return "AccountDetailDateCell"
+            case .segment: return "AccountDetailSegmentCell"
             }
-            
-            cell.accessoryType = .disclosureIndicator
-            
-            return cell
         }
     }
 }

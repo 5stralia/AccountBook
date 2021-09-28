@@ -90,6 +90,8 @@ class ListViewController: UIViewController {
     
     @objc private func addAccount() {
         let accountDetailViewController = AccountDetailViewController()
+        let accountDetailViewModel = AccountDetailViewModel()
+        accountDetailViewController.viewModel = accountDetailViewModel
         let navigationController = UINavigationController(rootViewController: accountDetailViewController)
         self.present(navigationController, animated: true, completion: nil)
     }
