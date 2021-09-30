@@ -43,21 +43,38 @@ class AccountDetailViewController: UIViewController {
     }
     
     private func bind(to viewModel: AccountDetailViewModel) {
+//        let output = viewModel.transform(
+//            input: AccountDetailViewModel.Input(
+//                selection: self.tableView.rx.modelSelected(AccountDetailSectionItem.self).asObservable()))
         let output = viewModel.transform(input: AccountDetailViewModel.Input())
+        
+        self.tableView.rx.modelSelected(AccountDetailSectionItem.self)
+            .asDriver()
+            .debug()
+            .drive(onNext: { item in
+                switch item {
+                case .categoryItem(let viewModel):
+                    let selectingViewModel = self.viewModel?.viewModel(item)
+                    let selectingViewController = AccountDetailSelectingViewController()
+                    selectingViewController.viewModel = selectingViewModel as? AccountDetailSelectingViewModel
+                    self.navigationController?.pushViewController(selectingViewController, animated: true)
+                default:
+                    break
+                }
+            })
+            .disposed(by: self.disposeBag)
         
         let datasource = RxTableViewSectionedReloadDataSource<AccountDetailSection>(configureCell: { datasource, tableView, indexPath, item in
             switch item {
-            case .textfieldItem(let viewModel):
+            case .titleItem(let viewModel),
+                    .amountItem(let viewModel):
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellItem.textField.identifier, for: indexPath) as! TextFieldCell
                 cell.bind(to: viewModel)
                 return cell
                 
-            case .selectionItem(let viewModel):
-                let cell = tableView.dequeueReusableCell(withIdentifier: CellItem.selection.identifier, for: indexPath) as! AccountDetailSelectionCell
-                cell.bind(to: viewModel)
-                return cell
-                
-            case .multiSelectionItem(let viewModel):
+            case .categoryItem(let viewModel),
+                    .payerItem(let viewModel),
+                    .participantItem(let viewModel):
                 let cell = tableView.dequeueReusableCell(withIdentifier: CellItem.selection.identifier, for: indexPath) as! AccountDetailSelectionCell
                 cell.bind(to: viewModel)
                 return cell

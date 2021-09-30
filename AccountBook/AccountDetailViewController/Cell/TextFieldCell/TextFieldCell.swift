@@ -17,5 +17,6 @@ class TextFieldCell: UITableViewCell {
     
     func bind(to viewModel: TextFieldCellViewModel) {
         viewModel.text.bind(to: self.textField.rx.text).disposed(by: self.disposeBag)
+        viewModel.placeholderText.bind(to: self.textField.rx.placeholder).disposed(by: self.disposeBag)
     }
 }

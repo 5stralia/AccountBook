@@ -22,6 +22,13 @@
 		FB41430A26DAA27E003C6468 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430926DAA27E003C6468 /* FirebaseCrashlytics */; };
 		FB41430C26DAA27E003C6468 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430B26DAA27E003C6468 /* FirebaseAuth */; };
 		FB41430E26DAA27E003C6468 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FB41430D26DAA27E003C6468 /* FirebaseFirestore */; };
+		FB5BF04B2704BBEB00E4F457 /* AccountDetailSelectingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5BF04A2704BBEB00E4F457 /* AccountDetailSelectingViewModel.swift */; };
+		FB5BF04E2704BC0400E4F457 /* AccountDetailSelectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5BF04C2704BC0400E4F457 /* AccountDetailSelectingViewController.swift */; };
+		FB5BF04F2704BC0400E4F457 /* AccountDetailSelectingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB5BF04D2704BC0400E4F457 /* AccountDetailSelectingViewController.xib */; };
+		FB5BF0512704BE7A00E4F457 /* AccountDetailSelectingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5BF0502704BE7A00E4F457 /* AccountDetailSelectingSection.swift */; };
+		FB5BF05E2704CD4C00E4F457 /* AccountDetailSelectingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5BF05D2704CD4C00E4F457 /* AccountDetailSelectingCellViewModel.swift */; };
+		FB5BF0612704CDF300E4F457 /* AccountDetailSelectingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5BF05F2704CDF300E4F457 /* AccountDetailSelectingCell.swift */; };
+		FB5BF0622704CDF300E4F457 /* AccountDetailSelectingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB5BF0602704CDF300E4F457 /* AccountDetailSelectingCell.xib */; };
 		FB6ACFA826DD064C00F3099F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6ACFA726DD064C00F3099F /* Images.xcassets */; };
 		FB6ACFAD26DD160E00F3099F /* IntroCreatingGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACFAB26DD160E00F3099F /* IntroCreatingGroupViewController.swift */; };
 		FB6ACFAE26DD160E00F3099F /* IntroCreatingGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB6ACFAC26DD160E00F3099F /* IntroCreatingGroupViewController.xib */; };
@@ -137,6 +144,13 @@
 		FB4142FB26DA97BD003C6468 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		FB41430226DA9842003C6468 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		FB41430426DA9C79003C6468 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FB5BF04A2704BBEB00E4F457 /* AccountDetailSelectingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailSelectingViewModel.swift; sourceTree = "<group>"; };
+		FB5BF04C2704BC0400E4F457 /* AccountDetailSelectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailSelectingViewController.swift; sourceTree = "<group>"; };
+		FB5BF04D2704BC0400E4F457 /* AccountDetailSelectingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDetailSelectingViewController.xib; sourceTree = "<group>"; };
+		FB5BF0502704BE7A00E4F457 /* AccountDetailSelectingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailSelectingSection.swift; sourceTree = "<group>"; };
+		FB5BF05D2704CD4C00E4F457 /* AccountDetailSelectingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailSelectingCellViewModel.swift; sourceTree = "<group>"; };
+		FB5BF05F2704CDF300E4F457 /* AccountDetailSelectingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailSelectingCell.swift; sourceTree = "<group>"; };
+		FB5BF0602704CDF300E4F457 /* AccountDetailSelectingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountDetailSelectingCell.xib; sourceTree = "<group>"; };
 		FB6ACFA726DD064C00F3099F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FB6ACFAB26DD160E00F3099F /* IntroCreatingGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCreatingGroupViewController.swift; sourceTree = "<group>"; };
 		FB6ACFAC26DD160E00F3099F /* IntroCreatingGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IntroCreatingGroupViewController.xib; sourceTree = "<group>"; };
@@ -290,6 +304,28 @@
 				FBD38C5C26DBD5A300E9365F /* SettingViewController.xib */,
 			);
 			path = SettingViewController;
+			sourceTree = "<group>";
+		};
+		FB5BF0492704B90500E4F457 /* Selecting */ = {
+			isa = PBXGroup;
+			children = (
+				FB5BF05C2704CD2400E4F457 /* Cell */,
+				FB5BF0502704BE7A00E4F457 /* AccountDetailSelectingSection.swift */,
+				FB5BF04A2704BBEB00E4F457 /* AccountDetailSelectingViewModel.swift */,
+				FB5BF04C2704BC0400E4F457 /* AccountDetailSelectingViewController.swift */,
+				FB5BF04D2704BC0400E4F457 /* AccountDetailSelectingViewController.xib */,
+			);
+			path = Selecting;
+			sourceTree = "<group>";
+		};
+		FB5BF05C2704CD2400E4F457 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FB5BF05D2704CD4C00E4F457 /* AccountDetailSelectingCellViewModel.swift */,
+				FB5BF05F2704CDF300E4F457 /* AccountDetailSelectingCell.swift */,
+				FB5BF0602704CDF300E4F457 /* AccountDetailSelectingCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		FB6ACFA926DD15CB00F3099F /* MakingAccountBook */ = {
@@ -595,6 +631,7 @@
 		FBD38C2D26DB862600E9365F /* AccountDetailViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FB5BF0492704B90500E4F457 /* Selecting */,
 				FBD38C3226DB896E00E9365F /* Cell */,
 				FBC12AB52703222F00EE698F /* AccountDetailSection.swift */,
 				FBC12AB12701D52C00EE698F /* AccountDetailViewModel.swift */,
@@ -779,6 +816,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB5BF0622704CDF300E4F457 /* AccountDetailSelectingCell.xib in Resources */,
 				FB4142F326DA9716003C6468 /* ProfileViewController.xib in Resources */,
 				FBA26E4A26E619AB00969785 /* EdittingNameViewController.xib in Resources */,
 				FBC12AC62703365D00EE698F /* AccountDetailDateCell.xib in Resources */,
@@ -789,6 +827,7 @@
 				FBD38C0E26DAB2B500E9365F /* SignInViewController.xib in Resources */,
 				FB8BF38E26D67CE20091CC58 /* LaunchScreen.storyboard in Resources */,
 				FB8BF3E126DA8E280091CC58 /* MonthlyChartCell.xib in Resources */,
+				FB5BF04F2704BC0400E4F457 /* AccountDetailSelectingViewController.xib in Resources */,
 				FB41430526DA9C79003C6468 /* GoogleService-Info.plist in Resources */,
 				FB8BF3B826D685710091CC58 /* ChartViewController.xib in Resources */,
 				FB6ACFAE26DD160E00F3099F /* IntroCreatingGroupViewController.xib in Resources */,
@@ -864,6 +903,7 @@
 				FB8BF3E326DA8E330091CC58 /* MonthlyChartCellViewModel.swift in Sources */,
 				FB8BF3CB26DA76140091CC58 /* BarChartViewController.swift in Sources */,
 				FB86871026F84CFC006E4FC5 /* Group.swift in Sources */,
+				FB5BF0512704BE7A00E4F457 /* AccountDetailSelectingSection.swift in Sources */,
 				FBA26E3C26E1FE9600969785 /* GroupDocumentModel.swift in Sources */,
 				FBA26E4026E5034C00969785 /* IntroCreatingGroupViewModel.swift in Sources */,
 				FBD38C3526DB906D00E9365F /* TextFieldCell.swift in Sources */,
@@ -871,8 +911,10 @@
 				FB3A9A9C26FB57C100DA7B26 /* ListAccountCellViewModel.swift in Sources */,
 				FBA26E4E26E62D5500969785 /* Int+Format.swift in Sources */,
 				FB8BF3BA26D696740091CC58 /* ChartViewModel.swift in Sources */,
+				FB5BF04E2704BC0400E4F457 /* AccountDetailSelectingViewController.swift in Sources */,
 				FB3A9A9A26FB57A800DA7B26 /* ListInfoCellViewModel.swift in Sources */,
 				FBD38C5726DBC88E00E9365F /* TableViewCell.swift in Sources */,
+				FB5BF04B2704BBEB00E4F457 /* AccountDetailSelectingViewModel.swift in Sources */,
 				FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */,
 				FBD38C4426DBC04E00E9365F /* ViewModel.swift in Sources */,
 				FBC12ACF2703481E00EE698F /* AccountDetailDateCellViewModel.swift in Sources */,
@@ -893,10 +935,12 @@
 				FBD38C1226DB595200E9365F /* ListAccountCell.swift in Sources */,
 				FBC12ABD2703284200EE698F /* AccountDetailSelectionCellViewModel.swift in Sources */,
 				FB8BF3E026DA8E280091CC58 /* MonthlyChartCell.swift in Sources */,
+				FB5BF05E2704CD4C00E4F457 /* AccountDetailSelectingCellViewModel.swift in Sources */,
 				FBC12AB42701D60A00EE698F /* TextFieldCellViewModel.swift in Sources */,
 				FBA26E4526E51FFC00969785 /* ABUser.swift in Sources */,
 				FB6ACFBB26E0D36800F3099F /* ViewController.swift in Sources */,
 				FB86871226F8CE02006E4FC5 /* ABProvider.swift in Sources */,
+				FB5BF0612704CDF300E4F457 /* AccountDetailSelectingCell.swift in Sources */,
 				FBA26E4226E5183E00969785 /* DatabaseError.swift in Sources */,
 				FB8BF3C426D92D710091CC58 /* PieChartViewModel.swift in Sources */,
 				FBD38C4626DBC4B400E9365F /* SettingSection.swift in Sources */,

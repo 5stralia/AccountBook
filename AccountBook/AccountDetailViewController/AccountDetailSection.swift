@@ -15,9 +15,11 @@ enum AccountDetailSection {
 }
 
 enum AccountDetailSectionItem {
-    case textfieldItem(viewModel: TextFieldCellViewModel)
-    case selectionItem(viewModel: AccountDetailSelectionCellViewModel)
-    case multiSelectionItem(viewModel: AccountDetailSelectionCellViewModel)
+    case titleItem(viewModel: TextFieldCellViewModel)
+    case amountItem(viewModel: TextFieldCellViewModel)
+    case categoryItem(viewModel: AccountDetailSelectionCellViewModel)
+    case payerItem(viewModel: AccountDetailSelectionCellViewModel)
+    case participantItem(viewModel: AccountDetailSelectionCellViewModel)
     case dateItem(viewModel: AccountDetailDateCellViewModel)
     case segmentItem(viewModel: AccountDetailSegmentCellViewModel)
 }
@@ -27,11 +29,15 @@ extension AccountDetailSectionItem: IdentifiableType {
     
     var identity: Identity {
         switch self {
-        case .textfieldItem(let viewModel):
-            return viewModel.text.value ?? ""
-        case .selectionItem(let viewModel):
+        case .titleItem(let viewModel):
+            return viewModel.placeholderText.value ?? ""
+        case .amountItem(let viewModel):
+            return viewModel.placeholderText.value ?? ""
+        case .categoryItem(let viewModel):
             return viewModel.title.value ?? ""
-        case .multiSelectionItem(let viewModel):
+        case .payerItem(let viewModel):
+            return viewModel.title.value ?? ""
+        case .participantItem(let viewModel):
             return viewModel.title.value ?? ""
         case .dateItem(let viewModel):
             return viewModel.title.value ?? ""

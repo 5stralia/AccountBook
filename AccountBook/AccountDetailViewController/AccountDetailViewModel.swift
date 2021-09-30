@@ -12,30 +12,45 @@ import RxSwift
 
 final class AccountDetailViewModel: ViewModel, ViewModelType {
     struct Input {
-        
+//        let selection: Observable<AccountDetailSectionItem>
     }
     struct Output {
         let items: BehaviorRelay<[AccountDetailSection]>
     }
     
+    let provider: ABProvider
+    
     func transform(input: Input) -> Output {
 //        let elements = BehaviorRelay<[AccountDetailSection]>(value: [])
         let elements = BehaviorRelay<[AccountDetailSection]>(value: [
             .main(title: "main", items: [
-                .textfieldItem(viewModel: TextFieldCellViewModel(text: "title")),
-                .textfieldItem(viewModel: TextFieldCellViewModel(text: "amount"))
+                .titleItem(viewModel: TextFieldCellViewModel(text: "", placeholderText: "어디에 사용하셨나요?")),
+                .amountItem(viewModel: TextFieldCellViewModel(text: "", placeholderText: "0"))
             ]),
             .sub(title: "sub", items: [
-                .selectionItem(viewModel: AccountDetailSelectionCellViewModel(title: "category", value: "")),
-                .selectionItem(viewModel: AccountDetailSelectionCellViewModel(title: "payer", value: "")),
-                .multiSelectionItem(viewModel: AccountDetailSelectionCellViewModel(title: "attendant", value: "")),
+                .categoryItem(viewModel: AccountDetailSelectionCellViewModel(title: "category", value: "")),
+                .payerItem(viewModel: AccountDetailSelectionCellViewModel(title: "payer", value: "")),
+                .participantItem(viewModel: AccountDetailSelectionCellViewModel(title: "attendant", value: "")),
                 .dateItem(viewModel: AccountDetailDateCellViewModel(title: "date", date: Date())),
                 .segmentItem(viewModel: AccountDetailSegmentCellViewModel(selectedIndex: 0))
             ])
         ])
         
-        
-        
         return Output(items: elements)
+    }
+    
+    init(provider: ABProvider) {
+        self.provider = provider
+        super.init()
+    }
+    
+    func viewModel(_ item: AccountDetailSectionItem) -> ViewModel {
+        switch item {
+        case .categoryItem(let viewModel):
+            let items = (try? self.provider.group.groupDocumentModel.value()?.categorys) ?? []
+            return AccountDetailSelectingViewModel(provider: self.provider, isCategory: true, items: items)
+        default:
+            return AccountDetailSelectingViewModel(provider: self.provider, isCategory: false, items: [])
+        }
     }
 }

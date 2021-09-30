@@ -12,8 +12,10 @@ import RxSwift
 
 final class TextFieldCellViewModel {
     let text = BehaviorRelay<String?>(value: nil)
+    let placeholderText = BehaviorRelay<String?>(value: nil)
     
-    init(text: String?) {
+    init(text: String, placeholderText: String) {
         self.text.accept(text)
+        self.placeholderText.accept(placeholderText)
     }
 }

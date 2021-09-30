@@ -17,6 +17,7 @@ struct GroupDocumentModel: Codable {
     var fee_type: FeeType = .monthly
     var fee_day: Int = 1
     var calculate_day: Int = 1
+    var categorys: [String] = ["식비", "교통", "여행", "쇼핑", "경조사", "회비", "기타"]
 }
 
 // MARK: - GroupAccount
