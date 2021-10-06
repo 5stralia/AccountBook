@@ -16,11 +16,14 @@ final class AccountDetailSelectingViewModel: ViewModel, ViewModelType {
     }
     struct Output {
         let items: BehaviorRelay<[AccountDetailSelectingSection]>
+        let selectedEvent: Observable<AccountDetailSelectingSectionItem>
     }
     
     let items: [String]
     let isCategory: Bool
     let provider: ABProvider
+    
+    let selectedItem = BehaviorRelay<String?>(value: nil)
     
     var disposeBag = DisposeBag()
     
@@ -31,7 +34,21 @@ final class AccountDetailSelectingViewModel: ViewModel, ViewModelType {
             })
         ])
         
-        return Output(items: elements)
+        let selectedEvent = input.selection
+        
+        selectedEvent
+            .subscribe(onNext: { item in
+                switch item {
+                case .titleItem(let viewModel):
+                    self.selectedItem.accept(viewModel.title.value)
+                default:
+                    break
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        return Output(items: elements,
+                      selectedEvent: selectedEvent)
     }
     
     init(provider: ABProvider, isCategory: Bool, items: [String]) {

@@ -43,24 +43,17 @@ class AccountDetailViewController: UIViewController {
     }
     
     private func bind(to viewModel: AccountDetailViewModel) {
-//        let output = viewModel.transform(
-//            input: AccountDetailViewModel.Input(
-//                selection: self.tableView.rx.modelSelected(AccountDetailSectionItem.self).asObservable()))
-        let output = viewModel.transform(input: AccountDetailViewModel.Input())
+        let output = viewModel.transform(input: AccountDetailViewModel.Input(
+            viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in },
+            selection: self.tableView.rx.modelSelected(AccountDetailSectionItem.self).asObservable()))
         
-        self.tableView.rx.modelSelected(AccountDetailSectionItem.self)
-            .asDriver()
-            .debug()
-            .drive(onNext: { item in
-                switch item {
-                case .categoryItem(let viewModel):
-                    let selectingViewModel = self.viewModel?.viewModel(item)
-                    let selectingViewController = AccountDetailSelectingViewController()
-                    selectingViewController.viewModel = selectingViewModel as? AccountDetailSelectingViewModel
-                    self.navigationController?.pushViewController(selectingViewController, animated: true)
-                default:
-                    break
-                }
+        output.selectSubItem
+            .subscribe(onNext: { [weak self] item in
+                guard let selectingViewModel = item else { return }
+                
+                let selectingViewController = AccountDetailSelectingViewController()
+                selectingViewController.viewModel = selectingViewModel
+                self?.navigationController?.pushViewController(selectingViewController, animated: true)
             })
             .disposed(by: self.disposeBag)
         

@@ -44,6 +44,12 @@ class AccountDetailSelectingViewController: UIViewController {
         })
         
         output.items.bind(to: self.tableView.rx.items(dataSource: datasource)).disposed(by: self.disposeBag)
+        
+        output.selectedEvent
+            .subscribe(onNext: { [weak self] item in
+                self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     override func viewDidLoad() {
