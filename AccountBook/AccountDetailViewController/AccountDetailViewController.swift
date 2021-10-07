@@ -43,9 +43,18 @@ class AccountDetailViewController: UIViewController {
     }
     
     private func bind(to viewModel: AccountDetailViewModel) {
+        self.navigationItem.leftBarButtonItem?.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: self.disposeBag)
+        
         let output = viewModel.transform(input: AccountDetailViewModel.Input(
             viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in },
-            selection: self.tableView.rx.modelSelected(AccountDetailSectionItem.self).asObservable()))
+            selection: self.tableView.rx.modelSelected(AccountDetailSectionItem.self).asObservable(),
+            submit: self.navigationItem.rightBarButtonItem!.rx.tap.asObservable()))
+        
+        output.isEnabledDoneButton.bind(to: self.navigationItem.rightBarButtonItem!.rx.isEnabled).disposed(by: self.disposeBag)
         
         output.selectSubItem
             .subscribe(onNext: { [weak self] item in
@@ -90,21 +99,10 @@ class AccountDetailViewController: UIViewController {
     }
     
     private func setNavigationItems() {
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.close))
-        self.navigationItem.leftBarButtonItem = cancelButton
-        
-        let submitButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.close))
-        self.navigationItem.rightBarButtonItem = submitButton
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
     }
     
-    @objc private func close() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc private func submit() {
-        self.dismiss(animated: true, completion: nil)
-    }
-
 }
 
 extension AccountDetailViewController {

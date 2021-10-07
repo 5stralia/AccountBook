@@ -56,6 +56,7 @@ final class ABProvider {
         self.group.gid.subscribe(onNext: { [weak self] gid in
             guard let _ = gid else { return }
             self?.requestAccounts()
+            self?.requestMembers()
         })
             .disposed(by: self.disposeBag)
     }
@@ -66,6 +67,16 @@ final class ABProvider {
         self.api.requestAccounts(gid: gid).asObservable()
             .subscribe(onNext: { [weak self] accounts in
                 self?.group.accounts.onNext(accounts)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    func requestMembers() {
+        guard let gid = try? self.group.gid.value() else { return }
+        
+        self.api.requestMembers(gid: gid).asObservable()
+            .subscribe(onNext: { [weak self] members in
+                self?.group.members.onNext(members)
             })
             .disposed(by: self.disposeBag)
     }

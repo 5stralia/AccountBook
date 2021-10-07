@@ -13,17 +13,19 @@ import RxSwift
 final class AccountDetailSelectingViewModel: ViewModel, ViewModelType {
     struct Input {
         let selection: Observable<AccountDetailSelectingSectionItem>
+        let deSelection: Observable<AccountDetailSelectingSectionItem>
     }
     struct Output {
         let items: BehaviorRelay<[AccountDetailSelectingSection]>
-        let selectedEvent: Observable<AccountDetailSelectingSectionItem>
     }
     
     let items: [String]
     let isCategory: Bool
     let provider: ABProvider
     
-    let selectedItem = BehaviorRelay<String?>(value: nil)
+    let selectedItems = BehaviorRelay<[String]>(value: [])
+    
+    let isAllowMultiSelection = BehaviorRelay<Bool>(value: false)
     
     var disposeBag = DisposeBag()
     
@@ -34,27 +36,37 @@ final class AccountDetailSelectingViewModel: ViewModel, ViewModelType {
             })
         ])
         
-        let selectedEvent = input.selection
-        
-        selectedEvent
+        input.selection
             .subscribe(onNext: { item in
                 switch item {
                 case .titleItem(let viewModel):
-                    self.selectedItem.accept(viewModel.title.value)
+                    self.selectedItems.accept((self.selectedItems.value) + [viewModel.title.value ?? ""])
                 default:
                     break
                 }
             })
             .disposed(by: self.disposeBag)
         
-        return Output(items: elements,
-                      selectedEvent: selectedEvent)
+        input.deSelection
+            .subscribe(onNext: { item in
+                switch item {
+                case .titleItem(let viewModel):
+                    self.selectedItems.accept((self.selectedItems.value.filter { $0 != (viewModel.title.value ?? "") }))
+                default:
+                    break
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+        return Output(items: elements)
     }
     
-    init(provider: ABProvider, isCategory: Bool, items: [String]) {
+    init(provider: ABProvider, isCategory: Bool, items: [String], isAllowMultiSelection: Bool) {
         self.provider = provider
         self.isCategory = isCategory
         self.items = items
+        self.isAllowMultiSelection.accept(isAllowMultiSelection)
+        
         super.init()
     }
 }

@@ -159,5 +159,24 @@ final class ABAPI {
             return Disposables.create { }
         }
     }
+    
+    func requestMembers(gid: String) -> Single<[MemberDocumentModel]> {
+        return Single.create { single in
+            let docRef = self.db.collection("groups").document(gid)
+            docRef.collection("members").getDocuments() { querySnapshot, error in
+                if let error = error {
+                    return single(.failure(error))
+                } else {
+                    let memberDocumentModels = querySnapshot!.documents.compactMap {
+                        try? $0.data(as: MemberDocumentModel.self)
+                    }
+                    return single(.success(memberDocumentModels))
+                }
+            }
+            
+        return Disposables.create { }
+        }
+    }
+    
 }
 

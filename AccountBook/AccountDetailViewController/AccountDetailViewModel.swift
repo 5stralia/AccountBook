@@ -14,10 +14,12 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
     struct Input {
         let viewWillAppear: Observable<Void>
         let selection: Observable<AccountDetailSectionItem>
+        let submit: Observable<Void>
     }
     struct Output {
         let items: BehaviorRelay<[AccountDetailSection]>
         let selectSubItem: BehaviorRelay<AccountDetailSelectingViewModel?>
+        let isEnabledDoneButton: BehaviorRelay<Bool>
     }
     
     let provider: ABProvider
@@ -25,39 +27,50 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
     var disposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {
-//        let elements = BehaviorRelay<[AccountDetailSection]>(value: [])
-        let elements = BehaviorRelay<[AccountDetailSection]>(value: [
-            .main(title: "main", items: [
-                .titleItem(viewModel: TextFieldCellViewModel(text: "", placeholderText: "어디에 사용하셨나요?")),
-                .amountItem(viewModel: TextFieldCellViewModel(text: "", placeholderText: "0"))
-            ]),
-            .sub(title: "sub", items: [
-                .categoryItem(viewModel: AccountDetailSelectionCellViewModel(title: "category", value: "")),
-                .payerItem(viewModel: AccountDetailSelectionCellViewModel(title: "payer", value: "")),
-                .participantItem(viewModel: AccountDetailSelectionCellViewModel(title: "attendant", value: "")),
-                .dateItem(viewModel: AccountDetailDateCellViewModel(title: "date", date: Date())),
-                .segmentItem(viewModel: AccountDetailSegmentCellViewModel(selectedIndex: 0))
-            ])
-        ])
+        let elements = BehaviorRelay<[AccountDetailSection]>(value: [])
         
+        let title = BehaviorRelay<String?>(value: nil)
+        let amount = BehaviorRelay<Int>(value: 0)
         let category = BehaviorRelay<String?>(value: nil)
+        let payer = BehaviorRelay<String?>(value: nil)
+        let participants = BehaviorRelay<[String]>(value: [])
+        let date = BehaviorRelay<Date>(value: Date())
+        let isExpenditure = BehaviorRelay<Bool>(value: true)
         
-        Observable.combineLatest(input.viewWillAppear, category.asObservable()) { _, category -> [AccountDetailSection] in
+        Observable.combineLatest(input.viewWillAppear,
+                                 category.asObservable(),
+                                 payer.asObservable(),
+                                 participants.asObservable()) { _, category, payer, participants -> [AccountDetailSection] in
             var items = [AccountDetailSection]()
+            
+            let titleCellViewModel = TextFieldCellViewModel(text: "", placeholderText: "어디에 사용하셨나요?")
+            titleCellViewModel.text.bind(to: title).disposed(by: self.disposeBag)
+            
+            let amountCellViewModel = TextFieldCellViewModel(text: "", placeholderText: "0")
+            amountCellViewModel.text.compactMap { Int($0 ?? "0") }.bind(to: amount).disposed(by: self.disposeBag)
             
             items.append(
                 .main(title: "main", items: [
-                    .titleItem(viewModel: TextFieldCellViewModel(text: "", placeholderText: "어디에 사용하셨나요?")),
-                    .amountItem(viewModel: TextFieldCellViewModel(text: "", placeholderText: "0"))
+                    .titleItem(viewModel: titleCellViewModel),
+                    .amountItem(viewModel: amountCellViewModel)
                 ]))
+            
+            let dateCellViewModel = AccountDetailDateCellViewModel(title: "Date", date: date.value)
+            dateCellViewModel.date.bind(to: date).disposed(by: self.disposeBag)
+            
+            let segmentCellViewModel = AccountDetailSegmentCellViewModel(selectedIndex: isExpenditure.value ? 0 : 1)
+            segmentCellViewModel.selectedIndex
+                .flatMap { $0 == 0 ? Observable.just(true) : Observable.just(false) }
+                .bind(to: isExpenditure)
+                .disposed(by: self.disposeBag)
             
             items.append(
                 .sub(title: "sub", items: [
                     .categoryItem(viewModel: AccountDetailSelectionCellViewModel(title: "category", value: category ?? "")),
-                    .payerItem(viewModel: AccountDetailSelectionCellViewModel(title: "payer", value: "")),
-                    .participantItem(viewModel: AccountDetailSelectionCellViewModel(title: "attendant", value: "")),
-                    .dateItem(viewModel: AccountDetailDateCellViewModel(title: "date", date: Date())),
-                    .segmentItem(viewModel: AccountDetailSegmentCellViewModel(selectedIndex: 0))
+                    .payerItem(viewModel: AccountDetailSelectionCellViewModel(title: "payer", value: payer ?? "")),
+                    .participantItem(viewModel: AccountDetailSelectionCellViewModel(title: "participants", value: participants.joined(separator: ", "))),
+                    .dateItem(viewModel: dateCellViewModel),
+                    .segmentItem(viewModel: segmentCellViewModel)
                 ]))
             
             return items
@@ -70,12 +83,29 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
         input.selection
             .subscribe(onNext: { item in
                 switch item {
-                case .categoryItem(let viewModel),
-                        .payerItem(let viewModel),
-                        .participantItem(let viewModel):
+                case .categoryItem(let viewModel):
                     let items = (try? self.provider.group.groupDocumentModel.value()?.categorys) ?? []
-                    let selectingViewModel = AccountDetailSelectingViewModel(provider: self.provider, isCategory: true, items: items)
-                    selectingViewModel.selectedItem.bind(to: category).disposed(by: self.disposeBag)
+                    let selectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
+                                                                             isCategory: true,
+                                                                             items: items,
+                                                                             isAllowMultiSelection: false)
+                    selectingViewModel.selectedItems.compactMap { $0.first }.bind(to: category).disposed(by: self.disposeBag)
+                    selectSubItem.accept(selectingViewModel)
+                case .payerItem(let viewModel):
+                    let items = (try? self.provider.group.members.value().map { $0.name }) ?? []
+                    let selectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
+                                                                             isCategory: true,
+                                                                             items: items,
+                                                                             isAllowMultiSelection: false)
+                    selectingViewModel.selectedItems.compactMap { $0.first }.bind(to: payer).disposed(by: self.disposeBag)
+                    selectSubItem.accept(selectingViewModel)
+                case .participantItem(let viewModel):
+                    let items = (try? self.provider.group.members.value().map { $0.name }) ?? []
+                    let selectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
+                                                                             isCategory: true,
+                                                                             items: items,
+                                                                             isAllowMultiSelection: true)
+                    selectingViewModel.selectedItems.bind(to: participants).disposed(by: self.disposeBag)
                     selectSubItem.accept(selectingViewModel)
                 default:
                     break
@@ -83,8 +113,21 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
             })
             .disposed(by: self.disposeBag)
         
+        let isEnabledDoneButton = BehaviorRelay<Bool>(value: false)
+        
+        Observable.combineLatest(title.asObservable(),
+                                 amount.asObservable(),
+                                 category.asObservable(),
+                                 payer.asObservable(),
+                                 participants.asObservable()) { title, amount, category, payer, participants -> Bool in
+            return title != nil && amount > 0 && category != nil && payer != nil && !participants.isEmpty
+        }
+                                 .bind(to: isEnabledDoneButton)
+                                 .disposed(by: self.disposeBag)
+        
         return Output(items: elements,
-                      selectSubItem: selectSubItem)
+                      selectSubItem: selectSubItem,
+                      isEnabledDoneButton: isEnabledDoneButton)
     }
     
     init(provider: ABProvider) {
