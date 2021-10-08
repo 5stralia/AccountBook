@@ -20,6 +20,7 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
         let items: BehaviorRelay<[AccountDetailSection]>
         let selectSubItem: BehaviorRelay<AccountDetailSelectingViewModel?>
         let isEnabledDoneButton: BehaviorRelay<Bool>
+        let dismiss: Observable<Void>
     }
     
     let provider: ABProvider
@@ -27,8 +28,6 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
     var disposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {
-        let elements = BehaviorRelay<[AccountDetailSection]>(value: [])
-        
         let title = BehaviorRelay<String?>(value: nil)
         let amount = BehaviorRelay<Int>(value: 0)
         let category = BehaviorRelay<String?>(value: nil)
@@ -37,17 +36,34 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
         let date = BehaviorRelay<Date>(value: Date())
         let isExpenditure = BehaviorRelay<Bool>(value: true)
         
+        let dismiss = input.submit
+            .flatMap { [weak self] _ -> Observable<Void> in
+                guard let self = self else { return .never() }
+                
+                let amount = isExpenditure.value ? amount.value : -amount.value
+                
+                return self.provider.append(account: AccountDocumentModel(date: date.value,
+                                                                           name: title.value!,
+                                                                           amount: amount,
+                                                                           category: category.value!,
+                                                                           payer: payer.value!,
+                                                                           participants: participants.value))
+                    .andThen(.just(()))
+            }
+        
+        let elements = BehaviorRelay<[AccountDetailSection]>(value: [])
+        
+        let titleCellViewModel = TextFieldCellViewModel(text: "", placeholderText: "어디에 사용하셨나요?")
+        titleCellViewModel.text.bind(to: title).disposed(by: self.disposeBag)
+        
+        let amountCellViewModel = TextFieldCellViewModel(text: "", placeholderText: "0")
+        amountCellViewModel.text.compactMap { Int($0 ?? "0") }.bind(to: amount).disposed(by: self.disposeBag)
+        
         Observable.combineLatest(input.viewWillAppear,
                                  category.asObservable(),
                                  payer.asObservable(),
                                  participants.asObservable()) { _, category, payer, participants -> [AccountDetailSection] in
             var items = [AccountDetailSection]()
-            
-            let titleCellViewModel = TextFieldCellViewModel(text: "", placeholderText: "어디에 사용하셨나요?")
-            titleCellViewModel.text.bind(to: title).disposed(by: self.disposeBag)
-            
-            let amountCellViewModel = TextFieldCellViewModel(text: "", placeholderText: "0")
-            amountCellViewModel.text.compactMap { Int($0 ?? "0") }.bind(to: amount).disposed(by: self.disposeBag)
             
             items.append(
                 .main(title: "main", items: [
@@ -127,7 +143,8 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
         
         return Output(items: elements,
                       selectSubItem: selectSubItem,
-                      isEnabledDoneButton: isEnabledDoneButton)
+                      isEnabledDoneButton: isEnabledDoneButton,
+                      dismiss: dismiss)
     }
     
     init(provider: ABProvider) {

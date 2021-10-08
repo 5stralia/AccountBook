@@ -17,6 +17,7 @@ final class AccountDetailSelectingViewModel: ViewModel, ViewModelType {
     }
     struct Output {
         let items: BehaviorRelay<[AccountDetailSelectingSection]>
+        let popViewController: Observable<Void>
     }
     
     let items: [String]
@@ -58,7 +59,16 @@ final class AccountDetailSelectingViewModel: ViewModel, ViewModelType {
             })
             .disposed(by: self.disposeBag)
         
-        return Output(items: elements)
+        let popViewController = input.selection.flatMap { _ -> Observable<Void> in
+            if self.isAllowMultiSelection.value {
+                return .never()
+            } else {
+                return .just(())
+            }
+        }
+        
+        return Output(items: elements,
+                      popViewController: popViewController)
     }
     
     init(provider: ABProvider, isCategory: Bool, items: [String], isAllowMultiSelection: Bool) {

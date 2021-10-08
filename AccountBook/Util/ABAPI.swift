@@ -160,6 +160,25 @@ final class ABAPI {
         }
     }
     
+    func append(gid: String, account: AccountDocumentModel) -> Completable {
+        return Completable.create { completable in
+            let docRef = self.db.collection("groups").document(gid).collection("accounts").document()
+            do {
+                try docRef.setData(from: account) { error in
+                    if let error = error {
+                        completable(.error(error))
+                    } else {
+                        completable(.completed)
+                    }
+                }
+            } catch let err {
+                completable(.error(err))
+            }
+            
+            return Disposables.create { }
+        }
+    }
+    
     func requestMembers(gid: String) -> Single<[MemberDocumentModel]> {
         return Single.create { single in
             let docRef = self.db.collection("groups").document(gid)

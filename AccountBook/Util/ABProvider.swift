@@ -10,6 +10,10 @@ import Foundation
 import Firebase
 import RxSwift
 
+enum ABProviderError: Error {
+    case invalidGID
+}
+
 final class ABProvider {
     let api: ABAPI
     
@@ -69,6 +73,23 @@ final class ABProvider {
                 self?.group.accounts.onNext(accounts)
             })
             .disposed(by: self.disposeBag)
+    }
+    
+    func append(account: AccountDocumentModel) -> Completable {
+        guard let gid = try? self.group.gid.value() else { return .error(ABProviderError.invalidGID) }
+        
+        let appendAccount = self.api.append(gid: gid, account: account)
+        
+        appendAccount.subscribe(onCompleted: { [weak self] in
+            guard let self = self,
+                  let accounts = try? self.group.accounts.value()
+            else { return }
+            
+            self.group.accounts.onNext(accounts + [account])
+        })
+            .disposed(by: self.disposeBag)
+        
+        return appendAccount
     }
     
     func requestMembers() {

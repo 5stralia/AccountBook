@@ -32,7 +32,7 @@ class ListViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[ListSection]>(value: [])
         
         Observable.combineLatest(input.viewWillAppear,
-                                 self.provider.group.accounts.asObservable()) { [weak self] _, accounts -> [ListSection] in
+                                 self.provider.group.accounts.asObservable()) { _, accounts -> [ListSection] in
             var items: [ListSection] = []
             
             items.append(.info(title: "Info", items: [.infoItem(viewModel: ListInfoCellViewModel())]))

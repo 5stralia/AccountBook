@@ -56,6 +56,12 @@ class AccountDetailViewController: UIViewController {
         
         output.isEnabledDoneButton.bind(to: self.navigationItem.rightBarButtonItem!.rx.isEnabled).disposed(by: self.disposeBag)
         
+        output.dismiss
+            .subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true)
+            })
+            .disposed(by: self.disposeBag)
+        
         output.selectSubItem
             .subscribe(onNext: { [weak self] item in
                 guard let selectingViewModel = item else { return }
