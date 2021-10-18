@@ -78,7 +78,7 @@ final class ABProvider {
     func append(account: AccountDocumentModel) -> Completable {
         guard let gid = try? self.group.gid.value() else { return .error(ABProviderError.invalidGID) }
         
-        let appendAccount = self.api.append(gid: gid, account: account)
+        let appendAccount = self.api.append(gid: gid, account: account).asObservable().share().asCompletable()
         
         appendAccount.subscribe(onCompleted: { [weak self] in
             guard let self = self,

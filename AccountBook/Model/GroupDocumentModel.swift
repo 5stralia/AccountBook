@@ -34,7 +34,6 @@ struct AccountDocumentModel: Codable {
 struct MemberDocumentModel: Codable {
     var uid: String
     var name: String
-    var unpaid_amount: Int
     var role: [GroupRole]
 }
 

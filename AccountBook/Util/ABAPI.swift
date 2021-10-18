@@ -43,7 +43,6 @@ final class ABAPI {
                             try docRef.collection("members").document().setData(
                                 from: MemberDocumentModel(uid: uid,
                                                 name: "그룹장",
-                                                unpaid_amount: 0,
                                                 role: [.admin, .manager])) { setUserError in
                                 if let setUserError = setUserError {
                                     single(.failure(setUserError))
@@ -145,7 +144,7 @@ final class ABAPI {
     func requestAccounts(gid: String) -> Single<[AccountDocumentModel]> {
         return Single.create { single in
             let docRef = self.db.collection("groups").document(gid)
-            docRef.collection("accounts").getDocuments() { querySnapshot, error in
+            docRef.collection("accounts").order(by: "date").getDocuments() { querySnapshot, error in
                 if let error = error {
                     return single(.failure(error))
                 } else {

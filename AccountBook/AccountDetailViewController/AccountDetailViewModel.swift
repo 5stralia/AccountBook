@@ -31,8 +31,8 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
         let title = BehaviorRelay<String?>(value: nil)
         let amount = BehaviorRelay<Int>(value: 0)
         let category = BehaviorRelay<String?>(value: nil)
-        let payer = BehaviorRelay<String?>(value: nil)
-        let participants = BehaviorRelay<[String]>(value: [])
+        let payer = BehaviorRelay<MemberDocumentModel?>(value: nil)
+        let participants = BehaviorRelay<[MemberDocumentModel]>(value: [])
         let date = BehaviorRelay<Date>(value: Date())
         let isExpenditure = BehaviorRelay<Bool>(value: true)
         
@@ -43,11 +43,11 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
                 let amount = isExpenditure.value ? amount.value : -amount.value
                 
                 return self.provider.append(account: AccountDocumentModel(date: date.value,
-                                                                           name: title.value!,
-                                                                           amount: amount,
-                                                                           category: category.value!,
-                                                                           payer: payer.value!,
-                                                                           participants: participants.value))
+                                                                          name: title.value!,
+                                                                          amount: amount,
+                                                                          category: category.value!,
+                                                                          payer: payer.value!.uid,
+                                                                          participants: participants.value.map({ $0.uid })))
                     .andThen(.just(()))
             }
         
@@ -83,8 +83,8 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
             items.append(
                 .sub(title: "sub", items: [
                     .categoryItem(viewModel: AccountDetailSelectionCellViewModel(title: "category", value: category ?? "")),
-                    .payerItem(viewModel: AccountDetailSelectionCellViewModel(title: "payer", value: payer ?? "")),
-                    .participantItem(viewModel: AccountDetailSelectionCellViewModel(title: "participants", value: participants.joined(separator: ", "))),
+                    .payerItem(viewModel: AccountDetailSelectionCellViewModel(title: "payer", value: payer?.name ?? "")),
+                    .participantItem(viewModel: AccountDetailSelectionCellViewModel(title: "participants", value: participants.map({ $0.name }).joined(separator: ", "))),
                     .dateItem(viewModel: dateCellViewModel),
                     .segmentItem(viewModel: segmentCellViewModel)
                 ]))
@@ -113,7 +113,18 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
                                                                              isCategory: true,
                                                                              items: items,
                                                                              isAllowMultiSelection: false)
-                    selectingViewModel.selectedItems.compactMap { $0.first }.bind(to: payer).disposed(by: self.disposeBag)
+                    selectingViewModel.selectedItems.compactMap {
+                        $0.first
+                    }
+                    .compactMap { name in
+                        try? self.provider.group.members.value().filter({ memeber in
+                            memeber.name == name
+                        })
+                        .first
+                    }
+                    .bind(to: payer)
+                    .disposed(by: self.disposeBag)
+                    
                     selectSubItem.accept(selectingViewModel)
                 case .participantItem(let viewModel):
                     let items = (try? self.provider.group.members.value().map { $0.name }) ?? []
@@ -121,7 +132,18 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
                                                                              isCategory: true,
                                                                              items: items,
                                                                              isAllowMultiSelection: true)
-                    selectingViewModel.selectedItems.bind(to: participants).disposed(by: self.disposeBag)
+                    selectingViewModel.selectedItems
+                        .map { names in
+                            names.compactMap({ name in
+                                try? self.provider.group.members.value().filter({ memeber in
+                                    memeber.name == name
+                                })
+                                    .first
+                            })
+                        }
+                        .bind(to: participants)
+                        .disposed(by: self.disposeBag)
+                    
                     selectSubItem.accept(selectingViewModel)
                 default:
                     break
