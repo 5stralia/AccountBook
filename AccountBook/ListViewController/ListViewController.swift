@@ -13,6 +13,12 @@ import RxSwift
 
 class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    private let filterButton = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3.decrease.circle"),
+                                       style: .plain,
+                                       target: self,
+                                       action: nil)
+    private let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+    private let monthlyButton = UIBarButtonItem(title: "월별", style: .plain, target: self, action: nil)
     
     var viewModel: ListViewModel? {
         willSet {
@@ -32,7 +38,18 @@ class ListViewController: UIViewController {
     var disposeBag = DisposeBag()
     
     private func bind(to viewModel: ListViewModel) {
-        let output = viewModel.transform(input: ListViewModel.Input(viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in }))
+        self.addButton.rx.tap.asDriver().drive(onNext: { [weak self] in
+            let accountDetailViewController = AccountDetailViewController()
+            let accountDetailViewModel = AccountDetailViewModel(provider: self!.viewModel!.provider)
+            accountDetailViewController.viewModel = accountDetailViewModel
+            let navigationController = UINavigationController(rootViewController: accountDetailViewController)
+            self?.present(navigationController, animated: true, completion: nil)
+        })
+            .disposed(by: self.disposeBag)
+        
+        let output = viewModel.transform(input: ListViewModel.Input(
+            viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in },
+            changeMonthly: self.monthlyButton.rx.tap.asObservable().map { _ in }))
         
         let dataSource = RxTableViewSectionedReloadDataSource<ListSection>(configureCell: { dataSource, tableView, indexPath, item in
             switch item {
@@ -53,6 +70,11 @@ class ListViewController: UIViewController {
         output.items
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: self.disposeBag)
+        
+        output.isMonthly.asObservable()
+            .map { $0 ? "월간" : "일간" }
+            .bind(to: self.monthlyButton.rx.title)
+            .disposed(by: self.disposeBag)
     }
     
     override func viewDidLoad() {
@@ -65,18 +87,7 @@ class ListViewController: UIViewController {
         
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         
-        self.setNavigationItems()
-    }
-    
-    private func setNavigationItems() {
-        let filterButton = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3.decrease.circle"),
-                                           style: .plain,
-                                           target: self,
-                                           action: nil)
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addAccount))
-        let monthlyButton = UIBarButtonItem(title: "월별", style: .plain, target: self, action: nil)
-        
-        self.navigationItem.rightBarButtonItems = [addButton, monthlyButton, filterButton]
+        self.navigationItem.rightBarButtonItems = [self.addButton, self.monthlyButton, self.filterButton]
     }
     
     override func viewDidAppear(_ animated: Bool) {

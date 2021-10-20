@@ -17,8 +17,10 @@ class ListViewModel: ViewModel, ViewModelType {
     
     struct Input {
         let viewWillAppear: Observable<Void>
+        let changeMonthly: Observable<Void>
     }
     struct Output {
+        let isMonthly: BehaviorRelay<Bool>
         let items: BehaviorRelay<[ListSection]>
     }
     
@@ -54,7 +56,13 @@ class ListViewModel: ViewModel, ViewModelType {
                                  .bind(to: elements)
                                  .disposed(by: self.disposeBag)
         
+        let isMonthly = BehaviorRelay<Bool>(value: false)
+        input.changeMonthly
+            .subscribe(onNext: {
+                isMonthly.accept(!isMonthly.value)
+            })
+            .disposed(by: self.disposeBag)
         
-        return Output(items: elements)
+        return Output(isMonthly: isMonthly, items: elements)
     }
 }
