@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09/26" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7e-cz-cOo">
-                        <rect key="frame" x="0.0" y="0.0" width="41" height="44"/>
+                        <rect key="frame" x="20" y="0.0" width="41" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="41" id="4Oe-zQ-gVo"/>
                         </constraints>
@@ -27,7 +27,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경조사/회비" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kI6-B2-aG9">
-                        <rect key="frame" x="48" y="0.0" width="65" height="44"/>
+                        <rect key="frame" x="68" y="0.0" width="65" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="65" id="Bxb-MD-y3g"/>
                         </constraints>
@@ -36,13 +36,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아웃백스테이크하우스" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cr-P2-zZO">
-                        <rect key="frame" x="120" y="0.0" width="192" height="44"/>
+                        <rect key="frame" x="140" y="0.0" width="152" height="44"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" systemColor="systemGray2Color"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9,999,999원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTp-hj-PkX">
-                        <rect key="frame" x="319" y="0.0" width="95" height="44"/>
+                        <rect key="frame" x="299" y="0.0" width="95" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="95" id="cDF-dJ-UbH"/>
                         </constraints>
@@ -57,14 +57,14 @@
                     <constraint firstItem="0cr-P2-zZO" firstAttribute="top" secondItem="TY0-6I-ZQE" secondAttribute="top" id="48D-iT-fsP"/>
                     <constraint firstItem="aTp-hj-PkX" firstAttribute="leading" secondItem="0cr-P2-zZO" secondAttribute="trailing" constant="7" id="4OV-6t-0Qg"/>
                     <constraint firstItem="c7e-cz-cOo" firstAttribute="top" secondItem="TY0-6I-ZQE" secondAttribute="top" id="4Z0-vY-cU1"/>
-                    <constraint firstAttribute="trailing" secondItem="aTp-hj-PkX" secondAttribute="trailing" id="7If-E6-emm"/>
+                    <constraint firstAttribute="trailing" secondItem="aTp-hj-PkX" secondAttribute="trailing" constant="20" id="7If-E6-emm"/>
                     <constraint firstAttribute="bottom" secondItem="kI6-B2-aG9" secondAttribute="bottom" id="KkN-HD-kg4"/>
                     <constraint firstAttribute="bottom" secondItem="0cr-P2-zZO" secondAttribute="bottom" id="Nrb-hp-xxI"/>
                     <constraint firstAttribute="bottom" secondItem="c7e-cz-cOo" secondAttribute="bottom" id="RaX-F0-LBr"/>
                     <constraint firstItem="kI6-B2-aG9" firstAttribute="leading" secondItem="c7e-cz-cOo" secondAttribute="trailing" constant="7" id="cHN-c0-2x9"/>
                     <constraint firstItem="aTp-hj-PkX" firstAttribute="top" secondItem="TY0-6I-ZQE" secondAttribute="top" id="cxC-Uk-e0j"/>
                     <constraint firstAttribute="bottom" secondItem="aTp-hj-PkX" secondAttribute="bottom" id="nsj-ae-oQg"/>
-                    <constraint firstItem="c7e-cz-cOo" firstAttribute="leading" secondItem="TY0-6I-ZQE" secondAttribute="leading" id="rlU-Qx-h30"/>
+                    <constraint firstItem="c7e-cz-cOo" firstAttribute="leading" secondItem="TY0-6I-ZQE" secondAttribute="leading" constant="20" id="rlU-Qx-h30"/>
                     <constraint firstItem="kI6-B2-aG9" firstAttribute="top" secondItem="TY0-6I-ZQE" secondAttribute="top" id="uav-go-OQV"/>
                 </constraints>
             </tableViewCellContentView>

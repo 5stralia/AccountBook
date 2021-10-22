@@ -37,7 +37,12 @@ class ListViewModel: ViewModel, ViewModelType {
                                  self.provider.group.accounts.asObservable()) { _, accounts -> [ListSection] in
             var items: [ListSection] = []
             
-            items.append(.info(title: "Info", items: [.infoItem(viewModel: ListInfoCellViewModel())]))
+            let date = Date()
+            let amount = (3442500.priceString() ?? "0") + "원"
+            items.append(.info(title: "Info", items: [
+                .multipleDatePickerItem(viewModel: ListInfoMultipleDatePickerCellViewModel(startDate: date, endDate: date)),
+                .summaryItem(viewModel: ListInfoSummaryCellViewModel(amount: amount))
+            ]))
             
             let formatter = DateFormatter()
             formatter.dateFormat = "MM/dd"

@@ -32,8 +32,7 @@ class ListViewController: UIViewController {
         }
     }
     
-    private let infoCellIdentifier = "ListInfoCell"
-    private let cellIdentifier = "ListAccountCell"
+    var dataSource: RxTableViewSectionedReloadDataSource<ListSection>?
     
     var disposeBag = DisposeBag()
     
@@ -53,19 +52,31 @@ class ListViewController: UIViewController {
         
         let dataSource = RxTableViewSectionedReloadDataSource<ListSection>(configureCell: { dataSource, tableView, indexPath, item in
             switch item {
-            case .infoItem(let viewModel):
-                let cell = tableView.dequeueReusableCell(withIdentifier: self.infoCellIdentifier, for: indexPath) as! ListInfoCell
+            case .multipleDatePickerItem(let viewModel):
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellItem.multipleDatePickerItem.identifier, for: indexPath) as! ListInfoMultipleDatePickerCell
+                cell.bind(to: viewModel)
+                return cell
                 
+            case .datePickerItem(let viewModel):
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellItem.datePickerItem.identifier, for: indexPath) as! ListInfoDatePickerCell
+                cell.bind(to: viewModel)
+                return cell
+                
+             case .summaryItem(let viewModel):
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellItem.summaryItem.identifier, for: indexPath) as! ListInfoSummaryCell
+                cell.bind(to: viewModel)
                 return cell
                 
             case .accountItem(let viewModel):
-                let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as! ListAccountCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellItem.accountItem.identifier, for: indexPath) as! ListAccountCell
                 
                 cell.bind(to: viewModel)
                 
                 return cell
             }
         })
+        
+        self.dataSource = dataSource
         
         output.items
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
@@ -80,10 +91,14 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.register(UINib(nibName: self.infoCellIdentifier, bundle: nil),
-                                forCellReuseIdentifier: self.infoCellIdentifier)
-        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil),
-                                forCellReuseIdentifier: self.cellIdentifier)
+        self.tableView.register(UINib(nibName: CellItem.multipleDatePickerItem.identifier, bundle: nil),
+                                forCellReuseIdentifier: CellItem.multipleDatePickerItem.identifier)
+        self.tableView.register(UINib(nibName: CellItem.datePickerItem.identifier, bundle: nil),
+                                forCellReuseIdentifier: CellItem.datePickerItem.identifier)
+        self.tableView.register(UINib(nibName: CellItem.summaryItem.identifier, bundle: nil),
+                                forCellReuseIdentifier: CellItem.summaryItem.identifier)
+        self.tableView.register(UINib(nibName: CellItem.accountItem.identifier, bundle: nil),
+                                forCellReuseIdentifier: CellItem.accountItem.identifier)
         
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         
@@ -114,9 +129,17 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 122
-        } else {
+        guard let dataSource = self.dataSource else { return .zero }
+        
+        let item = dataSource[indexPath]
+        
+        switch item {
+        case .multipleDatePickerItem,
+                .datePickerItem:
+            return 42
+        case .summaryItem:
+            return 64
+        case .accountItem:
             return 50
         }
     }
@@ -125,5 +148,27 @@ extension ListViewController: UITableViewDelegate {
 extension ListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         
+    }
+}
+
+extension ListViewController {
+    enum CellItem {
+        case multipleDatePickerItem
+        case datePickerItem
+        case summaryItem
+        case accountItem
+        
+        var identifier: String {
+            switch self {
+            case .multipleDatePickerItem:
+                return "ListInfoMultipleDatePickerCell"
+            case .datePickerItem:
+                return "ListInfoDatePickerCell"
+            case .summaryItem:
+                return "ListInfoSummaryCell"
+            case .accountItem:
+                return "ListAccountCell"
+            }
+        }
     }
 }

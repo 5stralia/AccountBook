@@ -15,7 +15,9 @@ enum ListSection {
 }
 
 enum ListSectionItem {
-    case infoItem(viewModel: ListInfoCellViewModel)
+    case multipleDatePickerItem(viewModel: ListInfoMultipleDatePickerCellViewModel)
+    case datePickerItem(viewModel: ListInfoDatePickerCellViewModel)
+    case summaryItem(viewModel: ListInfoSummaryCellViewModel)
     case accountItem(viewModel: ListAccountCellViewModel)
 }
 
@@ -24,8 +26,12 @@ extension ListSectionItem: IdentifiableType {
     
     var identity: Identity {
         switch self {
-        case .infoItem:
-            return "info"
+        case .multipleDatePickerItem(let viewModel):
+            return "multiple_datepicker"
+        case .datePickerItem(let viewModel):
+            return "datepicker"
+        case .summaryItem(let viewModel):
+            return "summary"
         case .accountItem(let viewModel):
             return (viewModel.date.value ?? "")
             + (viewModel.category.value ?? "")
@@ -33,6 +39,8 @@ extension ListSectionItem: IdentifiableType {
             + (viewModel.amount.value ?? "")
         }
     }
+    
+   
 }
 
 extension ListSectionItem: Equatable {
