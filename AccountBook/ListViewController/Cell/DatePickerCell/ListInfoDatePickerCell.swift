@@ -26,6 +26,16 @@ class ListInfoDatePickerCell: UITableViewCell {
             .map { dateFormatter.string(from: $0) }
             .bind(to: self.dateButton.rx.title())
             .disposed(by: self.disposeBag)
+        
+        self.backwardButton.rx.tap.asObservable()
+            .bind(to: viewModel.backwardMonth)
+            .disposed(by: self.disposeBag)
+        self.forwardButton.rx.tap.asObservable()
+            .bind(to: viewModel.forwardMonth)
+            .disposed(by: self.disposeBag)
+        self.dateButton.rx.tap.asObservable()
+            .bind(to: viewModel.selectMonth)
+            .disposed(by: self.disposeBag)
     }
     
 }

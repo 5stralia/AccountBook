@@ -18,7 +18,7 @@ class ListInfoMultipleDatePickerCell: UITableViewCell {
     
     func bind(to viewModel: ListInfoMultipleDatePickerCellViewModel) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YY.MM.DD"
+        dateFormatter.dateFormat = "YY.MM.dd"
         
         viewModel.startDate
             .compactMap({ $0 })

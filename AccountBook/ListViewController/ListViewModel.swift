@@ -14,6 +14,7 @@ class ListViewModel: ViewModel, ViewModelType {
     let provider: ABProvider
     
     var disposeBag = DisposeBag()
+    var cellDisposeBag = DisposeBag()
     
     struct Input {
         let viewWillAppear: Observable<Void>
@@ -22,6 +23,9 @@ class ListViewModel: ViewModel, ViewModelType {
     struct Output {
         let isMonthly: BehaviorRelay<Bool>
         let items: BehaviorRelay<[ListSection]>
+        let showYearMonthPicker: PublishRelay<Void>
+        let yearMonthPickerItems: Observable<[[Int]]>
+        let startDate: BehaviorRelay<Date>
     }
     
     init(provider: ABProvider) {
@@ -31,18 +35,56 @@ class ListViewModel: ViewModel, ViewModelType {
     }
     
     func transform(input: Input) -> Output {
+        let isMonthly = BehaviorRelay<Bool>(value: true)
+        
+        let showYearMonthPicker = PublishRelay<Void>()
+        
+        let date = Date()
+        
+        let startDate = BehaviorRelay<Date>(value: date.firstDay())
+        let endDate = BehaviorRelay<Date>(value: date.lastDay())
+        
         let elements = BehaviorRelay<[ListSection]>(value: [])
         
         Observable.combineLatest(input.viewWillAppear,
-                                 self.provider.group.accounts.asObservable()) { _, accounts -> [ListSection] in
+                                 isMonthly.asObservable(),
+                                 startDate.asObservable(),
+                                 endDate.asObservable(),
+                                 self.provider.group.accounts.asObservable()) { [weak self] _, isMonthly, startDateValue, endDateValue, accounts -> [ListSection] in
+            guard let self = self else { return [] }
+            self.cellDisposeBag = DisposeBag()
+            
             var items: [ListSection] = []
             
-            let date = Date()
+            var infoSectionItems: [ListSectionItem] = []
+            
+            if isMonthly {
+                let datePickerItemViewModel = ListInfoDatePickerCellViewModel(date: startDateValue)
+                datePickerItemViewModel.backwardMonth.asObservable()
+                    .subscribe(onNext: {
+                        startDate.accept(startDateValue.backwardMonth(1).firstDay())
+                        endDate.accept(endDateValue.backwardMonth(1).lastDay())
+                    })
+                    .disposed(by: self.cellDisposeBag)
+                datePickerItemViewModel.selectMonth
+                    .bind(to: showYearMonthPicker)
+                    .disposed(by: self.cellDisposeBag)
+                 datePickerItemViewModel.forwardMonth.asObservable()
+                    .subscribe(onNext: {
+                        startDate.accept(startDateValue.forwardMonth(1).firstDay())
+                        endDate.accept(endDateValue.forwardMonth(1).lastDay())
+                    })
+                    .disposed(by: self.cellDisposeBag)
+                
+                infoSectionItems.append(.datePickerItem(viewModel: datePickerItemViewModel))
+            } else {
+                infoSectionItems.append(.multipleDatePickerItem(viewModel: ListInfoMultipleDatePickerCellViewModel(startDate: startDateValue, endDate: endDateValue)))
+            }
+            
             let amount = (3442500.priceString() ?? "0") + "원"
-            items.append(.info(title: "Info", items: [
-                .multipleDatePickerItem(viewModel: ListInfoMultipleDatePickerCellViewModel(startDate: date, endDate: date)),
-                .summaryItem(viewModel: ListInfoSummaryCellViewModel(amount: amount))
-            ]))
+            infoSectionItems.append(.summaryItem(viewModel: ListInfoSummaryCellViewModel(amount: amount)))
+            
+            items.append(.info(title: "Info", items: infoSectionItems))
             
             let formatter = DateFormatter()
             formatter.dateFormat = "MM/dd"
@@ -61,13 +103,21 @@ class ListViewModel: ViewModel, ViewModelType {
                                  .bind(to: elements)
                                  .disposed(by: self.disposeBag)
         
-        let isMonthly = BehaviorRelay<Bool>(value: false)
+        let years = (2000...Calendar.current.component(.year, from: date)).map { $0 }
+        let months = (1...12).map { $0 }
+        let yearMonthPickerItems = Observable.just([years, months])
+        
         input.changeMonthly
             .subscribe(onNext: {
                 isMonthly.accept(!isMonthly.value)
             })
             .disposed(by: self.disposeBag)
         
-        return Output(isMonthly: isMonthly, items: elements)
+        
+        return Output(isMonthly: isMonthly,
+                      items: elements,
+                      showYearMonthPicker: showYearMonthPicker,
+                      yearMonthPickerItems: yearMonthPickerItems,
+                      startDate: startDate)
     }
 }

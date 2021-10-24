@@ -13,6 +13,10 @@ import RxSwift
 final class ListInfoDatePickerCellViewModel {
     let date = BehaviorRelay<Date?>(value: nil)
     
+    let backwardMonth = PublishRelay<Void>()
+    let forwardMonth = PublishRelay<Void>()
+    let selectMonth = PublishRelay<Void>()
+    
     init(date: Date) {
         self.date.accept(date)
     }

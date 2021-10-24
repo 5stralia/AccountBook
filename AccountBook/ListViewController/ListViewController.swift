@@ -13,6 +13,8 @@ import RxSwift
 
 class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    private var pickerBackgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+    private var pickerView = UIPickerView()
     private let filterButton = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3.decrease.circle"),
                                        style: .plain,
                                        target: self,
@@ -86,6 +88,29 @@ class ListViewController: UIViewController {
             .map { $0 ? "월간" : "일간" }
             .bind(to: self.monthlyButton.rx.title)
             .disposed(by: self.disposeBag)
+        
+        output.showYearMonthPicker.asDriver(onErrorJustReturn: ())
+            .drive(onNext: { [weak self] _ in
+                self?.showPickerView()
+            })
+            .disposed(by: self.disposeBag)
+        
+        output.yearMonthPickerItems
+            .bind(to: self.pickerView.rx.items(adapter: PickerViewViewAdapter<Int>()))
+            .disposed(by: self.disposeBag)
+        
+        Observable.combineLatest(output.yearMonthPickerItems, output.startDate.asObservable()) { items, startDate in
+            let yearIndex = items[0].firstIndex(of: Calendar.current.component(.year, from: startDate))
+            let monthIndex = items[1].firstIndex(of: Calendar.current.component(.month, from: startDate))
+            
+            return (yearIndex ?? 0, monthIndex ?? 0)
+        }
+        .asDriver(onErrorJustReturn: (0, 0))
+        .drive(onNext: { [weak self] (year, month) in
+            self?.pickerView.selectRow(year, inComponent: 0, animated: false)
+            self?.pickerView.selectRow(month, inComponent: 1, animated: false)
+        })
+        .disposed(by: self.disposeBag)
     }
     
     override func viewDidLoad() {
@@ -103,6 +128,7 @@ class ListViewController: UIViewController {
         self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         
         self.navigationItem.rightBarButtonItems = [self.addButton, self.monthlyButton, self.filterButton]
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -112,6 +138,49 @@ class ListViewController: UIViewController {
         searchController.searchResultsUpdater = self
         self.navigationItem.searchController = searchController
         self.definesPresentationContext = true
+    }
+    
+    private func showPickerView() {
+        guard let tabBarController = self.tabBarController else { return }
+        
+        tabBarController.view.addSubview(self.pickerBackgroundView)
+        self.pickerBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.pickerBackgroundView.leadingAnchor.constraint(equalTo: tabBarController.view.leadingAnchor),
+            self.pickerBackgroundView.topAnchor.constraint(equalTo: tabBarController.view.topAnchor),
+            self.pickerBackgroundView.trailingAnchor.constraint(equalTo: tabBarController.view.trailingAnchor),
+            self.pickerBackgroundView.bottomAnchor.constraint(equalTo: tabBarController.view.bottomAnchor)
+        ])
+        
+        self.pickerBackgroundView.contentView.addSubview(self.pickerView)
+        self.pickerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.pickerView.leadingAnchor.constraint(equalTo: self.pickerBackgroundView.leadingAnchor),
+            self.pickerView.trailingAnchor.constraint(equalTo: self.pickerBackgroundView.trailingAnchor),
+            self.pickerView.bottomAnchor.constraint(equalTo: self.pickerBackgroundView.bottomAnchor)
+        ])
+        
+        let submitPickerButton = UIButton(type: .system)
+        submitPickerButton.setTitle("Done", for: .normal)
+        submitPickerButton.rx.tap.asDriver().drive(onNext: { [weak self] in
+            self?.hidePickerView()
+        })
+            .disposed(by: self.disposeBag)
+        
+        self.pickerBackgroundView.contentView.addSubview(submitPickerButton)
+        submitPickerButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            submitPickerButton.leadingAnchor.constraint(equalTo: self.pickerBackgroundView.leadingAnchor),
+            submitPickerButton.trailingAnchor.constraint(equalTo: self.pickerBackgroundView.trailingAnchor),
+            submitPickerButton.bottomAnchor.constraint(equalTo: self.pickerView.topAnchor),
+            submitPickerButton.heightAnchor.constraint(equalToConstant: 44)
+        ])
+    }
+    
+    
+    private func hidePickerView() {
+        self.pickerView.removeFromSuperview()
+        self.pickerBackgroundView.removeFromSuperview()
     }
     
     @objc private func addAccount() {
