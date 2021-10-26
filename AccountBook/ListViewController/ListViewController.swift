@@ -15,6 +15,7 @@ class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var pickerBackgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     private var pickerView = UIPickerView()
+    private var pickerDoneButton = UIButton(type: .system)
     private let filterButton = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3.decrease.circle"),
                                        style: .plain,
                                        target: self,
@@ -34,11 +35,24 @@ class ListViewController: UIViewController {
         }
     }
     
+    let selectedYearIndex = BehaviorRelay<Int>(value: 0)
+    let selectedMonthIndex = BehaviorRelay<Int>(value: 0)
+    
     var dataSource: RxTableViewSectionedReloadDataSource<ListSection>?
     
     var disposeBag = DisposeBag()
     
     private func bind(to viewModel: ListViewModel) {
+        self.pickerView.rx.itemSelected.asObservable()
+            .subscribe(onNext: { [weak self] in
+                if $0.component == 0 {
+                    self?.selectedYearIndex.accept($0.row)
+                } else {
+                    self?.selectedMonthIndex.accept($0.row)
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
         self.addButton.rx.tap.asDriver().drive(onNext: { [weak self] in
             let accountDetailViewController = AccountDetailViewController()
             let accountDetailViewModel = AccountDetailViewModel(provider: self!.viewModel!.provider)
@@ -48,9 +62,15 @@ class ListViewController: UIViewController {
         })
             .disposed(by: self.disposeBag)
         
+        let selectedDatePickerItem = self.pickerDoneButton.rx.tap.asObservable()
+            .map { [weak self] in
+                (yearIndex: self?.selectedYearIndex.value ?? 0, monthIndex: self?.selectedMonthIndex.value ?? 0)
+            }
+        
         let output = viewModel.transform(input: ListViewModel.Input(
             viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in },
-            changeMonthly: self.monthlyButton.rx.tap.asObservable().map { _ in }))
+            changeMonthly: self.monthlyButton.rx.tap.asObservable().map { _ in },
+            selectedDatePickerItem: selectedDatePickerItem))
         
         let dataSource = RxTableViewSectionedReloadDataSource<ListSection>(configureCell: { dataSource, tableView, indexPath, item in
             switch item {
@@ -160,20 +180,19 @@ class ListViewController: UIViewController {
             self.pickerView.bottomAnchor.constraint(equalTo: self.pickerBackgroundView.bottomAnchor)
         ])
         
-        let submitPickerButton = UIButton(type: .system)
-        submitPickerButton.setTitle("Done", for: .normal)
-        submitPickerButton.rx.tap.asDriver().drive(onNext: { [weak self] in
+        self.pickerDoneButton.setTitle("Done", for: .normal)
+        self.pickerDoneButton.rx.tap.asDriver().drive(onNext: { [weak self] in
             self?.hidePickerView()
         })
             .disposed(by: self.disposeBag)
         
-        self.pickerBackgroundView.contentView.addSubview(submitPickerButton)
-        submitPickerButton.translatesAutoresizingMaskIntoConstraints = false
+        self.pickerBackgroundView.contentView.addSubview(self.pickerDoneButton)
+        self.pickerDoneButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            submitPickerButton.leadingAnchor.constraint(equalTo: self.pickerBackgroundView.leadingAnchor),
-            submitPickerButton.trailingAnchor.constraint(equalTo: self.pickerBackgroundView.trailingAnchor),
-            submitPickerButton.bottomAnchor.constraint(equalTo: self.pickerView.topAnchor),
-            submitPickerButton.heightAnchor.constraint(equalToConstant: 44)
+            self.pickerDoneButton.leadingAnchor.constraint(equalTo: self.pickerBackgroundView.leadingAnchor),
+            self.pickerDoneButton.trailingAnchor.constraint(equalTo: self.pickerBackgroundView.trailingAnchor),
+            self.pickerDoneButton.bottomAnchor.constraint(equalTo: self.pickerView.topAnchor),
+            self.pickerDoneButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
     

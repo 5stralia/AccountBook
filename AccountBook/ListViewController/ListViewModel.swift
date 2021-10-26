@@ -19,6 +19,7 @@ class ListViewModel: ViewModel, ViewModelType {
     struct Input {
         let viewWillAppear: Observable<Void>
         let changeMonthly: Observable<Void>
+        let selectedDatePickerItem: Observable<(yearIndex: Int, monthIndex: Int)>
     }
     struct Output {
         let isMonthly: BehaviorRelay<Bool>
@@ -113,6 +114,11 @@ class ListViewModel: ViewModel, ViewModelType {
             })
             .disposed(by: self.disposeBag)
         
+        input.selectedDatePickerItem
+            .map { (years[$0.yearIndex], months[$0.monthIndex]) }
+            .map { Calendar.current.date(from: DateComponents(year: $0.0, month: $0.1)) ?? Date() }
+            .bind(to: startDate)
+            .disposed(by: self.disposeBag)
         
         return Output(isMonthly: isMonthly,
                       items: elements,
