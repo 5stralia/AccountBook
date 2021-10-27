@@ -141,6 +141,28 @@ final class ABAPI {
         }
     }
     
+    func requestAccounts(gid: String, startDate: Date, endDate: Date) -> Single<[AccountDocumentModel]> {
+        return Single.create { single in
+            let docRef = self.db.collection("groups").document(gid)
+            docRef.collection("accounts")
+                .whereField("date", isGreaterThan: startDate)
+                .whereField("date", isLessThan: endDate)
+                .order(by: "date")
+                .getDocuments() { querySnapshot, error in
+                    if let error = error {
+                        return single(.failure(error))
+                    } else {
+                        let accountDocumentModels = querySnapshot!.documents.compactMap {
+                            try? $0.data(as: AccountDocumentModel.self)
+                        }
+                        return single(.success(accountDocumentModels))
+                    }
+                }
+            
+            return Disposables.create { }
+        }
+    }
+    
     func requestAccounts(gid: String) -> Single<[AccountDocumentModel]> {
         return Single.create { single in
             let docRef = self.db.collection("groups").document(gid)

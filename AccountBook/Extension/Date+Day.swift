@@ -19,10 +19,10 @@ extension Date {
     }
     
     func backwardMonth(_ value: Int) -> Date {
-        return Calendar.current.date(byAdding: .month, value: -value, to: self)!
+       return Calendar.current.date(byAdding: .month, value: -value, to: self.firstDay())!
     }
     
     func forwardMonth(_ value: Int) -> Date {
-        return Calendar.current.date(byAdding: .month, value: value, to: self)!
+        return Calendar.current.date(byAdding: .month, value: value, to: self.firstDay())!
     }
 }

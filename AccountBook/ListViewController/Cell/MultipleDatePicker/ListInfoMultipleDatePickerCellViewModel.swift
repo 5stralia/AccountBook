@@ -14,6 +14,9 @@ final class ListInfoMultipleDatePickerCellViewModel {
     let startDate = BehaviorRelay<Date?>(value: nil)
     let endDate = BehaviorRelay<Date?>(value: nil)
     
+    let changeStartDate = PublishRelay<Void>()
+    let changeEndDate = PublishRelay<Void>()
+    
     init(startDate: Date, endDate: Date) {
         self.startDate.accept(startDate)
         self.endDate.accept(endDate)

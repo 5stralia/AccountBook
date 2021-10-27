@@ -45,13 +45,23 @@ class ListViewModel: ViewModel, ViewModelType {
         let startDate = BehaviorRelay<Date>(value: date.firstDay())
         let endDate = BehaviorRelay<Date>(value: date.lastDay())
         
+        let accounts = BehaviorRelay<[AccountDocumentModel]>(value: [])
+        Observable.combineLatest(startDate.asObservable(), endDate.asObservable())
+            .flatMapLatest { [weak self] start, end -> Single<[AccountDocumentModel]> in
+                guard let self = self else { return .never() }
+                return self.provider.requestAccounts(startDate: start, endDate: end)
+            }
+            .debug()
+            .bind(to: accounts)
+            .disposed(by: self.disposeBag)
+        
         let elements = BehaviorRelay<[ListSection]>(value: [])
         
         Observable.combineLatest(input.viewWillAppear,
                                  isMonthly.asObservable(),
                                  startDate.asObservable(),
                                  endDate.asObservable(),
-                                 self.provider.group.accounts.asObservable()) { [weak self] _, isMonthly, startDateValue, endDateValue, accounts -> [ListSection] in
+                                 accounts.asObservable()) { [weak self] _, isMonthly, startDateValue, endDateValue, accounts -> [ListSection] in
             guard let self = self else { return [] }
             self.cellDisposeBag = DisposeBag()
             
@@ -116,7 +126,7 @@ class ListViewModel: ViewModel, ViewModelType {
         
         input.selectedDatePickerItem
             .map { (years[$0.yearIndex], months[$0.monthIndex]) }
-            .map { Calendar.current.date(from: DateComponents(year: $0.0, month: $0.1)) ?? Date() }
+            .map { Calendar.current.date(from: DateComponents(year: $0.0, month: $0.1)) ?? date }
             .bind(to: startDate)
             .disposed(by: self.disposeBag)
         
