@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB1CEE99272ACFE80004DEF9 /* ListFilterViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */; };
+		FB1CEE9C272AD0380004DEF9 /* ListFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */; };
+		FB1CEE9D272AD0380004DEF9 /* ListFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */; };
 		FB3A9A9826FB55C700DA7B26 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3A9A9726FB55C700DA7B26 /* ListSection.swift */; };
 		FB3A9A9C26FB57C100DA7B26 /* ListAccountCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3A9A9B26FB57C100DA7B26 /* ListAccountCellViewModel.swift */; };
 		FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4142F026DA9716003C6468 /* ProfileViewController.swift */; };
@@ -141,6 +144,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewModel.swift.swift; sourceTree = "<group>"; };
+		FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewController.swift; sourceTree = "<group>"; };
+		FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFilterViewController.xib; sourceTree = "<group>"; };
 		FB3A9A9726FB55C700DA7B26 /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
 		FB3A9A9B26FB57C100DA7B26 /* ListAccountCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountCellViewModel.swift; sourceTree = "<group>"; };
 		FB4142F026DA9716003C6468 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -288,6 +294,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB1CEE97272ACD0D0004DEF9 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */,
+				FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */,
+				FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
 		FB4142EF26DA96FF003C6468 /* ProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +317,7 @@
 		FB4142F626DA97A4003C6468 /* ListViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FB1CEE97272ACD0D0004DEF9 /* Filter */,
 				FBD38C0F26DB57BD00E9365F /* Cell */,
 				FB3A9A9726FB55C700DA7B26 /* ListSection.swift */,
 				FB4142FB26DA97BD003C6468 /* ListViewModel.swift */,
@@ -864,6 +881,7 @@
 				FB8BF3D326DA79F80091CC58 /* BarChartCell.xib in Resources */,
 				FB8008322722E44100DDD815 /* ListInfoMultipleDatePickerCell.xib in Resources */,
 				FBC12ABB2703282D00EE698F /* AccountDetailSelectionCell.xib in Resources */,
+				FB1CEE9D272AD0380004DEF9 /* ListFilterViewController.xib in Resources */,
 				FB4142FA26DA97B2003C6468 /* ListViewController.xib in Resources */,
 				FBD38C0E26DAB2B500E9365F /* SignInViewController.xib in Resources */,
 				FB8BF38E26D67CE20091CC58 /* LaunchScreen.storyboard in Resources */,
@@ -958,6 +976,7 @@
 				FB5BF04E2704BC0400E4F457 /* AccountDetailSelectingViewController.swift in Sources */,
 				FB80082A2722E25B00DDD815 /* ListInfoMultipleDatePickerCellViewModel.swift in Sources */,
 				FBD38C5726DBC88E00E9365F /* TableViewCell.swift in Sources */,
+				FB1CEE9C272AD0380004DEF9 /* ListFilterViewController.swift in Sources */,
 				FB5BF04B2704BBEB00E4F457 /* AccountDetailSelectingViewModel.swift in Sources */,
 				FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */,
 				FBD38C4426DBC04E00E9365F /* ViewModel.swift in Sources */,
@@ -986,6 +1005,7 @@
 				FBA26E4526E51FFC00969785 /* ABUser.swift in Sources */,
 				FB6ACFBB26E0D36800F3099F /* ViewController.swift in Sources */,
 				FB86871226F8CE02006E4FC5 /* ABProvider.swift in Sources */,
+				FB1CEE99272ACFE80004DEF9 /* ListFilterViewModel.swift.swift in Sources */,
 				FBC1C63F2725376000BFC1D2 /* Date+Day.swift in Sources */,
 				FB5BF0612704CDF300E4F457 /* AccountDetailSelectingCell.swift in Sources */,
 				FBA26E4226E5183E00969785 /* DatabaseError.swift in Sources */,
