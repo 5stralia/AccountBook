@@ -26,8 +26,6 @@ class SettingViewModel: ViewModel, ViewModelType {
     let isSignIn: BehaviorRelay<Bool>
     private var authHandle: AuthStateDidChangeListenerHandle?
     
-    let disposeBag = DisposeBag()
-    
     override init() {
         self.isSignIn = BehaviorRelay<Bool>(value: Auth.auth().currentUser != nil)
         

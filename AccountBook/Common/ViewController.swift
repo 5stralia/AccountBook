@@ -7,12 +7,28 @@
 
 import UIKit
 
+import RxSwift
+
 class ViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    var viewModel: ViewModel? {
+        willSet {
+            if let viewModel = newValue {
+                if self.isViewLoaded {
+                    self.bind(to: viewModel)
+                } else {
+                    self.rx.viewDidLoad.asObservable().subscribe(onNext: { [weak self] _ in
+                        self?.bind(to: viewModel)
+                    })
+                        .disposed(by: self.disposeBag)
+                }
+            }
+        }
     }
     
+    var disposeBag = DisposeBag()
+    
+    func bind(to viewModel: ViewModel) {
+        
+    }
 }

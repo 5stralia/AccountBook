@@ -11,22 +11,9 @@ import RxCocoa
 import RxDataSources
 import RxSwift
 
-class AccountDetailViewController: UIViewController {
+class AccountDetailViewController: ViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel: AccountDetailViewModel? {
-        willSet {
-            if let accountDetailViewModel = newValue {
-                self.rx.viewDidLoad.subscribe(onNext: {
-                    self.bind(to: accountDetailViewModel)
-                })
-                    .disposed(by: self.disposeBag)
-            }
-        }
-    }
-    
-    var disposeBag = DisposeBag()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,7 +29,9 @@ class AccountDetailViewController: UIViewController {
         self.setNavigationItems()
     }
     
-    private func bind(to viewModel: AccountDetailViewModel) {
+    override func bind(to viewModel: ViewModel) {
+        guard let viewModel = viewModel as? AccountDetailViewModel else { return }
+        
         self.navigationItem.leftBarButtonItem?.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.dismiss(animated: true, completion: nil)

@@ -8,7 +8,7 @@
 import UIKit
 import Charts
 
-class MonthlyChartViewController: UIViewController {
+class MonthlyChartViewController: ViewController {
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     

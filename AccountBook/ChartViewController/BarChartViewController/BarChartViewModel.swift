@@ -7,6 +7,6 @@
 
 import Foundation
 
-class BarChartViewMode {
+class BarChartViewModel: ViewModel {
     
 }

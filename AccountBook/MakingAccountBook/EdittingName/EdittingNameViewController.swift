@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class EdittingNameViewController: UIViewController {
+class EdittingNameViewController: ViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var groupNameLabel: UILabel!
@@ -21,20 +21,10 @@ class EdittingNameViewController: UIViewController {
     @IBOutlet weak var userImageAddButton: UIButton!
     @IBOutlet weak var userNameTextField: UITextField!
     
-    var viewModel: EdittingNameViewModel? {
-        willSet {
-            if let edittingNameViewModel = newValue {
-                self.rx.viewDidLoad.subscribe(onNext: { [weak self] in
-                    self?.bind(to: edittingNameViewModel)
-                })
-                .disposed(by: self.disposeBag)
-            }
-        }
-    }
     
-    var disposeBag = DisposeBag()
-    
-    private func bind(to viewModel: EdittingNameViewModel) {
+    override func bind(to viewModel: ViewModel) {
+        guard let viewModel = viewModel as? EdittingNameViewModel else { return }
+        
         self.backButton.rx.tap.asObservable().subscribe(onNext: { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         })

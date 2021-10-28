@@ -25,8 +25,6 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
     
     let provider: ABProvider
     
-    var disposeBag = DisposeBag()
-    
     func transform(input: Input) -> Output {
         let title = BehaviorRelay<String?>(value: nil)
         let amount = BehaviorRelay<Int>(value: 0)

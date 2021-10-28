@@ -28,8 +28,6 @@ final class AccountDetailSelectingViewModel: ViewModel, ViewModelType {
     
     let isAllowMultiSelection = BehaviorRelay<Bool>(value: false)
     
-    var disposeBag = DisposeBag()
-    
     func transform(input: Input) -> Output {
         let elements = BehaviorRelay<[AccountDetailSelectingSection]>(value: [
             .selecting(title: "선택", items: self.items.map {

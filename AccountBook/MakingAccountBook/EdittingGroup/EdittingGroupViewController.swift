@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class EdittingGroupViewController: UIViewController {
+class EdittingGroupViewController: ViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageSetButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
@@ -20,20 +20,6 @@ class EdittingGroupViewController: UIViewController {
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var calculateDayButton: UIButton!
     
-    var viewModel: EdittingGroupViewModel? {
-        willSet {
-            if let edittingGroupViewModel = newValue {
-                self.rx.viewDidLoad.asObservable().map { _ in }
-                    .subscribe(onNext: { [weak self] in
-                        self?.bind(to: edittingGroupViewModel)
-                    })
-                    .disposed(by: self.dispostBag)
-            }
-        }
-    }
-    
-    var dispostBag = DisposeBag()
-    
     override func viewDidLoad() {
         super.viewDidLoad();
         
@@ -41,7 +27,9 @@ class EdittingGroupViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
     }
 
-    private func bind(to viewModel: EdittingGroupViewModel) {
+    override func bind(to viewModel: ViewModel) {
+        guard let viewModel = viewModel as? EdittingGroupViewModel else { return }
+        
         let feeType = Observable.just(FeeType.monthly)
         let feeDay = Observable.just(1)
         let calculateDay = Observable.just(1)
@@ -63,7 +51,7 @@ class EdittingGroupViewController: UIViewController {
                 calculateDaySelection: calculateDay.asDriver(onErrorJustReturn: 1),
                 createGroup: self.navigationItem.rightBarButtonItem!.rx.tap.asDriver()))
         
-        output.shouldSubmit.bind(to: self.navigationItem.rightBarButtonItem!.rx.isEnabled).disposed(by: self.dispostBag)
+        output.shouldSubmit.bind(to: self.navigationItem.rightBarButtonItem!.rx.isEnabled).disposed(by: self.disposeBag)
         
         output.alert.asObservable()
             .observe(on: MainScheduler.asyncInstance)
@@ -74,6 +62,6 @@ class EdittingGroupViewController: UIViewController {
                 
                 self?.present(alertController, animated: true, completion: nil)
             })
-            .disposed(by: self.dispostBag)
+            .disposed(by: self.disposeBag)
     }
 }

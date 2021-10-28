@@ -8,7 +8,7 @@
 import UIKit
 import Charts
 
-class PieChartViewController: UIViewController {
+class PieChartViewController: ViewController {
     @IBOutlet weak var pieChartView: PieChartView!
     
     override func viewDidLoad() {

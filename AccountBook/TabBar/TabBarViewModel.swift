@@ -22,8 +22,6 @@ class TabBarViewModel: ViewModel, ViewModelType {
     
     let provider: ABProvider
     
-    var disposeBag = DisposeBag()
-    
     init(provider: ABProvider) {
         self.provider = provider
         

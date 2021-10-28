@@ -13,13 +13,13 @@ import RxSwift
 class ListViewModel: ViewModel, ViewModelType {
     let provider: ABProvider
     
-    var disposeBag = DisposeBag()
     var cellDisposeBag = DisposeBag()
     
     struct Input {
         let viewWillAppear: Observable<Void>
         let changeMonthly: Observable<Void>
         let selectedDatePickerItem: Observable<(yearIndex: Int, monthIndex: Int)>
+        let showFilter: Observable<Void>
     }
     struct Output {
         let isMonthly: BehaviorRelay<Bool>
@@ -27,6 +27,7 @@ class ListViewModel: ViewModel, ViewModelType {
         let showYearMonthPicker: PublishRelay<Void>
         let yearMonthPickerItems: Observable<[[Int]]>
         let startDate: BehaviorRelay<Date>
+        let showFilter: Observable<ListFilterViewModel>
     }
     
     init(provider: ABProvider) {
@@ -130,10 +131,13 @@ class ListViewModel: ViewModel, ViewModelType {
             .bind(to: startDate)
             .disposed(by: self.disposeBag)
         
+        let showFilter = input.showFilter.map { ListFilterViewModel() }
+        
         return Output(isMonthly: isMonthly,
                       items: elements,
                       showYearMonthPicker: showYearMonthPicker,
                       yearMonthPickerItems: yearMonthPickerItems,
-                      startDate: startDate)
+                      startDate: startDate,
+                      showFilter: showFilter)
     }
 }

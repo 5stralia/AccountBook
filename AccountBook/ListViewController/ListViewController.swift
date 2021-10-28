@@ -11,7 +11,7 @@ import RxCocoa
 import RxDataSources
 import RxSwift
 
-class ListViewController: UIViewController {
+class ListViewController: ViewController {
     @IBOutlet weak var tableView: UITableView!
     private var pickerBackgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     private var pickerView = UIPickerView()
@@ -23,26 +23,14 @@ class ListViewController: UIViewController {
     private let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
     private let monthlyButton = UIBarButtonItem(title: "월별", style: .plain, target: self, action: nil)
     
-    var viewModel: ListViewModel? {
-        willSet {
-            if let listViewModel = newValue {
-                self.rx.viewDidLoad
-                    .subscribe(onNext: { [weak self] in
-                        self?.bind(to: listViewModel)
-                    })
-                    .disposed(by: self.disposeBag)
-            }
-        }
-    }
-    
     let selectedYearIndex = BehaviorRelay<Int>(value: 0)
     let selectedMonthIndex = BehaviorRelay<Int>(value: 0)
     
     var dataSource: RxTableViewSectionedReloadDataSource<ListSection>?
     
-    var disposeBag = DisposeBag()
-    
-    private func bind(to viewModel: ListViewModel) {
+    override func bind(to viewModel: ViewModel) {
+        guard let viewModel = viewModel as? ListViewModel else { return }
+        
         self.pickerView.rx.itemSelected.asObservable()
             .subscribe(onNext: { [weak self] in
                 if $0.component == 0 {
@@ -55,7 +43,7 @@ class ListViewController: UIViewController {
         
         self.addButton.rx.tap.asDriver().drive(onNext: { [weak self] in
             let accountDetailViewController = AccountDetailViewController()
-            let accountDetailViewModel = AccountDetailViewModel(provider: self!.viewModel!.provider)
+            let accountDetailViewModel = AccountDetailViewModel(provider: viewModel.provider)
             accountDetailViewController.viewModel = accountDetailViewModel
             let navigationController = UINavigationController(rootViewController: accountDetailViewController)
             self?.present(navigationController, animated: true, completion: nil)
@@ -69,8 +57,9 @@ class ListViewController: UIViewController {
         
         let output = viewModel.transform(input: ListViewModel.Input(
             viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in },
-            changeMonthly: self.monthlyButton.rx.tap.asObservable().map { _ in },
-            selectedDatePickerItem: selectedDatePickerItem))
+            changeMonthly: self.monthlyButton.rx.tap.asObservable(),
+            selectedDatePickerItem: selectedDatePickerItem,
+            showFilter: self.filterButton.rx.tap.asObservable()))
         
         let dataSource = RxTableViewSectionedReloadDataSource<ListSection>(configureCell: { dataSource, tableView, indexPath, item in
             switch item {
@@ -131,6 +120,16 @@ class ListViewController: UIViewController {
             self?.pickerView.selectRow(month, inComponent: 1, animated: false)
         })
         .disposed(by: self.disposeBag)
+        
+        output.showFilter
+            .subscribe(onNext: { [weak self] listFilterViewModel in
+                let listFilterViewController = ListFilterViewController()
+                listFilterViewController.viewModel = listFilterViewModel
+                let filterNavigationController = UINavigationController(rootViewController: listFilterViewController)
+                
+                self?.present(filterNavigationController, animated: true, completion: nil)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     override func viewDidLoad() {
@@ -204,7 +203,8 @@ class ListViewController: UIViewController {
     
     @objc private func addAccount() {
         let accountDetailViewController = AccountDetailViewController()
-        let accountDetailViewModel = AccountDetailViewModel(provider: self.viewModel!.provider)
+        let provider = (self.viewModel as! ListViewModel).provider
+        let accountDetailViewModel = AccountDetailViewModel(provider: provider)
         accountDetailViewController.viewModel = accountDetailViewModel
         let navigationController = UINavigationController(rootViewController: accountDetailViewController)
         self.present(navigationController, animated: true, completion: nil)

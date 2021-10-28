@@ -7,6 +7,6 @@
 
 import Foundation
 
-final class PieChartViewModel {
+final class PieChartViewModel: ViewModel {
     
 }

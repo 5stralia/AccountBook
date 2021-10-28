@@ -8,7 +8,7 @@
 import UIKit
 import Charts
 
-class BarChartViewController: UIViewController {
+class BarChartViewController: ViewController {
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     

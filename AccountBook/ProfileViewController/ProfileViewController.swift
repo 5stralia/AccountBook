@@ -11,22 +11,11 @@ import Firebase
 import RxSwift
 import RxCocoa
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: ViewController {
     
-    var viewModel: ProfileViewModel? {
-        willSet {
-            if let profileViewModel = newValue {
-                self.rx.viewDidLoad.subscribe(onNext: { [weak self] in
-                    self?.bind(to: profileViewModel)
-                })
-                .disposed(by: self.disposeBag)
-            }
-        }
-    }
-    
-    var disposeBag = DisposeBag()
-    
-    private func bind(to viewModel: ProfileViewModel) {
+    override func bind(to viewModel: ViewModel) {
+        guard let viewModel = viewModel as? ProfileViewModel else { return }
+        
         let output = viewModel.transform(
             input: ProfileViewModel.Input(viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in }))
         
@@ -34,5 +23,6 @@ class ProfileViewController: UIViewController {
             .compactMap { $0?.name }
             .bind(to: self.rx.title)
             .disposed(by: self.disposeBag)
+
     }
 }

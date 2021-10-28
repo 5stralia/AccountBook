@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChartViewController: UIViewController {
+class ChartViewController: ViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var pageContainer: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -19,8 +19,6 @@ class ChartViewController: UIViewController {
             self.pageControl.numberOfPages = self.viewControllers.count
         }
     }
-    
-    var viewModel: ChartViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()

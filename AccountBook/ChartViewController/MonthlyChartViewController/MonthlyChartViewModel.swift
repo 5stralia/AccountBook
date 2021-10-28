@@ -7,6 +7,6 @@
 
 import Foundation
 
-final class MonthlyChartViewModel {
+final class MonthlyChartViewModel: ViewModel {
     
 }

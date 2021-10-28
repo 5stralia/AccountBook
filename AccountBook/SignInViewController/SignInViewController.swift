@@ -12,25 +12,8 @@ import Firebase
 import GoogleSignIn
 import RxSwift
 
-class SignInViewController: UIViewController {
+class SignInViewController: ViewController {
     @IBOutlet weak var facebookButtonContainer: UIView!
-    
-    var viewModel: SignInViewModel? {
-        willSet {
-            if let signInViewModel = newValue {
-                self.rx.viewDidLoad.asObservable().subscribe(onNext: {
-                    self.bind(to: signInViewModel)
-                })
-                .disposed(by: self.disposeBag)
-            }
-        }
-    }
-    
-    var disposeBag = DisposeBag()
-    
-    private func bind(to viewModel: SignInViewModel) {
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

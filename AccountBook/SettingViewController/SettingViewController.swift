@@ -11,12 +11,8 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class SettingViewController: UIViewController {
+class SettingViewController: ViewController {
     @IBOutlet weak var tableView: UITableView!
-    
-    var viewModel: SettingViewModel?
-    
-    var disposeBag = DisposeBag()
     
     private let tableViewCellIdentifier = "TableViewCell"
         
@@ -25,12 +21,10 @@ class SettingViewController: UIViewController {
 
         self.tableView.register(UINib(nibName: self.tableViewCellIdentifier, bundle: nil),
                                 forCellReuseIdentifier: self.tableViewCellIdentifier)
-        
-        self.bindViewModel()
     }
     
-    private func bindViewModel() {
-        guard let viewModel = self.viewModel else { return }
+    override func bind(to viewModel: ViewModel) {
+        guard let viewModel = viewModel as? SettingViewModel else { return }
         
         let didSelect = self.tableView.rx.modelSelected(SettingSectionItem.self).asDriver()
         

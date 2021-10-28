@@ -7,6 +7,8 @@
 
 import Foundation
 
+import RxSwift
+
 protocol ViewModelType {
     associatedtype Input
     associatedtype Output
@@ -15,5 +17,6 @@ protocol ViewModelType {
 }
 
 class ViewModel {
+    var disposeBag = DisposeBag()
 
 }
