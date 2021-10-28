@@ -19,13 +19,13 @@ final class ABAPI {
     }
     
     func createGroup(_ creatingGroup: GroupDocumentModel, uid: String) -> Completable {
-        return self.documentID(creatingGroup, uid: uid)
+        return self.documentID(creatingGroup: creatingGroup, uid: uid)
             .flatMapCompletable { documentID in
                 self.addGroup(to: uid, documentID: documentID)
             }
     }
     
-    private func documentID(_ creatingGroup: GroupDocumentModel, uid: String) -> Single<String> {
+    private func documentID(creatingGroup: GroupDocumentModel, uid: String) -> Single<String> {
         return Single.create { single in
             do {
                 let docRef: DocumentReference = self.db.collection("groups").document()
@@ -158,24 +158,6 @@ final class ABAPI {
                         return single(.success(accountDocumentModels))
                     }
                 }
-            
-            return Disposables.create { }
-        }
-    }
-    
-    func requestAccounts(gid: String) -> Single<[AccountDocumentModel]> {
-        return Single.create { single in
-            let docRef = self.db.collection("groups").document(gid)
-            docRef.collection("accounts").order(by: "date").getDocuments() { querySnapshot, error in
-                if let error = error {
-                    return single(.failure(error))
-                } else {
-                    let accountDocumentModels = querySnapshot!.documents.compactMap {
-                        try? $0.data(as: AccountDocumentModel.self)
-                    }
-                    return single(.success(accountDocumentModels))
-                }
-            }
             
             return Disposables.create { }
         }

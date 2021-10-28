@@ -59,7 +59,6 @@ final class ABProvider {
         
         self.group.gid.subscribe(onNext: { [weak self] gid in
             guard let _ = gid else { return }
-            self?.requestAccounts()
             self?.requestMembers()
         })
             .disposed(by: self.disposeBag)
@@ -69,16 +68,6 @@ final class ABProvider {
         guard let gid = try? self.group.gid.value() else { return .never() }
         
         return self.api.requestAccounts(gid: gid, startDate: startDate, endDate: endDate)
-    }
-    
-    func requestAccounts() {
-        guard let gid = try? self.group.gid.value() else { return }
-        
-        self.api.requestAccounts(gid: gid).asObservable()
-            .subscribe(onNext: { [weak self] accounts in
-                self?.group.accounts.onNext(accounts)
-            })
-            .disposed(by: self.disposeBag)
     }
     
     func append(account: AccountDocumentModel) -> Completable {
