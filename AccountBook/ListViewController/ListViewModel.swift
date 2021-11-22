@@ -131,7 +131,7 @@ class ListViewModel: ViewModel, ViewModelType {
             .bind(to: startDate)
             .disposed(by: self.disposeBag)
         
-        let showFilter = input.showFilter.map { ListFilterViewModel() }
+        let showFilter = input.showFilter.map { ListFilterViewModel(provider: self.provider) }
         
         return Output(isMonthly: isMonthly,
                       items: elements,
