@@ -52,7 +52,6 @@ class ListViewModel: ViewModel, ViewModelType {
                 guard let self = self else { return .never() }
                 return self.provider.requestAccounts(startDate: start, endDate: end)
             }
-            .debug()
             .bind(to: accounts)
             .disposed(by: self.disposeBag)
         
@@ -131,7 +130,13 @@ class ListViewModel: ViewModel, ViewModelType {
             .bind(to: startDate)
             .disposed(by: self.disposeBag)
         
-        let showFilter = input.showFilter.map { ListFilterViewModel(provider: self.provider) }
+        let filterViewModel = ListFilterViewModel(provider: self.provider)
+        filterViewModel.didSetFilter
+            .subscribe(onNext: {
+                // TODO: 필터 적용
+            })
+            .disposed(by: self.disposeBag)
+        let showFilter = input.showFilter.map { filterViewModel }
         
         return Output(isMonthly: isMonthly,
                       items: elements,

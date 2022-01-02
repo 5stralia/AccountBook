@@ -18,7 +18,7 @@ class ListFilterViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: nil)
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
         
         self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil),
@@ -28,14 +28,16 @@ class ListFilterViewController: ViewController {
     override func bind(to viewModel: ViewModel) {
         guard let viewModel = viewModel as? ListFilterViewModel else { return }
         
-        self.navigationItem.leftBarButtonItem?.rx.tap
+        let tappedDone = self.navigationItem.rightBarButtonItem?.rx.tap.asObservable() ?? .never()
+        tappedDone
             .subscribe(onNext: { [weak self] in
                 self?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: self.disposeBag)
-
+        
         let output = viewModel.transform(input: ListFilterViewModel.Input(
-            selection: self.tableView.rx.modelSelected(AccountDetailSelectionCellViewModel.self).asObservable()
+            selection: self.tableView.rx.modelSelected(AccountDetailSelectionCellViewModel.self).asObservable(),
+            didSetFilter: tappedDone
         ))
         
         output.items.bind(to: self.tableView.rx.items(
