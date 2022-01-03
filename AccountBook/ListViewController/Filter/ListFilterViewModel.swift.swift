@@ -18,6 +18,11 @@ final class ListFilterViewModel: ViewModel {
     let payer = BehaviorRelay<String>(value: "없음")
     let participants = BehaviorRelay<String>(value: "없음")
     
+    let amountElements = BehaviorRelay<[Int]>(value: [])
+    let categoryElements = BehaviorRelay<[String]>(value: [])
+    let payerElements = BehaviorRelay<[String]>(value: [])
+    let participantElements = BehaviorRelay<[String]>(value: [])
+    
     let didSetFilter = PublishRelay<Void>()
     
     init(provider: ABProvider) {
@@ -53,15 +58,25 @@ extension ListFilterViewModel: ViewModelType {
             .bind(to: elements)
             .disposed(by: self.disposeBag)
         
+        let filterElements = BehaviorRelay.combineLatest(self.amountElements,
+                                                         self.categoryElements,
+                                                         self.payerElements,
+                                                         self.participantElements)
+        { amounts, categories, payers, participants in
+            return (amounts: amounts, categories: categories, payers: payers, participants: participants)
+        }
         let selectDetail = input.selection
-            .flatMap { [weak self] selection -> Observable<AccountDetailSelectingViewModel> in
+            .withLatestFrom(filterElements) { ($0, $1) }
+            .flatMap
+        { [weak self] (selection, filters) -> Observable<AccountDetailSelectingViewModel> in
                 guard let self = self else { return .never() }
                 
                 switch selection.title.value {
                 case "금액":
+                    let items = ["없음"] + filters.amounts.map { String($0) }
                     let detailSelectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
                                                                                    isCategory: true,
-                                                                                   items: ["없음", "0", "10"],
+                                                                                   items: items,
                                                                                    isAllowMultiSelection: false)
                     detailSelectingViewModel.selectedItems.compactMap { $0.first }
                     .subscribe(onNext: { self.amount.accept($0) })
@@ -69,9 +84,10 @@ extension ListFilterViewModel: ViewModelType {
                     
                     return .just(detailSelectingViewModel)
                 case "카테고리":
+                    let items = ["없음"] + filters.categories
                     let detailSelectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
                                                                                    isCategory: true,
-                                                                                   items: ["없음", "카테1", "카테2"],
+                                                                                   items: items,
                                                                                    isAllowMultiSelection: false)
                     detailSelectingViewModel.selectedItems.compactMap { $0.first }
                     .subscribe(onNext: { self.category.accept($0) })
@@ -79,9 +95,10 @@ extension ListFilterViewModel: ViewModelType {
                     
                     return .just(detailSelectingViewModel)
                 case "결제":
+                    let items = ["없음"] + filters.payers
                     let detailSelectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
                                                                                    isCategory: true,
-                                                                                   items: ["없음", "결제1", "결제2"],
+                                                                                   items: items,
                                                                                    isAllowMultiSelection: false)
                     detailSelectingViewModel.selectedItems.compactMap { $0.first }
                     .subscribe(onNext: { self.payer.accept($0) })
@@ -89,9 +106,10 @@ extension ListFilterViewModel: ViewModelType {
                     
                     return .just(detailSelectingViewModel)
                 case "참여":
+                    let items = ["없음"] + filters.participants
                     let detailSelectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
                                                                                    isCategory: true,
-                                                                                   items: ["없음", "참여1", "참여2"],
+                                                                                   items: items,
                                                                                    isAllowMultiSelection: true)
                     detailSelectingViewModel.selectedItems
                         .subscribe(onNext: { self.participants.accept($0.joined(separator: ",")) })
