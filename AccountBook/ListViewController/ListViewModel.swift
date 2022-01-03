@@ -46,7 +46,15 @@ class ListViewModel: ViewModel, ViewModelType {
         let startDate = BehaviorRelay<Date>(value: date.firstDay())
         let endDate = BehaviorRelay<Date>(value: date.lastDay())
         
+        let filterViewModel = ListFilterViewModel(provider: self.provider)
+        filterViewModel.didSetFilter
+            .subscribe(onNext: {
+                // TODO: 필터 적용
+            })
+            .disposed(by: self.disposeBag)
+        
         let accounts = BehaviorRelay<[AccountDocumentModel]>(value: [])
+        
         Observable.combineLatest(startDate.asObservable(), endDate.asObservable())
             .flatMapLatest { [weak self] start, end -> Single<[AccountDocumentModel]> in
                 guard let self = self else { return .never() }
@@ -55,13 +63,52 @@ class ListViewModel: ViewModel, ViewModelType {
             .bind(to: accounts)
             .disposed(by: self.disposeBag)
         
+        let accountElements = Observable.combineLatest(accounts.asObservable(),
+                                                       filterViewModel.amount.asObservable(),
+                                                       filterViewModel.category.asObservable(),
+                                                       filterViewModel.payer.asObservable(),
+                                                       filterViewModel.participants.asObservable())
+        { accounts, amount, category, payer, participants -> [AccountDocumentModel] in
+            var accounts = accounts
+            
+            if let amount = Int(amount) {
+                accounts = accounts.filter { $0.amount == amount }
+            }
+            
+            if category != "없음" {
+                accounts = accounts.filter { $0.category == category }
+            }
+            
+            if payer != "없음" {
+                accounts = accounts.filter { $0.payer == payer }
+            }
+            
+            if participants != "없음" {
+                let participants = participants.split(separator: ",")
+                if !participants.isEmpty {
+                    accounts = accounts.filter {
+                        for p in participants {
+                            if !$0.participants.contains(String(p)) {
+                                return false
+                            }
+                        }
+                        
+                        return true
+                    }
+                    
+                }
+            }
+            
+            return accounts
+        }
+        
         let elements = BehaviorRelay<[ListSection]>(value: [])
         
         Observable.combineLatest(input.viewWillAppear,
                                  isMonthly.asObservable(),
                                  startDate.asObservable(),
                                  endDate.asObservable(),
-                                 accounts.asObservable()) { [weak self] _, isMonthly, startDateValue, endDateValue, accounts -> [ListSection] in
+                                 accountElements) { [weak self] _, isMonthly, startDateValue, endDateValue, accounts -> [ListSection] in
             guard let self = self else { return [] }
             self.cellDisposeBag = DisposeBag()
             
@@ -130,12 +177,6 @@ class ListViewModel: ViewModel, ViewModelType {
             .bind(to: startDate)
             .disposed(by: self.disposeBag)
         
-        let filterViewModel = ListFilterViewModel(provider: self.provider)
-        filterViewModel.didSetFilter
-            .subscribe(onNext: {
-                // TODO: 필터 적용
-            })
-            .disposed(by: self.disposeBag)
         let showFilter = input.showFilter.map { filterViewModel }
         
         return Output(isMonthly: isMonthly,
