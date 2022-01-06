@@ -52,11 +52,6 @@ class ListViewModel: ViewModel, ViewModelType {
         filterViewModel.categoryElements.accept(["cate1", "cate2", "cate3"])
         filterViewModel.payerElements.accept(["결제자1", "결제자2", "결제자3"])
         filterViewModel.participantElements.accept(["참여자1", "참여자2", "참여자3"])
-        filterViewModel.didSetFilter
-            .subscribe(onNext: {
-                // TODO: 필터 적용
-            })
-            .disposed(by: self.disposeBag)
         
         let accounts = BehaviorRelay<[AccountDocumentModel]>(value: [])
         

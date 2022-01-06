@@ -15,6 +15,7 @@ enum AccountDetailSelectingSection {
 enum AccountDetailSelectingSectionItem {
     case titleItem(viewModel: AccountDetailSelectingCellViewModel)
     case addingItem(viewModel: AccountDetailSelectingCellViewModel)
+    case rangeItem(viewModel: AccountDetailRangeCellViewModel<Int>)
 }
 
 extension AccountDetailSelectingSectionItem: IdentifiableType {
@@ -24,6 +25,7 @@ extension AccountDetailSelectingSectionItem: IdentifiableType {
         switch self {
         case .titleItem(let viewModel): return viewModel.title.value ?? ""
         case .addingItem(let viewModel): return viewModel.title.value ?? ""
+        case .rangeItem(let viewModel): return "\(viewModel.max.value)_\(viewModel.min.value)"
         }
     }
 }

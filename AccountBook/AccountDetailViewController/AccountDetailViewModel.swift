@@ -102,7 +102,8 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
                     let selectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
                                                                              isCategory: true,
                                                                              items: items,
-                                                                             isAllowMultiSelection: false)
+                                                                             isAllowMultiSelection: false,
+                                                                             isRangeItem: false)
                     selectingViewModel.selectedItems.compactMap { $0.first }.bind(to: category).disposed(by: self.disposeBag)
                     selectSubItem.accept(selectingViewModel)
                 case .payerItem(let viewModel):
@@ -110,7 +111,8 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
                     let selectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
                                                                              isCategory: true,
                                                                              items: items,
-                                                                             isAllowMultiSelection: false)
+                                                                             isAllowMultiSelection: false,
+                                                                             isRangeItem: false)
                     selectingViewModel.selectedItems.compactMap {
                         $0.first
                     }
@@ -129,7 +131,8 @@ final class AccountDetailViewModel: ViewModel, ViewModelType {
                     let selectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
                                                                              isCategory: true,
                                                                              items: items,
-                                                                             isAllowMultiSelection: true)
+                                                                             isAllowMultiSelection: true,
+                                                                             isRangeItem: false)
                     selectingViewModel.selectedItems
                         .map { names in
                             names.compactMap({ name in

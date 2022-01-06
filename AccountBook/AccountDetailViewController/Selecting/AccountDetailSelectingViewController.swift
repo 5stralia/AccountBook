@@ -45,6 +45,11 @@ class AccountDetailSelectingViewController: UIViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as! AccountDetailSelectingCell
                 cell.bind(to: viewModel)
                 return cell
+                
+            case .rangeItem(let viewModel):
+                let cell = tableView.dequeueReusableCell(withIdentifier: AccountDetailRangeCell.cellIdentifier) as! AccountDetailRangeCell
+                cell.bind(to: viewModel)
+                return cell
             }
         })
         
@@ -61,6 +66,8 @@ class AccountDetailSelectingViewController: UIViewController {
         super.viewDidLoad()
         
         self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
+        self.tableView.register(AccountDetailRangeCell.self,
+                                forCellReuseIdentifier: AccountDetailRangeCell.cellIdentifier)
     }
     
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05325B8E2785CBAB002BB836 /* AccountDetailRangeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05325B8D2785CBAB002BB836 /* AccountDetailRangeCellViewModel.swift */; };
+		05325B912785CD47002BB836 /* AccountDetailRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05325B8F2785CD47002BB836 /* AccountDetailRangeCell.swift */; };
+		05325B952785D0FE002BB836 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 05325B942785D0FE002BB836 /* SnapKit */; };
+		05325BB02785DC6C002BB836 /* TTRangeSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 05325BAF2785DC6C002BB836 /* TTRangeSlider */; };
 		FB1CEE99272ACFE80004DEF9 /* ListFilterViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */; };
 		FB1CEE9C272AD0380004DEF9 /* ListFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */; };
 		FB1CEE9D272AD0380004DEF9 /* ListFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */; };
@@ -144,6 +148,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05325B8D2785CBAB002BB836 /* AccountDetailRangeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailRangeCellViewModel.swift; sourceTree = "<group>"; };
+		05325B8F2785CD47002BB836 /* AccountDetailRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailRangeCell.swift; sourceTree = "<group>"; };
 		FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewModel.swift.swift; sourceTree = "<group>"; };
 		FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewController.swift; sourceTree = "<group>"; };
 		FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFilterViewController.xib; sourceTree = "<group>"; };
@@ -264,6 +270,7 @@
 				FBD38C4026DBBD2900E9365F /* RxRelay in Frameworks */,
 				FB41430A26DAA27E003C6468 /* FirebaseCrashlytics in Frameworks */,
 				FBD38C4226DBBD2900E9365F /* RxCocoa in Frameworks */,
+				05325B952785D0FE002BB836 /* SnapKit in Frameworks */,
 				FB41430826DAA27E003C6468 /* FirebaseAnalytics in Frameworks */,
 				FBD38C4B26DBC4DD00E9365F /* Differentiator in Frameworks */,
 				FBD38C2C26DB832900E9365F /* FirebaseFirestoreSwift-Beta in Frameworks */,
@@ -272,6 +279,7 @@
 				FB8BF3BD26D92B9E0091CC58 /* Charts in Frameworks */,
 				FB41430E26DAA27E003C6468 /* FirebaseFirestore in Frameworks */,
 				FB41430C26DAA27E003C6468 /* FirebaseAuth in Frameworks */,
+				05325BB02785DC6C002BB836 /* TTRangeSlider in Frameworks */,
 				FBD38C3E26DBBD2900E9365F /* RxSwift in Frameworks */,
 				FBD38C0926DAB1EF00E9365F /* GoogleSignIn in Frameworks */,
 			);
@@ -294,6 +302,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05325B8B2785CB81002BB836 /* RangeItem */ = {
+			isa = PBXGroup;
+			children = (
+				05325B8D2785CBAB002BB836 /* AccountDetailRangeCellViewModel.swift */,
+				05325B8F2785CD47002BB836 /* AccountDetailRangeCell.swift */,
+			);
+			path = RangeItem;
+			sourceTree = "<group>";
+		};
+		05325B8C2785CB8B002BB836 /* SeletingItem */ = {
+			isa = PBXGroup;
+			children = (
+				FB5BF05D2704CD4C00E4F457 /* AccountDetailSelectingCellViewModel.swift */,
+				FB5BF05F2704CDF300E4F457 /* AccountDetailSelectingCell.swift */,
+				FB5BF0602704CDF300E4F457 /* AccountDetailSelectingCell.xib */,
+			);
+			path = SeletingItem;
+			sourceTree = "<group>";
+		};
 		FB1CEE97272ACD0D0004DEF9 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,9 +381,8 @@
 		FB5BF05C2704CD2400E4F457 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				FB5BF05D2704CD4C00E4F457 /* AccountDetailSelectingCellViewModel.swift */,
-				FB5BF05F2704CDF300E4F457 /* AccountDetailSelectingCell.swift */,
-				FB5BF0602704CDF300E4F457 /* AccountDetailSelectingCell.xib */,
+				05325B8C2785CB8B002BB836 /* SeletingItem */,
+				05325B8B2785CB81002BB836 /* RangeItem */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -777,6 +803,8 @@
 				FBD38C4826DBC4DD00E9365F /* RxDataSources */,
 				FBD38C4A26DBC4DD00E9365F /* Differentiator */,
 				FB6DD83126DBF7F700CAE900 /* FacebookLogin */,
+				05325B942785D0FE002BB836 /* SnapKit */,
+				05325BAF2785DC6C002BB836 /* TTRangeSlider */,
 			);
 			productName = AccountBook;
 			productReference = FB8BF37B26D67CDE0091CC58 /* AccountBook.app */;
@@ -856,6 +884,8 @@
 				FBD38C3C26DBBD2900E9365F /* XCRemoteSwiftPackageReference "RxSwift" */,
 				FBD38C4726DBC4DD00E9365F /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				FB6DD83026DBF7F700CAE900 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				05325B932785D0FE002BB836 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				05325BAE2785DC6C002BB836 /* XCRemoteSwiftPackageReference "TTRangeSlider" */,
 			);
 			productRefGroup = FB8BF37C26D67CDE0091CC58 /* Products */;
 			projectDirPath = "";
@@ -983,8 +1013,10 @@
 				FBC12ACF2703481E00EE698F /* AccountDetailDateCellViewModel.swift in Sources */,
 				FB8008312722E44100DDD815 /* ListInfoMultipleDatePickerCell.swift in Sources */,
 				FB4142F926DA97B2003C6468 /* ListViewController.swift in Sources */,
+				05325B8E2785CBAB002BB836 /* AccountDetailRangeCellViewModel.swift in Sources */,
 				FBC12AB22701D52C00EE698F /* AccountDetailViewModel.swift in Sources */,
 				FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */,
+				05325B912785CD47002BB836 /* AccountDetailRangeCell.swift in Sources */,
 				FBD38C3026DB867A00E9365F /* AccountDetailViewController.swift in Sources */,
 				FB4142FC26DA97BD003C6468 /* ListViewModel.swift in Sources */,
 				FB8BF3CE26DA763B0091CC58 /* BarChartViewModel.swift in Sources */,
@@ -1350,6 +1382,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		05325B932785D0FE002BB836 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		05325BAE2785DC6C002BB836 /* XCRemoteSwiftPackageReference "TTRangeSlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TomThorpe/TTRangeSlider.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		FB41430626DAA27E003C6468 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1401,6 +1449,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		05325B942785D0FE002BB836 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05325B932785D0FE002BB836 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		05325BAF2785DC6C002BB836 /* TTRangeSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05325BAE2785DC6C002BB836 /* XCRemoteSwiftPackageReference "TTRangeSlider" */;
+			productName = TTRangeSlider;
+		};
 		FB41430726DAA27E003C6468 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FB41430626DAA27E003C6468 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

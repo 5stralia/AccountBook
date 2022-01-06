@@ -23,8 +23,6 @@ final class ListFilterViewModel: ViewModel {
     let payerElements = BehaviorRelay<[String]>(value: [])
     let participantElements = BehaviorRelay<[String]>(value: [])
     
-    let didSetFilter = PublishRelay<Void>()
-    
     init(provider: ABProvider) {
         self.provider = provider
     }
@@ -33,7 +31,6 @@ final class ListFilterViewModel: ViewModel {
 extension ListFilterViewModel: ViewModelType {
     struct Input {
         let selection: Observable<AccountDetailSelectionCellViewModel>
-        let didSetFilter: Observable<Void>
     }
     struct Output {
         let items: BehaviorRelay<[AccountDetailSelectionCellViewModel]>
@@ -77,7 +74,8 @@ extension ListFilterViewModel: ViewModelType {
                     let detailSelectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
                                                                                    isCategory: true,
                                                                                    items: items,
-                                                                                   isAllowMultiSelection: false)
+                                                                                   isAllowMultiSelection: false,
+                                                                                   isRangeItem: true)
                     detailSelectingViewModel.selectedItems.compactMap { $0.first }
                     .subscribe(onNext: { self.amount.accept($0) })
                     .disposed(by: self.disposeBag)
@@ -88,7 +86,8 @@ extension ListFilterViewModel: ViewModelType {
                     let detailSelectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
                                                                                    isCategory: true,
                                                                                    items: items,
-                                                                                   isAllowMultiSelection: false)
+                                                                                   isAllowMultiSelection: false,
+                                                                                   isRangeItem: false)
                     detailSelectingViewModel.selectedItems.compactMap { $0.first }
                     .subscribe(onNext: { self.category.accept($0) })
                     .disposed(by: self.disposeBag)
@@ -99,7 +98,8 @@ extension ListFilterViewModel: ViewModelType {
                     let detailSelectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
                                                                                    isCategory: true,
                                                                                    items: items,
-                                                                                   isAllowMultiSelection: false)
+                                                                                   isAllowMultiSelection: false,
+                                                                                   isRangeItem: false)
                     detailSelectingViewModel.selectedItems.compactMap { $0.first }
                     .subscribe(onNext: { self.payer.accept($0) })
                     .disposed(by: self.disposeBag)
@@ -110,7 +110,8 @@ extension ListFilterViewModel: ViewModelType {
                     let detailSelectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
                                                                                    isCategory: true,
                                                                                    items: items,
-                                                                                   isAllowMultiSelection: true)
+                                                                                   isAllowMultiSelection: true,
+                                                                                   isRangeItem: false)
                     detailSelectingViewModel.selectedItems
                         .subscribe(onNext: { self.participants.accept($0.joined(separator: ",")) })
                     .disposed(by: self.disposeBag)
@@ -120,8 +121,6 @@ extension ListFilterViewModel: ViewModelType {
                     return .never()
                 }
             }
-        
-        input.didSetFilter.bind(to: self.didSetFilter).disposed(by: self.disposeBag)
         
         return Output(items: elements,
                       selectDetail: selectDetail.asObservable())

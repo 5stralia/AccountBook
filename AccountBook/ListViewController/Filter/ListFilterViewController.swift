@@ -28,16 +28,14 @@ class ListFilterViewController: ViewController {
     override func bind(to viewModel: ViewModel) {
         guard let viewModel = viewModel as? ListFilterViewModel else { return }
         
-        let tappedDone = self.navigationItem.rightBarButtonItem?.rx.tap.asObservable() ?? .never()
-        tappedDone
+        self.navigationItem.rightBarButtonItem?.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: self.disposeBag)
         
         let output = viewModel.transform(input: ListFilterViewModel.Input(
-            selection: self.tableView.rx.modelSelected(AccountDetailSelectionCellViewModel.self).asObservable(),
-            didSetFilter: tappedDone
+            selection: self.tableView.rx.modelSelected(AccountDetailSelectionCellViewModel.self).asObservable()
         ))
         
         output.items.bind(to: self.tableView.rx.items(

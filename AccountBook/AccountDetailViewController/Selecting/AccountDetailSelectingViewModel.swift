@@ -27,12 +27,19 @@ final class AccountDetailSelectingViewModel: ViewModel, ViewModelType {
     let selectedItems = BehaviorRelay<[String]>(value: [])
     
     let isAllowMultiSelection = BehaviorRelay<Bool>(value: false)
+    let isRangeItem: Bool
     
     func transform(input: Input) -> Output {
+        let initialItems: [AccountDetailSelectingSectionItem] = self.isRangeItem
+        ? [.rangeItem(viewModel: AccountDetailRangeCellViewModel<Int>(
+            min: self.items.compactMap { Int($0) }.min() ?? 0,
+            max: self.items.compactMap { Int($0) }.max() ?? 0
+        ))]
+        : self.items.map {
+                .titleItem(viewModel: AccountDetailSelectingCellViewModel(title: $0))
+            }
         let elements = BehaviorRelay<[AccountDetailSelectingSection]>(value: [
-            .selecting(title: "선택", items: self.items.map {
-                AccountDetailSelectingSectionItem.titleItem(viewModel: AccountDetailSelectingCellViewModel(title: $0))
-            })
+            .selecting(title: "선택", items: initialItems)
         ])
         
         input.selection
@@ -69,11 +76,13 @@ final class AccountDetailSelectingViewModel: ViewModel, ViewModelType {
                       popViewController: popViewController)
     }
     
-    init(provider: ABProvider, isCategory: Bool, items: [String], isAllowMultiSelection: Bool) {
+    init(provider: ABProvider, isCategory: Bool, items: [String], isAllowMultiSelection: Bool, isRangeItem: Bool) {
         self.provider = provider
         self.isCategory = isCategory
         self.items = items
         self.isAllowMultiSelection.accept(isAllowMultiSelection)
+        
+        self.isRangeItem = isRangeItem
         
         super.init()
     }
