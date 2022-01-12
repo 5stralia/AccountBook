@@ -11,6 +11,8 @@
 		05325B912785CD47002BB836 /* AccountDetailRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05325B8F2785CD47002BB836 /* AccountDetailRangeCell.swift */; };
 		05325B952785D0FE002BB836 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 05325B942785D0FE002BB836 /* SnapKit */; };
 		05325BB02785DC6C002BB836 /* TTRangeSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 05325BAF2785DC6C002BB836 /* TTRangeSlider */; };
+		05325BB327886BAD002BB836 /* ListFilterRangeItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05325BB227886BAD002BB836 /* ListFilterRangeItemViewModel.swift */; };
+		05325BB527886C01002BB836 /* ListFilterRangeItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05325BB427886C01002BB836 /* ListFilterRangeItemViewController.swift */; };
 		FB1CEE99272ACFE80004DEF9 /* ListFilterViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */; };
 		FB1CEE9C272AD0380004DEF9 /* ListFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */; };
 		FB1CEE9D272AD0380004DEF9 /* ListFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */; };
@@ -150,6 +152,8 @@
 /* Begin PBXFileReference section */
 		05325B8D2785CBAB002BB836 /* AccountDetailRangeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailRangeCellViewModel.swift; sourceTree = "<group>"; };
 		05325B8F2785CD47002BB836 /* AccountDetailRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailRangeCell.swift; sourceTree = "<group>"; };
+		05325BB227886BAD002BB836 /* ListFilterRangeItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterRangeItemViewModel.swift; sourceTree = "<group>"; };
+		05325BB427886C01002BB836 /* ListFilterRangeItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterRangeItemViewController.swift; sourceTree = "<group>"; };
 		FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewModel.swift.swift; sourceTree = "<group>"; };
 		FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewController.swift; sourceTree = "<group>"; };
 		FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFilterViewController.xib; sourceTree = "<group>"; };
@@ -321,9 +325,19 @@
 			path = SeletingItem;
 			sourceTree = "<group>";
 		};
+		05325BB127886B9A002BB836 /* RangeItem */ = {
+			isa = PBXGroup;
+			children = (
+				05325BB227886BAD002BB836 /* ListFilterRangeItemViewModel.swift */,
+				05325BB427886C01002BB836 /* ListFilterRangeItemViewController.swift */,
+			);
+			path = RangeItem;
+			sourceTree = "<group>";
+		};
 		FB1CEE97272ACD0D0004DEF9 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				05325BB127886B9A002BB836 /* RangeItem */,
 				FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */,
 				FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */,
 				FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */,
@@ -1009,6 +1023,7 @@
 				FB1CEE9C272AD0380004DEF9 /* ListFilterViewController.swift in Sources */,
 				FB5BF04B2704BBEB00E4F457 /* AccountDetailSelectingViewModel.swift in Sources */,
 				FB4142F226DA9716003C6468 /* ProfileViewController.swift in Sources */,
+				05325BB327886BAD002BB836 /* ListFilterRangeItemViewModel.swift in Sources */,
 				FBD38C4426DBC04E00E9365F /* ViewModel.swift in Sources */,
 				FBC12ACF2703481E00EE698F /* AccountDetailDateCellViewModel.swift in Sources */,
 				FB8008312722E44100DDD815 /* ListInfoMultipleDatePickerCell.swift in Sources */,
@@ -1038,6 +1053,7 @@
 				FB6ACFBB26E0D36800F3099F /* ViewController.swift in Sources */,
 				FB86871226F8CE02006E4FC5 /* ABProvider.swift in Sources */,
 				FB1CEE99272ACFE80004DEF9 /* ListFilterViewModel.swift.swift in Sources */,
+				05325BB527886C01002BB836 /* ListFilterRangeItemViewController.swift in Sources */,
 				FBC1C63F2725376000BFC1D2 /* Date+Day.swift in Sources */,
 				FB5BF0612704CDF300E4F457 /* AccountDetailSelectingCell.swift in Sources */,
 				FBA26E4226E5183E00969785 /* DatabaseError.swift in Sources */,

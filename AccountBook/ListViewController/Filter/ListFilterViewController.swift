@@ -47,10 +47,22 @@ class ListFilterViewController: ViewController {
         
         output.selectDetail.subscribe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] selectingViewModel in
-                let selectingViewController = AccountDetailSelectingViewController()
-                selectingViewController.viewModel = selectingViewModel
-                
-                self?.navigationController?.pushViewController(selectingViewController, animated: true)
+                switch selectingViewModel {
+                case let viewModel as AccountDetailSelectingViewModel:
+                    let selectingViewController = AccountDetailSelectingViewController()
+                    selectingViewController.viewModel = viewModel
+                    
+                    self?.navigationController?.pushViewController(selectingViewController, animated: true)
+                    
+                case let viewModel as ListFilterRangeItemViewModel:
+                    let rangeViewController = ListFilterRangeItemViewController()
+                    rangeViewController.viewModel = viewModel
+                    
+                    self?.navigationController?.pushViewController(rangeViewController, animated: true)
+                    
+                default:
+                    break
+                }
             })
             .disposed(by: self.disposeBag)
     }
