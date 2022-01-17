@@ -57,7 +57,9 @@ class ListFilterRangeItemViewController: ViewController {
     }()
     private let rangeSlider: TTRangeSlider = {
         let rangeSlider = TTRangeSlider()
-        rangeSlider.backgroundColor = .systemBackground
+        rangeSlider.backgroundColor = .clear
+        rangeSlider.step = 100
+        rangeSlider.enableStep = true
         
         return rangeSlider
     }()
@@ -71,7 +73,6 @@ class ListFilterRangeItemViewController: ViewController {
         self.stackView.snp.makeConstraints { make in
             make.edges.equalTo(self.view.safeAreaLayoutGuide)
         }
-        
         
         let ascView = UIView()
         ascView.addSubview(self.ascButton)
@@ -115,9 +116,15 @@ class ListFilterRangeItemViewController: ViewController {
             $0.height.equalTo(100)
         }
         
-        self.stackView.addArrangedSubview(self.rangeSlider)
-        self.rangeSlider.snp.makeConstraints { make in
-            make.height.equalTo(80)
+        let rangeContainer = UIView()
+        rangeContainer.backgroundColor = .systemBackground
+        rangeContainer.addSubview(self.rangeSlider)
+        self.rangeSlider.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
+        }
+        self.stackView.addArrangedSubview(rangeContainer)
+        rangeContainer.snp.makeConstraints {
+            $0.height.equalTo(80)
         }
         
         self.stackView.addArrangedSubview(UIView())
@@ -126,11 +133,26 @@ class ListFilterRangeItemViewController: ViewController {
     override func bind(to viewModel: ViewModel) {
         guard let viewModel = viewModel as? ListFilterRangeItemViewModel else { return }
         
-        let isASC = BehaviorRelay<Bool>(value: true)
-        self.ascButton.rx.tap.map { true }.bind(to: isASC).disposed(by: self.disposeBag)
-        self.descButton.rx.tap.map { false }.bind(to: isASC).disposed(by: self.disposeBag)
-        isASC.map(!).bind(to: self.ascCheckImageView.rx.isHidden).disposed(by: self.disposeBag)
-        isASC.bind(to: self.descCheckImageView.rx.isHidden).disposed(by: self.disposeBag)
+        let changeToASC = BehaviorRelay<Bool>(value: viewModel.isASC.value)
+        self.ascButton.rx.tap.map { true }.bind(to: changeToASC).disposed(by: self.disposeBag)
+        self.descButton.rx.tap.map { false }.bind(to: changeToASC).disposed(by: self.disposeBag)
         
+        let changeMin = PublishRelay<Int>()
+        let changeMax = PublishRelay<Int>()
+        
+        let output = viewModel.transform(input: ListFilterRangeItemViewModel.Input(
+            changeToASC: changeToASC.asObservable(),
+            changeMin: changeMin.asObservable(),
+            changeMax: changeMax.asObservable()))
+        
+        output.isASC.map(!).bind(to: self.ascCheckImageView.rx.isHidden).disposed(by: self.disposeBag)
+        output.isASC.bind(to: self.descCheckImageView.rx.isHidden).disposed(by: self.disposeBag)
+        self.rangeSlider.minValue = Float(output.initialMin)
+        self.rangeSlider.selectedMinimum = Float(output.initialMin)
+        self.rangeSlider.maxValue = Float(output.initialMax)
+        self.rangeSlider.selectedMaximum = Float(output.initialMax)
+        
+        self.rangeSlider.rx.min.compactMap { Int($0) }.bind(to: changeMin).disposed(by: self.disposeBag)
+        self.rangeSlider.rx.max.compactMap { Int($0) }.bind(to: changeMax).disposed(by: self.disposeBag)
     }
 }

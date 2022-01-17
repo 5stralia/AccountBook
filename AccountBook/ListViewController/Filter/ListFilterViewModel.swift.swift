@@ -82,7 +82,7 @@ extension ListFilterViewModel: ViewModelType {
 //                    
 //                    return .just(detailSelectingViewModel)
                     
-                    let rangeViewModel = ListFilterRangeItemViewModel()
+                    let rangeViewModel = ListFilterRangeItemViewModel(isASC: true, range: (min: 0, max: 100000))
                     return .just(rangeViewModel)
                 case "카테고리":
                     let items = ["없음"] + filters.categories

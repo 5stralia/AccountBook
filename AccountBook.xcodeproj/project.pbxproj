@@ -13,6 +13,7 @@
 		05325BB02785DC6C002BB836 /* TTRangeSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 05325BAF2785DC6C002BB836 /* TTRangeSlider */; };
 		05325BB327886BAD002BB836 /* ListFilterRangeItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05325BB227886BAD002BB836 /* ListFilterRangeItemViewModel.swift */; };
 		05325BB527886C01002BB836 /* ListFilterRangeItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05325BB427886C01002BB836 /* ListFilterRangeItemViewController.swift */; };
+		0579E3F227959CF80010A585 /* TTRangeSlider+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579E3F127959CF80010A585 /* TTRangeSlider+Rx.swift */; };
 		FB1CEE99272ACFE80004DEF9 /* ListFilterViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */; };
 		FB1CEE9C272AD0380004DEF9 /* ListFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */; };
 		FB1CEE9D272AD0380004DEF9 /* ListFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */; };
@@ -154,6 +155,7 @@
 		05325B8F2785CD47002BB836 /* AccountDetailRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailRangeCell.swift; sourceTree = "<group>"; };
 		05325BB227886BAD002BB836 /* ListFilterRangeItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterRangeItemViewModel.swift; sourceTree = "<group>"; };
 		05325BB427886C01002BB836 /* ListFilterRangeItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterRangeItemViewController.swift; sourceTree = "<group>"; };
+		0579E3F127959CF80010A585 /* TTRangeSlider+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TTRangeSlider+Rx.swift"; sourceTree = "<group>"; };
 		FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewModel.swift.swift; sourceTree = "<group>"; };
 		FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewController.swift; sourceTree = "<group>"; };
 		FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFilterViewController.xib; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 				FBA26E3D26E4FB4600969785 /* UIViewController+Rx.swift */,
 				FBA26E4D26E62D5500969785 /* Int+Format.swift */,
 				FBC1C63E2725376000BFC1D2 /* Date+Day.swift */,
+				0579E3F127959CF80010A585 /* TTRangeSlider+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1029,6 +1032,7 @@
 				FB8008312722E44100DDD815 /* ListInfoMultipleDatePickerCell.swift in Sources */,
 				FB4142F926DA97B2003C6468 /* ListViewController.swift in Sources */,
 				05325B8E2785CBAB002BB836 /* AccountDetailRangeCellViewModel.swift in Sources */,
+				0579E3F227959CF80010A585 /* TTRangeSlider+Rx.swift in Sources */,
 				FBC12AB22701D52C00EE698F /* AccountDetailViewModel.swift in Sources */,
 				FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */,
 				05325B912785CD47002BB836 /* AccountDetailRangeCell.swift in Sources */,
