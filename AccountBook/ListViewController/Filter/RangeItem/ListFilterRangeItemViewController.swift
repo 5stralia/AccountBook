@@ -147,10 +147,10 @@ class ListFilterRangeItemViewController: ViewController {
         
         output.isASC.map(!).bind(to: self.ascCheckImageView.rx.isHidden).disposed(by: self.disposeBag)
         output.isASC.bind(to: self.descCheckImageView.rx.isHidden).disposed(by: self.disposeBag)
-        self.rangeSlider.minValue = Float(output.initialMin)
-        self.rangeSlider.selectedMinimum = Float(output.initialMin)
-        self.rangeSlider.maxValue = Float(output.initialMax)
-        self.rangeSlider.selectedMaximum = Float(output.initialMax)
+        self.rangeSlider.minValue = Float(output.min)
+        self.rangeSlider.selectedMinimum = Float(output.initialSelectedMin)
+        self.rangeSlider.maxValue = Float(output.max)
+        self.rangeSlider.selectedMaximum = Float(output.initialSelectedMax)
         
         self.rangeSlider.rx.min.compactMap { Int($0) }.bind(to: changeMin).disposed(by: self.disposeBag)
         self.rangeSlider.rx.max.compactMap { Int($0) }.bind(to: changeMax).disposed(by: self.disposeBag)

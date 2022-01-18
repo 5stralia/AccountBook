@@ -48,7 +48,7 @@ class ListViewModel: ViewModel, ViewModelType {
         
         let filterViewModel = ListFilterViewModel(provider: self.provider)
         // TODO: 실제 데이터에 맞춰 필터 구성
-        filterViewModel.amountElements.accept([0, 10, 100, 1000, 10000])
+        filterViewModel.amountRangeElement.accept((isASC: true, min: 0, max: 10000000))
         filterViewModel.categoryElements.accept(["cate1", "cate2", "cate3"])
         filterViewModel.payerElements.accept(["결제자1", "결제자2", "결제자3"])
         filterViewModel.participantElements.accept(["참여자1", "참여자2", "참여자3"])

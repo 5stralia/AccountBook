@@ -19,11 +19,12 @@ final class ListFilterViewModel: ViewModel {
     let payer = BehaviorRelay<String?>(value: nil)
     let participants = BehaviorRelay<[String]>(value: [])
     
-    let amountElements = BehaviorRelay<[Int]>(value: [])
-//    let amountRangeElement =
+    let amountRangeElement = BehaviorRelay<(isASC: Bool, min: Int, max: Int)>(value: (true, 0, 1000000000))
     let categoryElements = BehaviorRelay<[String]>(value: [])
     let payerElements = BehaviorRelay<[String]>(value: [])
     let participantElements = BehaviorRelay<[String]>(value: [])
+    
+    var cellDisposeBag = DisposeBag()
     
     init(provider: ABProvider) {
         self.provider = provider
@@ -67,22 +68,38 @@ extension ListFilterViewModel: ViewModelType {
             .bind(to: elements)
             .disposed(by: self.disposeBag)
         
-        let filterElements = BehaviorRelay.combineLatest(self.amountElements,
+        let filterElements = BehaviorRelay.combineLatest(self.amountRange,
+                                                         self.amountRangeElement,
                                                          self.categoryElements,
                                                          self.payerElements,
                                                          self.participantElements)
-        { amounts, categories, payers, participants in
-            return (amounts: amounts, categories: categories, payers: payers, participants: participants)
+        { selectedAmountRange, amountRange, categories, payers, participants in
+            return (selectedAmountRange: selectedAmountRange,
+                    amountRange: amountRange,
+                    categories: categories,
+                    payers: payers,
+                    participants: participants)
         }
         let selectDetail = input.selection
             .withLatestFrom(filterElements) { ($0, $1) }
             .flatMap
         { [weak self] (selection, filters) -> Observable<ViewModel> in
                 guard let self = self else { return .never() }
+                self.cellDisposeBag = DisposeBag()
                 
                 switch selection.title.value {
                 case "금액":
-                    let rangeViewModel = ListFilterRangeItemViewModel(isASC: true, range: (min: 0, max: 100000))
+                    let amountRange = filters.amountRange
+                    let selectedAmountRange = filters.selectedAmountRange ?? (min: amountRange.min,
+                                                                              max: amountRange.max)
+                    let rangeViewModel = ListFilterRangeItemViewModel(isASC: true,
+                                                                      selectedRange: (min: selectedAmountRange.min,
+                                                                                      max: selectedAmountRange.max),
+                                                                      range: (min: amountRange.min,
+                                                                              max: amountRange.max))
+                    rangeViewModel.isASC.bind(to: self.isAmountASC).disposed(by: self.cellDisposeBag)
+                    rangeViewModel.selectedRange.bind(to: self.amountRange).disposed(by: self.cellDisposeBag)
+                    
                     return .just(rangeViewModel)
                 case "카테고리":
                     let items = ["없음"] + filters.categories
