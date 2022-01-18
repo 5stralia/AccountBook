@@ -64,38 +64,30 @@ class ListViewModel: ViewModel, ViewModelType {
             .disposed(by: self.disposeBag)
         
         let accountElements = Observable.combineLatest(accounts.asObservable(),
-                                                       filterViewModel.amount.asObservable(),
+                                                       filterViewModel.amountRange.asObservable(),
                                                        filterViewModel.category.asObservable(),
                                                        filterViewModel.payer.asObservable(),
                                                        filterViewModel.participants.asObservable())
-        { accounts, amount, category, payer, participants -> [AccountDocumentModel] in
+        { accounts, amountRange, category, payer, participants -> [AccountDocumentModel] in
             var accounts = accounts
             
-            if let amount = Int(amount) {
-                accounts = accounts.filter { $0.amount == amount }
+            if let (min, max) = amountRange {
+                accounts = accounts
+                    .filter { $0.amount >= min }
+                    .filter { $0.amount <= max }
             }
             
-            if category != "없음" {
+            if let category = category {
                 accounts = accounts.filter { $0.category == category }
             }
             
-            if payer != "없음" {
+            if let payer = payer {
                 accounts = accounts.filter { $0.payer == payer }
             }
             
-            if participants != "없음" {
-                let participants = participants.split(separator: ",")
-                if !participants.isEmpty {
-                    accounts = accounts.filter {
-                        for p in participants {
-                            if !$0.participants.contains(String(p)) {
-                                return false
-                            }
-                        }
-                        
-                        return true
-                    }
-                    
+            if !participants.isEmpty {
+                accounts = accounts.filter { account in
+                    return participants.reduce(true, { $0 && account.participants.contains($1)})
                 }
             }
             
