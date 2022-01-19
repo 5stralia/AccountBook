@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +11,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PieChartViewController" customModule="AccountBook" customModuleProvider="target">
             <connections>
+                <outlet property="innerAmountLabel" destination="MEK-yk-5On" id="ZSi-1I-aay"/>
+                <outlet property="innerProgressBar" destination="3o4-oS-YUA" id="mo4-wl-dAK"/>
+                <outlet property="innerProgressBarWidthConstraint" destination="npC-Ae-ObE" id="rWt-k6-zCT"/>
+                <outlet property="outterAmountLabel" destination="H0z-6n-G5g" id="c3X-wF-7sy"/>
+                <outlet property="outterProgressBar" destination="HeR-BY-EKl" id="zJv-PR-Jic"/>
                 <outlet property="pieChartView" destination="FYk-DR-x5V" id="ypD-xD-KH3"/>
+                <outlet property="totalAmountLabel" destination="dq2-Q8-cKd" id="q6G-Kd-RNC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -92,7 +98,7 @@
                             <color key="textColor" systemColor="systemRedColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,279,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEK-yk-5On">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="1,279,000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEK-yk-5On">
                             <rect key="frame" x="44.5" y="27" width="55.5" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" systemColor="systemGrayColor"/>
@@ -115,7 +121,7 @@
                         <constraint firstAttribute="bottom" secondItem="MEK-yk-5On" secondAttribute="bottom" id="ffj-Cy-Sy2"/>
                         <constraint firstItem="MEK-yk-5On" firstAttribute="top" secondItem="HeR-BY-EKl" secondAttribute="bottom" constant="2" id="h3d-DH-6v1"/>
                         <constraint firstAttribute="trailing" secondItem="dq2-Q8-cKd" secondAttribute="trailing" id="jlS-uM-N66"/>
-                        <constraint firstItem="MEK-yk-5On" firstAttribute="trailing" secondItem="3o4-oS-YUA" secondAttribute="trailing" id="ooj-Oe-Bn6"/>
+                        <constraint firstItem="MEK-yk-5On" firstAttribute="trailing" secondItem="3o4-oS-YUA" secondAttribute="trailing" priority="900" id="ooj-Oe-Bn6"/>
                         <constraint firstItem="H0z-6n-G5g" firstAttribute="trailing" secondItem="HeR-BY-EKl" secondAttribute="trailing" id="ydx-xo-Llh"/>
                     </constraints>
                 </view>

@@ -6,10 +6,74 @@
 //
 
 import UIKit
+
 import Charts
+import RxCocoa
+import RxSwift
 
 class PieChartViewController: ViewController {
     @IBOutlet weak var pieChartView: PieChartView!
+    @IBOutlet weak var outterProgressBar: UIView!
+    @IBOutlet weak var innerProgressBar: UIView!
+    @IBOutlet weak var totalAmountLabel: UILabel!
+    @IBOutlet weak var outterAmountLabel: UILabel!
+    @IBOutlet weak var innerAmountLabel: UILabel!
+    
+    @IBOutlet weak var innerProgressBarWidthConstraint: NSLayoutConstraint!
+    
+    override func bind(to viewModel: ViewModel) {
+        guard let viewModel = viewModel as? PieChartViewModel else { return }
+        
+        let output = viewModel.transform(input: PieChartViewModel.Input())
+        
+        output.items.asDriver()
+            .drive(onNext: {
+                let dataSet = PieChartDataSet(entries: $0)
+                dataSet.colors = ChartColorTemplates.pastel()
+                dataSet.sliceSpace = 2
+                dataSet.valueFormatter = PercentageFormatter()
+                dataSet.xValuePosition = .outsideSlice
+                dataSet.yValuePosition = .outsideSlice
+                dataSet.valueTextColor = .black
+                
+                let data = PieChartData(dataSet: dataSet)
+                
+                self.pieChartView.data = data
+                
+                self.pieChartView.notifyDataSetChanged()
+            })
+            .disposed(by: self.disposeBag)
+        
+        output.progress
+            .subscribe(on: MainScheduler.instance)
+            .subscribe(onNext: { (isOverIncome, income, expenditure) in
+                if isOverIncome {
+                    self.innerProgressBar.backgroundColor = .red
+                    self.innerAmountLabel.text = expenditure.priceString()
+                    
+                    self.outterProgressBar.backgroundColor = .blue
+                    self.outterAmountLabel.text = income.priceString()
+                    
+                    self.totalAmountLabel.textColor = .blue
+                    
+                    self.innerProgressBarWidthConstraint.constant = (CGFloat(expenditure) / CGFloat(income)) * self.outterProgressBar.bounds.width
+                } else {
+                    self.innerProgressBar.backgroundColor = .blue
+                    self.innerAmountLabel.text = income.priceString()
+                    
+                    self.outterProgressBar.backgroundColor = .red
+                    self.outterAmountLabel.text = expenditure.priceString()
+                    
+                    self.totalAmountLabel.textColor = .red
+                    
+                    self.innerProgressBarWidthConstraint.constant = (CGFloat(income) / CGFloat(expenditure)) * self.outterProgressBar.bounds.width
+                }
+                
+                let totalAmount = income - expenditure
+                self.totalAmountLabel.text = totalAmount.priceString()
+            })
+            .disposed(by: self.disposeBag)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,36 +82,6 @@ class PieChartViewController: ViewController {
         self.pieChartView.legend.enabled = false
         self.pieChartView.highlightPerTapEnabled = false
         self.pieChartView.setExtraOffsets(left: 10, top: 10, right: 10, bottom: 10)
-        
-        self.updatePieChart()
-    }
-    
-    private func updatePieChart() {
-        let entries = [
-            PieChartDataEntry(value: 40, label: "#1"),
-            PieChartDataEntry(value: 30, label: "#2"),
-            PieChartDataEntry(value: 20, label: "#3"),
-            PieChartDataEntry(value: 5, label: "#4"),
-            PieChartDataEntry(value: 1, label: "#5"),
-            PieChartDataEntry(value: 1, label: "#6"),
-            PieChartDataEntry(value: 1, label: "#7"),
-            PieChartDataEntry(value: 1, label: "#8"),
-            PieChartDataEntry(value: 1, label: "#9")
-        ]
-        
-        let dataSet = PieChartDataSet(entries: entries)
-        dataSet.colors = ChartColorTemplates.pastel()
-        dataSet.sliceSpace = 2
-        dataSet.valueFormatter = PercentageFormatter()
-        dataSet.xValuePosition = .outsideSlice
-        dataSet.yValuePosition = .outsideSlice
-        dataSet.valueTextColor = .black
-        
-        let data = PieChartData(dataSet: dataSet)
-        
-        self.pieChartView.data = data
-        
-        self.pieChartView.notifyDataSetChanged()
     }
 
 }

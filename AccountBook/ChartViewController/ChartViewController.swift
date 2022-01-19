@@ -20,6 +20,48 @@ class ChartViewController: ViewController {
         }
     }
     
+    override func bind(to viewModel: ViewModel) {
+        guard let viewModel = viewModel as? ChartViewModel else { return }
+        
+        let output = viewModel.transform(input: ChartViewModel.Input())
+        
+        output.items.asDriver()
+            .drive(onNext: { [weak self] subViews in
+                guard let self = self else { return }
+                
+                var viewControllers: [ViewController] = []
+                
+                for subView in subViews {
+                    switch subView {
+                    case .pie(let viewModel):
+                        let pieChartViewController = PieChartViewController()
+                        pieChartViewController.viewModel = viewModel
+                        
+                        viewControllers.append(pieChartViewController)
+                        
+                    case .bar(let viewModel):
+                        let barChartViewController = BarChartViewController()
+                        barChartViewController.viewModel = viewModel
+                        
+                        viewControllers.append(barChartViewController)
+                        
+                    case .monthly(let viewModel):
+                        let monthlyChartViewController = MonthlyChartViewController()
+                        monthlyChartViewController.viewModel = viewModel
+                        
+                        viewControllers.append(monthlyChartViewController)
+                    }
+                }
+                
+                self.viewControllers = viewControllers
+                
+                self.pageViewController.setViewControllers([self.viewControllers.first!],
+                                                           direction: .forward,
+                                                           animated: false)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,20 +71,8 @@ class ChartViewController: ViewController {
         
         self.pageViewController.dataSource = self
         self.pageViewController.delegate = self
-        
-        self.fooPageViewController()
     }
 
-    func fooPageViewController() {
-        let viewControllers: [UIViewController] = [PieChartViewController(), BarChartViewController(), MonthlyChartViewController()]
-        
-        self.viewControllers = viewControllers
-        
-        self.pageViewController.setViewControllers([self.viewControllers.first!],
-                                                   direction: .forward,
-                                                   animated: false)
-        
-    }
 }
 
 extension ChartViewController: UIPageViewControllerDataSource {
