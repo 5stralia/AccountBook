@@ -47,13 +47,9 @@ class ListViewModel: ViewModel, ViewModelType {
         let endDate = BehaviorRelay<Date>(value: date.lastDay())
         
         let filterViewModel = ListFilterViewModel(provider: self.provider)
-        // TODO: 실제 데이터에 맞춰 필터 구성
-        filterViewModel.amountRangeElement.accept((isASC: true, min: 0, max: 10000000))
-        filterViewModel.categoryElements.accept(["cate1", "cate2", "cate3"])
-        filterViewModel.payerElements.accept(["결제자1", "결제자2", "결제자3"])
-        filterViewModel.participantElements.accept(["참여자1", "참여자2", "참여자3"])
         
         let accounts = BehaviorRelay<[AccountDocumentModel]>(value: [])
+        let accountsObservable = accounts.share()
         
         Observable.combineLatest(startDate.asObservable(), endDate.asObservable())
             .flatMapLatest { [weak self] start, end -> Single<[AccountDocumentModel]> in
@@ -61,6 +57,26 @@ class ListViewModel: ViewModel, ViewModelType {
                 return self.provider.requestAccounts(startDate: start, endDate: end)
             }
             .bind(to: accounts)
+            .disposed(by: self.disposeBag)
+        
+        accountsObservable
+            .map {
+                let amounts = $0.map { $0.amount }
+                return (min: amounts.min() ?? 0, max: amounts.max() ?? 1000000000)
+            }
+            .bind(to: filterViewModel.amountRangeElement)
+            .disposed(by: self.disposeBag)
+        
+        accountsObservable
+            .map {
+                $0.map { $0.category }.reduce([], { $0.contains($1) ? $0 : $0 + [$1] })
+            }
+            .bind(to: filterViewModel.categoryElements)
+            .disposed(by: self.disposeBag)
+        
+        self.provider.group.members
+            .map { members in members.map { $0.name } }
+            .bind(to: filterViewModel.participantElements, filterViewModel.payerElements)
             .disposed(by: self.disposeBag)
         
         let accountElements = Observable.combineLatest(accounts.asObservable(),

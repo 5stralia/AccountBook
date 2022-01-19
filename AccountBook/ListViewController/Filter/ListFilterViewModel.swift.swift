@@ -19,7 +19,7 @@ final class ListFilterViewModel: ViewModel {
     let payer = BehaviorRelay<String?>(value: nil)
     let participants = BehaviorRelay<[String]>(value: [])
     
-    let amountRangeElement = BehaviorRelay<(isASC: Bool, min: Int, max: Int)>(value: (true, 0, 1000000000))
+    let amountRangeElement = BehaviorRelay<(min: Int, max: Int)>(value: (0, 1000000000))
     let categoryElements = BehaviorRelay<[String]>(value: [])
     let payerElements = BehaviorRelay<[String]>(value: [])
     let participantElements = BehaviorRelay<[String]>(value: [])
