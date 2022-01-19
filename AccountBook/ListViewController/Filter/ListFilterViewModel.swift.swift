@@ -128,7 +128,7 @@ extension ListFilterViewModel: ViewModelType {
                     
                     return .just(detailSelectingViewModel)
                 case "참여":
-                    let items = ["없음"] + filters.participants
+                    let items = filters.participants
                     let detailSelectingViewModel = AccountDetailSelectingViewModel(provider: self.provider,
                                                                                    isCategory: true,
                                                                                    items: items,
