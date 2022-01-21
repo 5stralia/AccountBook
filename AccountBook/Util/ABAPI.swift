@@ -141,12 +141,18 @@ final class ABAPI {
         }
     }
     
-    func requestAccounts(gid: String, startDate: Date, endDate: Date) -> Single<[AccountDocumentModel]> {
+    func requestAccounts(gid: String, startDate: Date? = nil, endDate: Date? = nil) -> Single<[AccountDocumentModel]> {
         return Single.create { single in
             let docRef = self.db.collection("groups").document(gid)
-            docRef.collection("accounts")
-                .whereField("date", isGreaterThan: startDate)
-                .whereField("date", isLessThan: endDate)
+            let ref = docRef.collection("accounts")
+            var query: Query?
+            if let startDate = startDate {
+                query = ref.whereField("date", isGreaterThan: startDate)
+            }
+            if let endDate = endDate {
+                query = (query ?? ref).whereField("date", isLessThan: endDate)
+            }
+            (query ?? ref)
                 .order(by: "date")
                 .getDocuments() { querySnapshot, error in
                     if let error = error {
