@@ -39,17 +39,17 @@ class ChartViewController: ViewController {
                         
                         viewControllers.append(pieChartViewController)
                         
-                    case .bar(let viewModel):
-                        let barChartViewController = BarChartViewController()
-                        barChartViewController.viewModel = viewModel
-                        
-                        viewControllers.append(barChartViewController)
-                        
                     case .monthly(let viewModel):
                         let monthlyChartViewController = MonthlyChartViewController()
                         monthlyChartViewController.viewModel = viewModel
                         
                         viewControllers.append(monthlyChartViewController)
+                        
+                    case .adjustment(let viewModel):
+                        let adjustmentChartViewController = AdjustmentChartViewController()
+                        adjustmentChartViewController.viewModel = viewModel
+                        
+                        viewControllers.append(adjustmentChartViewController)
                     }
                 }
                 

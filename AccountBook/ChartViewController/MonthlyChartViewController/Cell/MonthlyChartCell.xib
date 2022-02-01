@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,24 +35,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="77" height="244"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0UV-Wh-oHP">
-                                <rect key="frame" x="0.0" y="94" width="77" height="150"/>
+                                <rect key="frame" x="0.0" y="79.5" width="77" height="164.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?원" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDb-Yr-528">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?원" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="CDb-Yr-528">
                                         <rect key="frame" x="0.0" y="0.0" width="77" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIH-vB-7Fp">
-                                        <rect key="frame" x="0.0" y="14.5" width="77" height="135.5"/>
+                                        <rect key="frame" x="0.0" y="14.5" width="77" height="150"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="zyi-vw-HBB"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="CDb-Yr-528" firstAttribute="top" secondItem="0UV-Wh-oHP" secondAttribute="top" id="ASW-Vf-rZn"/>
                                     <constraint firstAttribute="trailing" secondItem="UIH-vB-7Fp" secondAttribute="trailing" id="G5P-tL-Kp0"/>
-                                    <constraint firstAttribute="height" constant="150" id="HmS-d5-bjl"/>
                                     <constraint firstItem="CDb-Yr-528" firstAttribute="leading" secondItem="0UV-Wh-oHP" secondAttribute="leading" id="Knp-KL-47q"/>
                                     <constraint firstItem="UIH-vB-7Fp" firstAttribute="top" secondItem="CDb-Yr-528" secondAttribute="bottom" id="Mi8-9k-C7H"/>
                                     <constraint firstAttribute="trailing" secondItem="CDb-Yr-528" secondAttribute="trailing" id="gvD-p1-TpR"/>
@@ -87,7 +89,7 @@
             <connections>
                 <outlet property="amountLabel" destination="CDb-Yr-528" id="QUQ-dg-ZZH"/>
                 <outlet property="barBackgroundView" destination="xrd-Se-ks6" id="bh5-H7-Rik"/>
-                <outlet property="barHeightConstraint" destination="HmS-d5-bjl" id="zsB-zk-nGb"/>
+                <outlet property="barHeightConstraint" destination="zyi-vw-HBB" id="afj-0J-uke"/>
                 <outlet property="monthLabel" destination="SCj-rn-9fq" id="Zqu-Ke-hCA"/>
             </connections>
             <point key="canvasLocation" x="-42.753623188405797" y="145.98214285714286"/>

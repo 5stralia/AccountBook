@@ -14,6 +14,12 @@
 		05325BB327886BAD002BB836 /* ListFilterRangeItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05325BB227886BAD002BB836 /* ListFilterRangeItemViewModel.swift */; };
 		05325BB527886C01002BB836 /* ListFilterRangeItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05325BB427886C01002BB836 /* ListFilterRangeItemViewController.swift */; };
 		0579E3F227959CF80010A585 /* TTRangeSlider+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579E3F127959CF80010A585 /* TTRangeSlider+Rx.swift */; };
+		0579E3F5279C4D470010A585 /* AdjustmentChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579E3F4279C4D470010A585 /* AdjustmentChartViewModel.swift */; };
+		0579E3F7279C4D890010A585 /* AdjustmentChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579E3F6279C4D890010A585 /* AdjustmentChartViewController.swift */; };
+		0579E3FA279C52730010A585 /* AdjustmentChartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579E3F9279C52730010A585 /* AdjustmentChartCellViewModel.swift */; };
+		0579E3FC279C52900010A585 /* AdjustmentChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579E3FB279C52900010A585 /* AdjustmentChartCell.swift */; };
+		0579E3FE27A4E92B0010A585 /* UICollectionViewCell+cellIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579E3FD27A4E92B0010A585 /* UICollectionViewCell+cellIdentifier.swift */; };
+		0579E40027A4EB7E0010A585 /* UITableViewCell+cellIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579E3FF27A4EB7E0010A585 /* UITableViewCell+cellIdentifier.swift */; };
 		FB1CEE99272ACFE80004DEF9 /* ListFilterViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */; };
 		FB1CEE9C272AD0380004DEF9 /* ListFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */; };
 		FB1CEE9D272AD0380004DEF9 /* ListFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */; };
@@ -72,9 +78,6 @@
 		FB8BF3C226D92D430091CC58 /* PieChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF3C026D92D430091CC58 /* PieChartViewController.xib */; };
 		FB8BF3C426D92D710091CC58 /* PieChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3C326D92D710091CC58 /* PieChartViewModel.swift */; };
 		FB8BF3C726D931530091CC58 /* UIView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3C626D931530091CC58 /* UIView+Design.swift */; };
-		FB8BF3CB26DA76140091CC58 /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3C926DA76140091CC58 /* BarChartViewController.swift */; };
-		FB8BF3CC26DA76140091CC58 /* BarChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF3CA26DA76140091CC58 /* BarChartViewController.xib */; };
-		FB8BF3CE26DA763B0091CC58 /* BarChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3CD26DA763B0091CC58 /* BarChartViewModel.swift */; };
 		FB8BF3D226DA79F80091CC58 /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3D026DA79F80091CC58 /* BarChartCell.swift */; };
 		FB8BF3D326DA79F80091CC58 /* BarChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8BF3D126DA79F80091CC58 /* BarChartCell.xib */; };
 		FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BF3D426DA7A180091CC58 /* BarChartCellViewModel.swift */; };
@@ -156,6 +159,12 @@
 		05325BB227886BAD002BB836 /* ListFilterRangeItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterRangeItemViewModel.swift; sourceTree = "<group>"; };
 		05325BB427886C01002BB836 /* ListFilterRangeItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterRangeItemViewController.swift; sourceTree = "<group>"; };
 		0579E3F127959CF80010A585 /* TTRangeSlider+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TTRangeSlider+Rx.swift"; sourceTree = "<group>"; };
+		0579E3F4279C4D470010A585 /* AdjustmentChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustmentChartViewModel.swift; sourceTree = "<group>"; };
+		0579E3F6279C4D890010A585 /* AdjustmentChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustmentChartViewController.swift; sourceTree = "<group>"; };
+		0579E3F9279C52730010A585 /* AdjustmentChartCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustmentChartCellViewModel.swift; sourceTree = "<group>"; };
+		0579E3FB279C52900010A585 /* AdjustmentChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustmentChartCell.swift; sourceTree = "<group>"; };
+		0579E3FD27A4E92B0010A585 /* UICollectionViewCell+cellIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+cellIdentifier.swift"; sourceTree = "<group>"; };
+		0579E3FF27A4EB7E0010A585 /* UITableViewCell+cellIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+cellIdentifier.swift"; sourceTree = "<group>"; };
 		FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewModel.swift.swift; sourceTree = "<group>"; };
 		FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewController.swift; sourceTree = "<group>"; };
 		FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFilterViewController.xib; sourceTree = "<group>"; };
@@ -214,9 +223,6 @@
 		FB8BF3C026D92D430091CC58 /* PieChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartViewController.xib; sourceTree = "<group>"; };
 		FB8BF3C326D92D710091CC58 /* PieChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewModel.swift; sourceTree = "<group>"; };
 		FB8BF3C626D931530091CC58 /* UIView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Design.swift"; sourceTree = "<group>"; };
-		FB8BF3C926DA76140091CC58 /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
-		FB8BF3CA26DA76140091CC58 /* BarChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarChartViewController.xib; sourceTree = "<group>"; };
-		FB8BF3CD26DA763B0091CC58 /* BarChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewModel.swift; sourceTree = "<group>"; };
 		FB8BF3D026DA79F80091CC58 /* BarChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
 		FB8BF3D126DA79F80091CC58 /* BarChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarChartCell.xib; sourceTree = "<group>"; };
 		FB8BF3D426DA7A180091CC58 /* BarChartCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartCellViewModel.swift; sourceTree = "<group>"; };
@@ -334,6 +340,25 @@
 				05325BB427886C01002BB836 /* ListFilterRangeItemViewController.swift */,
 			);
 			path = RangeItem;
+			sourceTree = "<group>";
+		};
+		0579E3F3279C4CB70010A585 /* AdjustmentChartViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0579E3F8279C52550010A585 /* Cell */,
+				0579E3F4279C4D470010A585 /* AdjustmentChartViewModel.swift */,
+				0579E3F6279C4D890010A585 /* AdjustmentChartViewController.swift */,
+			);
+			path = AdjustmentChartViewController;
+			sourceTree = "<group>";
+		};
+		0579E3F8279C52550010A585 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0579E3F9279C52730010A585 /* AdjustmentChartCellViewModel.swift */,
+				0579E3FB279C52900010A585 /* AdjustmentChartCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		FB1CEE97272ACD0D0004DEF9 /* Filter */ = {
@@ -555,8 +580,8 @@
 		FB8BF3B426D6855F0091CC58 /* ChartViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0579E3F3279C4CB70010A585 /* AdjustmentChartViewController */,
 				FB8BF3D626DA7E7C0091CC58 /* MonthlyChartViewController */,
-				FB8BF3C826DA75F30091CC58 /* BarChartViewController */,
 				FB8BF3BE26D92D2C0091CC58 /* PieChartViewController */,
 				FB8BF3B926D696740091CC58 /* ChartViewModel.swift */,
 				FB8BF3B526D685710091CC58 /* ChartViewController.swift */,
@@ -568,6 +593,7 @@
 		FB8BF3BE26D92D2C0091CC58 /* PieChartViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FB8BF3CF26DA78DF0091CC58 /* Cell */,
 				FB8BF3C326D92D710091CC58 /* PieChartViewModel.swift */,
 				FB8BF3BF26D92D430091CC58 /* PieChartViewController.swift */,
 				FB8BF3C026D92D430091CC58 /* PieChartViewController.xib */,
@@ -583,19 +609,10 @@
 				FBA26E4D26E62D5500969785 /* Int+Format.swift */,
 				FBC1C63E2725376000BFC1D2 /* Date+Day.swift */,
 				0579E3F127959CF80010A585 /* TTRangeSlider+Rx.swift */,
+				0579E3FD27A4E92B0010A585 /* UICollectionViewCell+cellIdentifier.swift */,
+				0579E3FF27A4EB7E0010A585 /* UITableViewCell+cellIdentifier.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		FB8BF3C826DA75F30091CC58 /* BarChartViewController */ = {
-			isa = PBXGroup;
-			children = (
-				FB8BF3CF26DA78DF0091CC58 /* Cell */,
-				FB8BF3CD26DA763B0091CC58 /* BarChartViewModel.swift */,
-				FB8BF3C926DA76140091CC58 /* BarChartViewController.swift */,
-				FB8BF3CA26DA76140091CC58 /* BarChartViewController.xib */,
-			);
-			path = BarChartViewController;
 			sourceTree = "<group>";
 		};
 		FB8BF3CF26DA78DF0091CC58 /* Cell */ = {
@@ -937,7 +954,6 @@
 				FB41430526DA9C79003C6468 /* GoogleService-Info.plist in Resources */,
 				FB8BF3B826D685710091CC58 /* ChartViewController.xib in Resources */,
 				FB6ACFAE26DD160E00F3099F /* IntroCreatingGroupViewController.xib in Resources */,
-				FB8BF3CC26DA76140091CC58 /* BarChartViewController.xib in Resources */,
 				FB8BF3C226D92D430091CC58 /* PieChartViewController.xib in Resources */,
 				FB80082E2722E2A200DDD815 /* ListInfoSummaryCell.xib in Resources */,
 				FB8BF38B26D67CE20091CC58 /* Assets.xcassets in Resources */,
@@ -997,6 +1013,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0579E40027A4EB7E0010A585 /* UITableViewCell+cellIdentifier.swift in Sources */,
 				FBA26E4926E619AB00969785 /* EdittingNameViewController.swift in Sources */,
 				FB6ACFB226DD177000F3099F /* EdittingGroupViewController.swift in Sources */,
 				FBD38C5A26DBCB3E00E9365F /* TableViewCellViewModel.swift in Sources */,
@@ -1008,7 +1025,6 @@
 				FB8BF3C126D92D430091CC58 /* PieChartViewController.swift in Sources */,
 				FBD38C5D26DBD5A300E9365F /* SettingViewController.swift in Sources */,
 				FB8BF3E326DA8E330091CC58 /* MonthlyChartCellViewModel.swift in Sources */,
-				FB8BF3CB26DA76140091CC58 /* BarChartViewController.swift in Sources */,
 				FB86871026F84CFC006E4FC5 /* Group.swift in Sources */,
 				FB5BF0512704BE7A00E4F457 /* AccountDetailSelectingSection.swift in Sources */,
 				FB80082D2722E2A200DDD815 /* ListInfoSummaryCell.swift in Sources */,
@@ -1037,14 +1053,16 @@
 				FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */,
 				05325B912785CD47002BB836 /* AccountDetailRangeCell.swift in Sources */,
 				FBD38C3026DB867A00E9365F /* AccountDetailViewController.swift in Sources */,
+				0579E3FE27A4E92B0010A585 /* UICollectionViewCell+cellIdentifier.swift in Sources */,
 				FB4142FC26DA97BD003C6468 /* ListViewModel.swift in Sources */,
-				FB8BF3CE26DA763B0091CC58 /* BarChartViewModel.swift in Sources */,
 				FBC12ABA2703282D00EE698F /* AccountDetailSelectionCell.swift in Sources */,
 				FBA26E3926E1FE4100969785 /* EdittingGroupViewModel.swift in Sources */,
 				FB8BF3D926DA7EA90091CC58 /* MonthlyChartViewController.swift in Sources */,
 				FBC12AC92703405E00EE698F /* AccountDetailSegmentCellViewModel.swift in Sources */,
 				FB8BF3B726D685710091CC58 /* ChartViewController.swift in Sources */,
+				0579E3FC279C52900010A585 /* AdjustmentChartCell.swift in Sources */,
 				FB3A9A9826FB55C700DA7B26 /* ListSection.swift in Sources */,
+				0579E3F7279C4D890010A585 /* AdjustmentChartViewController.swift in Sources */,
 				FB4142F526DA9721003C6468 /* ProfileViewModel.swift in Sources */,
 				FBC12AC52703365D00EE698F /* AccountDetailDateCell.swift in Sources */,
 				FBD38C1226DB595200E9365F /* ListAccountCell.swift in Sources */,
@@ -1058,6 +1076,7 @@
 				FB86871226F8CE02006E4FC5 /* ABProvider.swift in Sources */,
 				FB1CEE99272ACFE80004DEF9 /* ListFilterViewModel.swift.swift in Sources */,
 				05325BB527886C01002BB836 /* ListFilterRangeItemViewController.swift in Sources */,
+				0579E3FA279C52730010A585 /* AdjustmentChartCellViewModel.swift in Sources */,
 				FBC1C63F2725376000BFC1D2 /* Date+Day.swift in Sources */,
 				FB5BF0612704CDF300E4F457 /* AccountDetailSelectingCell.swift in Sources */,
 				FBA26E4226E5183E00969785 /* DatabaseError.swift in Sources */,
@@ -1069,6 +1088,7 @@
 				FBA26E3E26E4FB4600969785 /* UIViewController+Rx.swift in Sources */,
 				FB41430326DA9842003C6468 /* SettingViewModel.swift in Sources */,
 				FB8BF3B226D681320091CC58 /* TabBarController.swift in Sources */,
+				0579E3F5279C4D470010A585 /* AdjustmentChartViewModel.swift in Sources */,
 				FB6ACFB626DFC6EE00F3099F /* TabBarViewModel.swift in Sources */,
 				FBA26E4C26E619CD00969785 /* EdittingNameViewModel.swift in Sources */,
 				FBC12ACC270340A000EE698F /* AccountDetailSegmentCell.swift in Sources */,

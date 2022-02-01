@@ -38,7 +38,7 @@ class TabBarViewModel: ViewModel, ViewModelType {
             if let _ = user {
                 if let _ = group {
                     let profileViewModel = ProfileViewModel(provider: self.provider)
-                    let chartViewModel = ChartViewModel()
+                    let chartViewModel = ChartViewModel(provider: self.provider)
                     let listViewModel = ListViewModel(provider: self.provider)
                     let settingViewModel = SettingViewModel()
                     

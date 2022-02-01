@@ -64,7 +64,7 @@ final class ABProvider {
             .disposed(by: self.disposeBag)
     }
     
-    func requestAccounts(startDate: Date, endDate: Date) -> Single<[AccountDocumentModel]> {
+    func requestAccounts(startDate: Date? = nil, endDate: Date? = nil) -> Single<[AccountDocumentModel]> {
         guard let gid = try? self.group.gid.value() else { return .never() }
         
         return self.api.requestAccounts(gid: gid, startDate: startDate, endDate: endDate)

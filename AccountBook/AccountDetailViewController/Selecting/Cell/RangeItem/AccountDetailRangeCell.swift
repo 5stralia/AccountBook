@@ -13,8 +13,6 @@ import SnapKit
 import TTRangeSlider
 
 final class AccountDetailRangeCell: UITableViewCell {
-    class var cellIdentifier: String { return "AccountDetailRangeCell" }
-    
     let slider = TTRangeSlider()
     
     var disposeBag = DisposeBag()
