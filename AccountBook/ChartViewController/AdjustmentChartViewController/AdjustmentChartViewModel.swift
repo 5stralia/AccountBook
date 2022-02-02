@@ -51,7 +51,7 @@ extension AdjustmentChartViewModel: ViewModelType {
         { accounts, members -> [AdjustmentChartCellViewModel] in
             let payer = Dictionary(grouping: accounts, by: { $0.payer })
                 .mapValues { $0.reduce(0, { $0 + $1.amount }) }
-            let participantTuple = Dictionary(members.map { ($0.name, 0) },
+            let participantTuple = Dictionary(members.map { ($0.uid, 0) },
                                          uniquingKeysWith: { (first, _) in first })
                 .map { key, _ in
                     return (key,
@@ -62,14 +62,14 @@ extension AdjustmentChartViewModel: ViewModelType {
             let participant = Dictionary(uniqueKeysWithValues: participantTuple)
             
             return members.map {
-                let paid = payer[$0.name] ?? 0
-                let unpaid = participant[$0.name] ?? 0
+                let paid = payer[$0.uid] ?? 0
+                let unpaid = participant[$0.uid] ?? 0
                 let isHighlighted = (try? self.provider.user.value())?.uid == $0.uid
                 
                 return AdjustmentChartCellViewModel(name: $0.name,
-                                                    paid: String(paid),
-                                                    unpaid: String(unpaid),
-                                                    total: String(unpaid - paid),
+                                                    paid: paid.priceString() ?? "0",
+                                                    unpaid: unpaid.priceString() ?? "0",
+                                                    total: (unpaid - paid).priceString() ?? "0",
                                                     isHighlighted: isHighlighted)
             }
         }

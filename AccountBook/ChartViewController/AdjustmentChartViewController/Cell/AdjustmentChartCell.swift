@@ -147,6 +147,17 @@ final class AdjustmentChartCell: UICollectionViewCell {
         viewModel.paid.bind(to: self.paidAmountLabel.rx.text).disposed(by: self.disposeBag)
         viewModel.unpaid.bind(to: self.unpaiedAmountLabel.rx.text).disposed(by: self.disposeBag)
         viewModel.total.bind(to: self.totalLabel.rx.text).disposed(by: self.disposeBag)
+        viewModel.total.compactMap { Int($0) }.asDriver(onErrorJustReturn: 0)
+            .drive(onNext: {
+                if $0 < 0 {
+                    self.totalLabel.textColor = .red
+                } else if $0 == 0 {
+                    self.totalLabel.textColor = .label
+                } else {
+                    self.totalLabel.textColor = .blue
+                }
+            })
+            .disposed(by: self.disposeBag)
         viewModel.isHighlighted.withUnretained(self)
             .asDriver(onErrorJustReturn: (self, false))
             .drive(onNext: { own, isHighlighted in
