@@ -71,7 +71,8 @@ extension ChartViewModel: ViewModelType {
                                      date: today.asObservable(),
                                      accounts: accounts.asObservable()))
         let monthlyChartViewModelElement = BehaviorRelay<MonthlyChartViewModel>(
-            value: MonthlyChartViewModel(date: today.asObservable(),
+            value: MonthlyChartViewModel(provider: self.provider,
+                                         date: today.asObservable(),
                                          accounts: accounts.asObservable()))
         let adjustmentChartViewModelElement = BehaviorRelay<AdjustmentChartViewModel>(
             value: AdjustmentChartViewModel(provider: self.provider,

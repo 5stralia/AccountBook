@@ -11,10 +11,14 @@ import RxRelay
 import RxSwift
 
 final class MonthlyChartViewModel: ViewModel {
+    private let provider: ABProvider
+    
     private let date: Observable<Date>
     private let accounts: Observable<[AccountDocumentModel]>
     
-    init(date: Observable<Date>, accounts: Observable<[AccountDocumentModel]>) {
+    init(provider: ABProvider, date: Observable<Date>, accounts: Observable<[AccountDocumentModel]>) {
+        self.provider = provider
+        
         self.date = date
         self.accounts = accounts
     }
@@ -22,23 +26,30 @@ final class MonthlyChartViewModel: ViewModel {
 
 extension MonthlyChartViewModel: ViewModelType {
     struct Input {
-        
+        let selectionCategory: BehaviorRelay<String>
     }
     struct Output {
         let items: BehaviorRelay<[MonthlyChartCellViewModel]>
+        let categoryItems: [String]
     }
     
     func transform(input: Input) -> Output {
         let elements = BehaviorRelay<[MonthlyChartCellViewModel]>(value: [])
         
         Observable.combineLatest(self.accounts,
-                                 self.date) { accounts, date -> [MonthlyChartCellViewModel] in
+                                 self.date,
+                                 input.selectionCategory) { accounts, date, category -> [MonthlyChartCellViewModel] in
             let startDate = Calendar.current.date(byAdding: .month, value: -2, to: date)!.firstDay()
             let endDate = Calendar.current.date(byAdding: .month, value: 2, to: date)!.lastDay()
             
             let accounts = accounts
                 .filter { $0.date >= startDate }
                 .filter { $0.date < endDate }
+                .filter {
+                    guard category != "총합" else { return true }
+                    
+                    return $0.category == category
+                }
             let totalAmount = accounts.reduce(0, { $0 + $1.amount })
             var groupByMonth = Dictionary(grouping: accounts,
                                           by: { Calendar.current.dateComponents([.year, .month], from: $0.date) })
@@ -67,7 +78,7 @@ extension MonthlyChartViewModel: ViewModelType {
             })
                 .map { components, accounts in
                     let monthlyTotal = accounts.reduce(0, { $0 + $1.amount })
-                    let progress = Float(monthlyTotal) / Float(totalAmount)
+                    let progress = totalAmount == 0 ? 0 : Float(monthlyTotal) / Float(totalAmount)
                     return MonthlyChartCellViewModel(amount: monthlyTotal.priceString() ?? "0",
                                                      progress: progress,
                                                      month: "\(components.month!)월")
@@ -76,6 +87,11 @@ extension MonthlyChartViewModel: ViewModelType {
                                  .bind(to: elements)
                                  .disposed(by: self.disposeBag)
         
-        return Output(items: elements)
+        let categoryItems: [String] = ["총합"]
+        + ((try? self.provider.group.groupDocumentModel.value())?.categorys ?? [])
+        + ["취소"]
+        
+        return Output(items: elements,
+                      categoryItems: categoryItems)
     }
 }
