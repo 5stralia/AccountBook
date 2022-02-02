@@ -12,11 +12,15 @@ import RxRelay
 import RxSwift
 
 final class PieChartViewModel: ViewModel {
-    let provider: ABProvider
-    let accounts: Observable<[AccountDocumentModel]>
+    private let provider: ABProvider
     
-    init(provider: ABProvider, accounts: Observable<[AccountDocumentModel]>) {
+    private let date: Observable<Date>
+    private let accounts: Observable<[AccountDocumentModel]>
+    
+    init(provider: ABProvider, date: Observable<Date>, accounts: Observable<[AccountDocumentModel]>) {
         self.provider = provider
+        
+        self.date = date
         self.accounts = accounts
     }
 }
@@ -39,10 +43,8 @@ extension PieChartViewModel: ViewModelType {
         let pieElements = BehaviorRelay<[PieChartDataEntry]>(value: [])
         let barElements = BehaviorRelay<[BarChartCellViewModel]>(value: [])
         
-        let date = BehaviorRelay<Date>(value: Date())
-        
         let currentAccounts = Observable.combineLatest(self.accounts,
-                                 date.asObservable())
+                                                       self.date)
         { accounts, date -> [AccountDocumentModel] in
             let startDate = date.firstDay()
             let endDate = date.lastDay()
@@ -56,10 +58,12 @@ extension PieChartViewModel: ViewModelType {
         
         currentAccounts
             .map { accounts -> [PieChartDataEntry] in
-                let groupBying = Dictionary(grouping: accounts, by: { $0.category })
+                let expenditures = accounts.filter { $0.amount >= 0 }
+                let groupBying = Dictionary(grouping: expenditures, by: { $0.category })
+                let totalValue = expenditures.reduce(0, { $0 + $1.amount })
                 return groupBying.map { (category, accounts) in
                     let value = accounts.reduce(0, { $0 + $1.amount })
-                    return PieChartDataEntry(value: Double(value), label: category)
+                    return PieChartDataEntry(value: Double(value) / Double(totalValue) * 100, label: category)
                 }
             }
             .bind(to: pieElements)

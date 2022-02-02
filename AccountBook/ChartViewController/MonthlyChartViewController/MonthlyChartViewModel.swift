@@ -11,9 +11,11 @@ import RxRelay
 import RxSwift
 
 final class MonthlyChartViewModel: ViewModel {
+    private let date: Observable<Date>
     private let accounts: Observable<[AccountDocumentModel]>
     
-    init(accounts: Observable<[AccountDocumentModel]>) {
+    init(date: Observable<Date>, accounts: Observable<[AccountDocumentModel]>) {
+        self.date = date
         self.accounts = accounts
     }
 }
@@ -29,10 +31,8 @@ extension MonthlyChartViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         let elements = BehaviorRelay<[MonthlyChartCellViewModel]>(value: [])
         
-        let date = BehaviorRelay<Date>(value: Date())
-        
         Observable.combineLatest(self.accounts,
-                                 date.asObservable()) { accounts, date -> [MonthlyChartCellViewModel] in
+                                 self.date) { accounts, date -> [MonthlyChartCellViewModel] in
             let startDate = Calendar.current.date(byAdding: .month, value: -2, to: date)!.firstDay()
             let endDate = Calendar.current.date(byAdding: .month, value: 2, to: date)!.lastDay()
             

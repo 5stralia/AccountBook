@@ -9,6 +9,8 @@ import UIKit
 
 class ChartViewController: ViewController {
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var prevButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var pageContainer: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
     private var pageViewController = UIPageViewController(transitionStyle: .scroll,
@@ -23,7 +25,10 @@ class ChartViewController: ViewController {
     override func bind(to viewModel: ViewModel) {
         guard let viewModel = viewModel as? ChartViewModel else { return }
         
-        let output = viewModel.transform(input: ChartViewModel.Input())
+        let output = viewModel.transform(input: ChartViewModel.Input(
+            tappedPrevButton: self.prevButton.rx.tap.asObservable().map { _ in },
+            tappedNextButton: self.nextButton.rx.tap.asObservable().map { _ in }
+        ))
         
         output.items.asDriver()
             .drive(onNext: { [weak self] subViews in
@@ -60,6 +65,8 @@ class ChartViewController: ViewController {
                                                            animated: false)
             })
             .disposed(by: self.disposeBag)
+        
+        output.dateString.bind(to: self.dateLabel.rx.text).disposed(by: self.disposeBag)
     }
     
     override func viewDidLoad() {

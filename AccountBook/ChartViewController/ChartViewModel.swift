@@ -34,10 +34,12 @@ class ChartViewModel: ViewModel {
 
 extension ChartViewModel: ViewModelType {
     struct Input {
-        
+        let tappedPrevButton: Observable<Void>
+        let tappedNextButton : Observable<Void>
     }
     struct Output {
         let items: BehaviorRelay<[ChartSubView]>
+        let dateString: Observable<String>
     }
     
     func transform(input: Input) -> Output {
@@ -45,6 +47,14 @@ extension ChartViewModel: ViewModelType {
         
         let initialToday = Date()
         let today = BehaviorRelay<Date>(value: initialToday)
+        
+        let dateString = today.map { date -> String in
+            let formatter = DateFormatter()
+            formatter.dateFormat = "YYYY년 MM월"
+            
+            return formatter.string(from: date)
+        }
+        
         
         let accounts = today
             .withUnretained(self)
@@ -57,11 +67,16 @@ extension ChartViewModel: ViewModelType {
             }
         
         let pieChartViewModelElement = BehaviorRelay<PieChartViewModel>(
-            value: PieChartViewModel(provider: self.provider, accounts: accounts.asObservable()))
+            value: PieChartViewModel(provider: self.provider,
+                                     date: today.asObservable(),
+                                     accounts: accounts.asObservable()))
         let monthlyChartViewModelElement = BehaviorRelay<MonthlyChartViewModel>(
-            value: MonthlyChartViewModel(accounts: accounts.asObservable()))
+            value: MonthlyChartViewModel(date: today.asObservable(),
+                                         accounts: accounts.asObservable()))
         let adjustmentChartViewModelElement = BehaviorRelay<AdjustmentChartViewModel>(
-            value: AdjustmentChartViewModel(provider: self.provider, accounts: accounts.asObservable()))
+            value: AdjustmentChartViewModel(provider: self.provider,
+                                            date: today.asObservable(),
+                                            accounts: accounts.asObservable()))
         
         Observable.combineLatest(pieChartViewModelElement.asObservable(),
                                  monthlyChartViewModelElement.asObservable(),
@@ -77,6 +92,23 @@ extension ChartViewModel: ViewModelType {
         .bind(to: elements)
         .disposed(by: self.disposeBag)
         
-        return Output(items: elements)
+        input.tappedPrevButton
+            .withLatestFrom(today) { ($0, $1) }
+            .compactMap { _, date in
+                return Calendar.current.date(byAdding: .month, value: -1, to: date)
+            }
+            .bind(to: today)
+            .disposed(by: self.disposeBag)
+        
+        input.tappedNextButton
+            .withLatestFrom(today) { ($0, $1) }
+            .compactMap { _, date in
+                return Calendar.current.date(byAdding: .month, value: 1, to: date)
+            }
+            .bind(to: today)
+            .disposed(by: self.disposeBag)
+        
+        return Output(items: elements,
+                      dateString: dateString)
     }
 }

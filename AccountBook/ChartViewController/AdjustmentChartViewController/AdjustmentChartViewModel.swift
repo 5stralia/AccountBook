@@ -11,11 +11,15 @@ import RxRelay
 import RxSwift
 
 final class AdjustmentChartViewModel: ViewModel {
-    let provider: ABProvider
+    private let provider: ABProvider
+    
+    private let date: Observable<Date>
     private let accounts: Observable<[AccountDocumentModel]>
     
-    init(provider: ABProvider, accounts: Observable<[AccountDocumentModel]>) {
+    init(provider: ABProvider, date: Observable<Date>, accounts: Observable<[AccountDocumentModel]>) {
         self.provider = provider
+        
+        self.date = date
         self.accounts = accounts
     }
 }
@@ -31,10 +35,8 @@ extension AdjustmentChartViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         let elements = BehaviorRelay<[AdjustmentChartCellViewModel]>(value: [])
         
-        let date = BehaviorRelay<Date>(value: Date())
-        
         let currentAccounts = Observable.combineLatest(self.accounts,
-                                 date.asObservable())
+                                                       self.date)
         { accounts, date -> [AccountDocumentModel] in
             let startDate = date.firstDay()
             let endDate = date.lastDay()

@@ -29,19 +29,21 @@ class PieChartViewController: ViewController {
         
         output.pieItems.asDriver()
             .drive(onNext: {
-                guard !$0.isEmpty else { return }
-                
-                let dataSet = PieChartDataSet(entries: $0)
-                dataSet.colors = ChartColorTemplates.pastel()
-                dataSet.sliceSpace = 2
-                dataSet.valueFormatter = PercentageFormatter()
-                dataSet.xValuePosition = .outsideSlice
-                dataSet.yValuePosition = .outsideSlice
-                dataSet.valueTextColor = .black
-                
-                let data = PieChartData(dataSet: dataSet)
-                
-                self.pieChartView.data = data
+                if $0.isEmpty {
+                    self.pieChartView.data = nil
+                } else {
+                    let dataSet = PieChartDataSet(entries: $0)
+                    dataSet.colors = ChartColorTemplates.pastel()
+                    dataSet.sliceSpace = 2
+                    dataSet.valueFormatter = PercentageFormatter()
+                    dataSet.xValuePosition = .outsideSlice
+                    dataSet.yValuePosition = .outsideSlice
+                    dataSet.valueTextColor = .black
+                    
+                    let data = PieChartData(dataSet: dataSet)
+                    
+                    self.pieChartView.data = data
+                }
                 
                 self.pieChartView.notifyDataSetChanged()
             })
@@ -97,7 +99,7 @@ class PieChartViewController: ViewController {
 
 class PercentageFormatter: ValueFormatter {
     func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
-        return "\(Int(value))%"
+        return "\(String(format: "%.1f", value))%"
     }
 }
 

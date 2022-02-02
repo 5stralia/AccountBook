@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,8 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChartViewController" customModule="AccountBook" customModuleProvider="target">
             <connections>
                 <outlet property="dateLabel" destination="4PK-Lj-84q" id="5Uj-3L-h3v"/>
+                <outlet property="nextButton" destination="cxN-xp-uob" id="V4n-GE-Vuc"/>
                 <outlet property="pageContainer" destination="wRU-D4-vH6" id="65W-ID-8XE"/>
                 <outlet property="pageControl" destination="GbP-Oi-HDI" id="y5i-09-xp8"/>
+                <outlet property="prevButton" destination="1d7-ne-DRg" id="seJ-A0-lXg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,16 +25,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nrc-Jw-kfw">
-                    <rect key="frame" x="78" y="44" width="258" height="44"/>
+                    <rect key="frame" x="77.5" y="44" width="259.5" height="44"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021년 8월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4PK-Lj-84q">
-                            <rect key="frame" x="88" y="11.5" width="82" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="????년 ??월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4PK-Lj-84q">
+                            <rect key="frame" x="88" y="11.5" width="83.5" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxN-xp-uob">
-                            <rect key="frame" x="214" y="0.0" width="44" height="44"/>
+                            <rect key="frame" x="215.5" y="0.0" width="44" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="94U-tO-L2l"/>
                                 <constraint firstAttribute="width" constant="44" id="mch-hX-W9U"/>
@@ -67,11 +69,11 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRU-D4-vH6">
-                    <rect key="frame" x="0.0" y="88" width="414" height="746"/>
+                    <rect key="frame" x="0.0" y="88" width="414" height="748"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="GbP-Oi-HDI">
-                    <rect key="frame" x="0.0" y="834" width="414" height="28"/>
+                    <rect key="frame" x="0.0" y="836" width="414" height="26"/>
                     <color key="pageIndicatorTintColor" systemColor="systemGray2Color"/>
                     <color key="currentPageIndicatorTintColor" systemColor="systemGray6Color"/>
                 </pageControl>
