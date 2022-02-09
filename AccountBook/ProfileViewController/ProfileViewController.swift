@@ -8,6 +8,7 @@
 import UIKit
 
 import Firebase
+import RxGesture
 import RxSwift
 import RxCocoa
 import SnapKit
@@ -71,8 +72,21 @@ class ProfileViewController: ViewController {
     override func bind(to viewModel: ViewModel) {
         guard let viewModel = viewModel as? ProfileViewModel else { return }
         
+        let viewWillAppear = rx.viewWillAppear
+            .asObservable()
+            .map { _ in }
+        let tapMember = memberCollectionView.rx
+            .tapGesture()
+            .when(.recognized)
+            .asObservable()
+            .map { _ in }
+        
         let output = viewModel.transform(
-            input: ProfileViewModel.Input(viewWillAppear: self.rx.viewWillAppear.asObservable().map { _ in }))
+            input: ProfileViewModel.Input(
+                viewWillAppear: viewWillAppear,
+                tapMember: tapMember
+            )
+        )
         
         output.group
             .compactMap { $0?.name }
@@ -111,12 +125,22 @@ class ProfileViewController: ViewController {
             }
         })
         .disposed(by: disposeBag)
+        
+        output.showMembers
+            .withUnretained(self)
+            .subscribe(on: MainScheduler.instance)
+            .subscribe(onNext: { own, profileMembersViewModel in
+                let profileMembersViewController = ProfileMembersViewController()
+                profileMembersViewController.viewModel = profileMembersViewModel
+                
+                own.navigationController?.pushViewController(profileMembersViewController,
+                                                             animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.navigationBar.isHidden = true
         
         view.backgroundColor = .green
         
@@ -169,5 +193,17 @@ class ProfileViewController: ViewController {
             $0.leading.equalToSuperview().offset(15)
             $0.trailing.equalToSuperview().offset(-15)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.isHidden = false
     }
 }

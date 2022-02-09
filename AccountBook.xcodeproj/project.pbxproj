@@ -23,6 +23,9 @@
 		0579E40227AD4BAC0010A585 /* UICollectionViewNestedCircleLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579E40127AD4BAC0010A585 /* UICollectionViewNestedCircleLayout.swift */; };
 		0579E40527AD5E280010A585 /* ProfileMemberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579E40427AD5E280010A585 /* ProfileMemberCellViewModel.swift */; };
 		0579E40927AD5E530010A585 /* ProfileMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579E40827AD5E530010A585 /* ProfileMemberCell.swift */; };
+		05D918F227B3FD1C00553890 /* ProfileMembersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D918F127B3FD1C00553890 /* ProfileMembersViewModel.swift */; };
+		05D918F427B3FE7700553890 /* ProfileMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D918F327B3FE7700553890 /* ProfileMembersViewController.swift */; };
+		05D918F727B400CD00553890 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 05D918F627B400CD00553890 /* RxGesture */; };
 		FB1CEE99272ACFE80004DEF9 /* ListFilterViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */; };
 		FB1CEE9C272AD0380004DEF9 /* ListFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */; };
 		FB1CEE9D272AD0380004DEF9 /* ListFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */; };
@@ -170,6 +173,8 @@
 		0579E40127AD4BAC0010A585 /* UICollectionViewNestedCircleLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewNestedCircleLayout.swift; sourceTree = "<group>"; };
 		0579E40427AD5E280010A585 /* ProfileMemberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMemberCellViewModel.swift; sourceTree = "<group>"; };
 		0579E40827AD5E530010A585 /* ProfileMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMemberCell.swift; sourceTree = "<group>"; };
+		05D918F127B3FD1C00553890 /* ProfileMembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMembersViewModel.swift; sourceTree = "<group>"; };
+		05D918F327B3FE7700553890 /* ProfileMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMembersViewController.swift; sourceTree = "<group>"; };
 		FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewModel.swift.swift; sourceTree = "<group>"; };
 		FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewController.swift; sourceTree = "<group>"; };
 		FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFilterViewController.xib; sourceTree = "<group>"; };
@@ -285,6 +290,7 @@
 			files = (
 				FBD38C4026DBBD2900E9365F /* RxRelay in Frameworks */,
 				FB41430A26DAA27E003C6468 /* FirebaseCrashlytics in Frameworks */,
+				05D918F727B400CD00553890 /* RxGesture in Frameworks */,
 				FBD38C4226DBBD2900E9365F /* RxCocoa in Frameworks */,
 				05325B952785D0FE002BB836 /* SnapKit in Frameworks */,
 				FB41430826DAA27E003C6468 /* FirebaseAnalytics in Frameworks */,
@@ -374,6 +380,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		05D918F027B3FD0C00553890 /* Members */ = {
+			isa = PBXGroup;
+			children = (
+				05D918F127B3FD1C00553890 /* ProfileMembersViewModel.swift */,
+				05D918F327B3FE7700553890 /* ProfileMembersViewController.swift */,
+			);
+			path = Members;
+			sourceTree = "<group>";
+		};
 		FB1CEE97272ACD0D0004DEF9 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +403,7 @@
 		FB4142EF26DA96FF003C6468 /* ProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
+				05D918F027B3FD0C00553890 /* Members */,
 				0579E40327AD5E170010A585 /* Cell */,
 				FB4142F426DA9721003C6468 /* ProfileViewModel.swift */,
 				FB4142F026DA9716003C6468 /* ProfileViewController.swift */,
@@ -853,6 +869,7 @@
 				FB6DD83126DBF7F700CAE900 /* FacebookLogin */,
 				05325B942785D0FE002BB836 /* SnapKit */,
 				05325BAF2785DC6C002BB836 /* TTRangeSlider */,
+				05D918F627B400CD00553890 /* RxGesture */,
 			);
 			productName = AccountBook;
 			productReference = FB8BF37B26D67CDE0091CC58 /* AccountBook.app */;
@@ -934,6 +951,7 @@
 				FB6DD83026DBF7F700CAE900 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				05325B932785D0FE002BB836 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				05325BAE2785DC6C002BB836 /* XCRemoteSwiftPackageReference "TTRangeSlider" */,
+				05D918F527B400CD00553890 /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = FB8BF37C26D67CDE0091CC58 /* Products */;
 			projectDirPath = "";
@@ -1062,6 +1080,7 @@
 				FB8008312722E44100DDD815 /* ListInfoMultipleDatePickerCell.swift in Sources */,
 				0579E40227AD4BAC0010A585 /* UICollectionViewNestedCircleLayout.swift in Sources */,
 				FB4142F926DA97B2003C6468 /* ListViewController.swift in Sources */,
+				05D918F227B3FD1C00553890 /* ProfileMembersViewModel.swift in Sources */,
 				05325B8E2785CBAB002BB836 /* AccountDetailRangeCellViewModel.swift in Sources */,
 				0579E3F227959CF80010A585 /* TTRangeSlider+Rx.swift in Sources */,
 				FBC12AB22701D52C00EE698F /* AccountDetailViewModel.swift in Sources */,
@@ -1085,6 +1104,7 @@
 				FB8BF3E026DA8E280091CC58 /* MonthlyChartCell.swift in Sources */,
 				FB8008352722E6D900DDD815 /* ListInfoDatePickerCell.swift in Sources */,
 				FB5BF05E2704CD4C00E4F457 /* AccountDetailSelectingCellViewModel.swift in Sources */,
+				05D918F427B3FE7700553890 /* ProfileMembersViewController.swift in Sources */,
 				FBC12AB42701D60A00EE698F /* TextFieldCellViewModel.swift in Sources */,
 				FBA26E4526E51FFC00969785 /* ABUser.swift in Sources */,
 				FB6ACFBB26E0D36800F3099F /* ViewController.swift in Sources */,
@@ -1454,6 +1474,14 @@
 				kind = branch;
 			};
 		};
+		05D918F527B400CD00553890 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		FB41430626DAA27E003C6468 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1514,6 +1542,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 05325BAE2785DC6C002BB836 /* XCRemoteSwiftPackageReference "TTRangeSlider" */;
 			productName = TTRangeSlider;
+		};
+		05D918F627B400CD00553890 /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05D918F527B400CD00553890 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 		FB41430726DAA27E003C6468 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

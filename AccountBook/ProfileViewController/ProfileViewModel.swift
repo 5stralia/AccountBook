@@ -14,6 +14,7 @@ import RxCocoa
 class ProfileViewModel: ViewModel, ViewModelType {
     struct Input {
         let viewWillAppear: Observable<Void>
+        let tapMember: Observable<Void>
     }
     struct Output {
         let group: Observable<GroupDocumentModel?>
@@ -23,6 +24,8 @@ class ProfileViewModel: ViewModel, ViewModelType {
         let message: Observable<String>
         let members: Observable<[ProfileMemberCellViewModel]>
         let fee: Observable<String>
+        
+        let showMembers: Observable<ProfileMembersViewModel>
     }
     
     let provider: ABProvider
@@ -67,13 +70,17 @@ class ProfileViewModel: ViewModel, ViewModelType {
             .bind(to: fee)
             .disposed(by: disposeBag)
         
+        let showMembers = input.tapMember
+            .map { ProfileMembersViewModel() }
+        
         return Output(
             group: self.provider.group.groupDocumentModel,
             title: title.asObservable(),
             groupImageURLString: groupImageURLString.asObservable(),
             message: message.asObservable(),
             members: members.asObservable(),
-            fee: fee.asObservable()
+            fee: fee.asObservable(),
+            showMembers: showMembers
         )
     }
 }
