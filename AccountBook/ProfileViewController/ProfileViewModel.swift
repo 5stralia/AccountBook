@@ -71,7 +71,8 @@ class ProfileViewModel: ViewModel, ViewModelType {
             .disposed(by: disposeBag)
         
         let showMembers = input.tapMember
-            .map { ProfileMembersViewModel() }
+            .withUnretained(self)
+            .map { own, _ in ProfileMembersViewModel(provier: own.provider) }
         
         return Output(
             group: self.provider.group.groupDocumentModel,

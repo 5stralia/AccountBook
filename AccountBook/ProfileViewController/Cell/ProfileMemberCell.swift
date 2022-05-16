@@ -39,7 +39,7 @@ final class ProfileMemberCell: UICollectionViewCell {
         }
         
         contentView.borderWidth = 2
-        contentView.borderColor = .systemIndigo
+        contentView.borderColor = .gatiBlue
     }
     
     override func layoutSubviews() {

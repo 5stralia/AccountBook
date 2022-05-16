@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050689A628323D2A00F89312 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050689A528323D2A00F89312 /* Colors.xcassets */; };
+		050689A828323D5D00F89312 /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050689A728323D5D00F89312 /* UIColor+CustomColor.swift */; };
+		050689AB2832712500F89312 /* ProfileMembersCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050689AA2832712500F89312 /* ProfileMembersCellViewModel.swift */; };
+		050689AD2832751300F89312 /* ProfileMembersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050689AC2832751300F89312 /* ProfileMembersCell.swift */; };
 		05325B8E2785CBAB002BB836 /* AccountDetailRangeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05325B8D2785CBAB002BB836 /* AccountDetailRangeCellViewModel.swift */; };
 		05325B912785CD47002BB836 /* AccountDetailRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05325B8F2785CD47002BB836 /* AccountDetailRangeCell.swift */; };
 		05325B952785D0FE002BB836 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 05325B942785D0FE002BB836 /* SnapKit */; };
@@ -159,6 +163,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		050689A528323D2A00F89312 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		050689A728323D5D00F89312 /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
+		050689AA2832712500F89312 /* ProfileMembersCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMembersCellViewModel.swift; sourceTree = "<group>"; };
+		050689AC2832751300F89312 /* ProfileMembersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMembersCell.swift; sourceTree = "<group>"; };
 		05325B8D2785CBAB002BB836 /* AccountDetailRangeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailRangeCellViewModel.swift; sourceTree = "<group>"; };
 		05325B8F2785CD47002BB836 /* AccountDetailRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailRangeCell.swift; sourceTree = "<group>"; };
 		05325BB227886BAD002BB836 /* ListFilterRangeItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterRangeItemViewModel.swift; sourceTree = "<group>"; };
@@ -324,6 +332,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		050689A928326AA300F89312 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				050689AA2832712500F89312 /* ProfileMembersCellViewModel.swift */,
+				050689AC2832751300F89312 /* ProfileMembersCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		05325B8B2785CB81002BB836 /* RangeItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +400,7 @@
 		05D918F027B3FD0C00553890 /* Members */ = {
 			isa = PBXGroup;
 			children = (
+				050689A928326AA300F89312 /* Cell */,
 				05D918F127B3FD1C00553890 /* ProfileMembersViewModel.swift */,
 				05D918F327B3FE7700553890 /* ProfileMembersViewController.swift */,
 			);
@@ -602,6 +620,7 @@
 			children = (
 				FB8BF38A26D67CE20091CC58 /* Assets.xcassets */,
 				FB6ACFA726DD064C00F3099F /* Images.xcassets */,
+				050689A528323D2A00F89312 /* Colors.xcassets */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -640,6 +659,7 @@
 				0579E3F127959CF80010A585 /* TTRangeSlider+Rx.swift */,
 				0579E3FD27A4E92B0010A585 /* UICollectionViewCell+cellIdentifier.swift */,
 				0579E3FF27A4EB7E0010A585 /* UITableViewCell+cellIdentifier.swift */,
+				050689A728323D5D00F89312 /* UIColor+CustomColor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -972,6 +992,7 @@
 				FB5BF0622704CDF300E4F457 /* AccountDetailSelectingCell.xib in Resources */,
 				FBA26E4A26E619AB00969785 /* EdittingNameViewController.xib in Resources */,
 				FBC12AC62703365D00EE698F /* AccountDetailDateCell.xib in Resources */,
+				050689A628323D2A00F89312 /* Colors.xcassets in Resources */,
 				FBD38C5E26DBD5A300E9365F /* SettingViewController.xib in Resources */,
 				FB8BF3D326DA79F80091CC58 /* BarChartCell.xib in Resources */,
 				FB8008322722E44100DDD815 /* ListInfoMultipleDatePickerCell.xib in Resources */,
@@ -1057,6 +1078,7 @@
 				FBD38C5D26DBD5A300E9365F /* SettingViewController.swift in Sources */,
 				FB8BF3E326DA8E330091CC58 /* MonthlyChartCellViewModel.swift in Sources */,
 				FB86871026F84CFC006E4FC5 /* Group.swift in Sources */,
+				050689A828323D5D00F89312 /* UIColor+CustomColor.swift in Sources */,
 				FB5BF0512704BE7A00E4F457 /* AccountDetailSelectingSection.swift in Sources */,
 				FB80082D2722E2A200DDD815 /* ListInfoSummaryCell.swift in Sources */,
 				FBA26E3C26E1FE9600969785 /* GroupDocumentModel.swift in Sources */,
@@ -1087,6 +1109,8 @@
 				FB8BF3D526DA7A180091CC58 /* BarChartCellViewModel.swift in Sources */,
 				05325B912785CD47002BB836 /* AccountDetailRangeCell.swift in Sources */,
 				FBD38C3026DB867A00E9365F /* AccountDetailViewController.swift in Sources */,
+				050689AD2832751300F89312 /* ProfileMembersCell.swift in Sources */,
+				050689AB2832712500F89312 /* ProfileMembersCellViewModel.swift in Sources */,
 				0579E3FE27A4E92B0010A585 /* UICollectionViewCell+cellIdentifier.swift in Sources */,
 				FB4142FC26DA97BD003C6468 /* ListViewModel.swift in Sources */,
 				FBC12ABA2703282D00EE698F /* AccountDetailSelectionCell.swift in Sources */,

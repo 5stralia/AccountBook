@@ -17,6 +17,7 @@ class ProfileViewController: ViewController {
     private let titleButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.tintColor = .white
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 22, weight: .bold)
         button.semanticContentAttribute = .forceRightToLeft
@@ -51,6 +52,11 @@ class ProfileViewController: ViewController {
         collectionView.backgroundColor = .clear
         
         return collectionView
+    }()
+    private let moreMemberButton: UIButton = {
+        let button = UIButton()
+        
+        return button
     }()
     private let memberCountLabel: UILabel = {
         let label = UILabel()
@@ -142,7 +148,7 @@ class ProfileViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .green
+        view.backgroundColor = .gatiBlue
         
         memberCollectionView.register(ProfileMemberCell.self,
                                       forCellWithReuseIdentifier: ProfileMemberCell.cellIdentifier)
