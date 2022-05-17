@@ -96,4 +96,10 @@ final class ABProvider {
             })
             .disposed(by: self.disposeBag)
     }
+    
+    func createInvitation() -> Single<String> {
+        guard let gid = try? group.gid.value() else { return .error(ABProviderError.invalidGID) }
+        
+        return api.createInvitation(gid: gid)
+    }
 }

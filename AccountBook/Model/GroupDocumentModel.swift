@@ -63,3 +63,9 @@ enum GroupRole: String, Codable {
     case admin
     case manager
 }
+
+struct InvitationModel: Codable {
+    let isUsed: Bool
+    let expired: Date
+    let gid: String
+}

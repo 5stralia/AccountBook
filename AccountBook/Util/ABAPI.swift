@@ -206,5 +206,28 @@ final class ABAPI {
         }
     }
     
+    func createInvitation(gid: String) -> Single<String> {
+        return Single.create { single in
+            let invitation = InvitationModel(isUsed: false, expired: Date().forwardMonth(1), gid: gid)
+            
+            let docRef = self.db.collection("groups")
+                .document(gid)
+                .collection("invitations")
+                .document()
+            do {
+                try docRef.setData(from: invitation) { error in
+                    if let error = error {
+                        single(.failure(error))
+                    } else {
+                        single(.success(docRef.documentID))
+                    }
+                }
+            } catch let err {
+                single(.failure(err))
+            }
+            
+            return Disposables.create { }
+        }
+    }
 }
 
