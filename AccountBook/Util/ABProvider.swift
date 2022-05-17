@@ -12,6 +12,8 @@ import RxSwift
 
 enum ABProviderError: Error {
     case invalidGID
+    case invalidUID
+    case invalidUser
 }
 
 final class ABProvider {
@@ -40,12 +42,23 @@ final class ABProvider {
     }
     
     func setUP() {
-        self.user.flatMap { [weak self] user -> Single<[String]> in
+        let user = user.share()
+        user
+            .compactMap { $0?.uid }
+            .flatMap({ uid -> Completable in
+                return self.api.registerIfNewUser(uid: uid)
+            })
+            .subscribe({ event in
+                print(event)
+            })
+            .disposed(by: disposeBag)
+        user.flatMap { [weak self] user -> Single<[String]> in
             guard let self = self,
                   let user = user else { return Single.never() }
             return self.api.groupIDs(uid: user.uid)
         }
         .compactMap { $0.first }
+        .debug()
         .bind(to: self.group.gid)
         .disposed(by: self.disposeBag)
         
@@ -92,6 +105,7 @@ final class ABProvider {
         
         self.api.requestMembers(gid: gid).asObservable()
             .subscribe(onNext: { [weak self] members in
+                print(members)
                 self?.group.members.onNext(members)
             })
             .disposed(by: self.disposeBag)
@@ -101,5 +115,13 @@ final class ABProvider {
         guard let gid = try? group.gid.value() else { return .error(ABProviderError.invalidGID) }
         
         return api.createInvitation(gid: gid)
+    }
+    
+    func requestJoin(id: String) -> Completable {
+        guard let user = try? user.value(),
+              let name = user.displayName else { return .error(ABProviderError.invalidUser) }
+        return api.requestJoin(id: id, member: MemberDocumentModel(uid: user.uid,
+                                                                   name: name,
+                                                                   role: [.read]))
     }
 }

@@ -14,6 +14,8 @@ import GoogleSignIn
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    
+    var provider: ABProvider?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -42,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let db = Firestore.firestore()
         let api = ABAPI(db: db)
         let provider = ABProvider(api: api)
+        self.provider = provider
         provider.setUP()
         let tabBarViewModel = TabBarViewModel(provider: provider)
         tabBarController.viewModel = tabBarViewModel
@@ -54,20 +57,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         if url.scheme == "gati",
-           let component = URLComponents(string: url.absoluteString) {
-            let queryItems = component.queryItems ?? []
-            let parameters = Dictionary(grouping: queryItems, by: { $0.name })
-                .mapValues({ $0.first!.value! })
-            
-            switch url.host {
-            case "invite":
-                if let id = parameters["id"] {
-                    print("invite: ", id)
-                }
-            default:
-                break
-            }
+        let provider = provider {
+            let schemeManager = SchemeManager(provider: provider, url: url)
+            schemeManager.run()
         }
+        
         return GIDSignIn.sharedInstance.handle(url)
             || ApplicationDelegate.shared.application(
                 app,

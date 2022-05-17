@@ -43,7 +43,7 @@ final class ABAPI {
                             try docRef.collection("members").document().setData(
                                 from: MemberDocumentModel(uid: uid,
                                                 name: "그룹장",
-                                                role: [.admin, .manager])) { setUserError in
+                                                          role: [.read, .write, .manage])) { setUserError in
                                 if let setUserError = setUserError {
                                     single(.failure(setUserError))
                                 } else {
@@ -206,13 +206,33 @@ final class ABAPI {
         }
     }
     
+    func add(gid: String, member: MemberDocumentModel) -> Completable {
+        return Completable.create { completable in
+            let docRef = self.db.collection("groups")
+                .document(gid)
+                .collection("members")
+                .document()
+            do {
+                try docRef.setData(from: member) { error in
+                    if let error = error {
+                        completable(.error(error))
+                    } else {
+                        completable(.completed)
+                    }
+                }
+            } catch let err {
+                completable(.error(err))
+            }
+            
+            return Disposables.create { }
+        }
+    }
+    
     func createInvitation(gid: String) -> Single<String> {
         return Single.create { single in
             let invitation = InvitationModel(isUsed: false, expired: Date().forwardMonth(1), gid: gid)
             
-            let docRef = self.db.collection("groups")
-                .document(gid)
-                .collection("invitations")
+            let docRef = self.db.collection("invitations")
                 .document()
             do {
                 try docRef.setData(from: invitation) { error in
@@ -229,5 +249,94 @@ final class ABAPI {
             return Disposables.create { }
         }
     }
-}
+    
+    struct AlreadyUsedError: Error { }
+    func requestJoin(id: String, member: MemberDocumentModel) -> Completable {
+        return Completable.create { completable in
+            let invitationRef = self.db.collection("invitations").document(id)
+            
+            self.db.runTransaction({ transaction, errorPointer in
+                let invitationDoc: DocumentSnapshot
+                do {
+                    try invitationDoc = transaction.getDocument(invitationRef)
+                    guard let invitation = try invitationDoc.data(as: InvitationModel.self)
+                    else {
+                        let error = NSError(domain: "requestInvitation",
+                                            code: -1,
+                                            userInfo: [
+                                                NSLocalizedDescriptionKey: "초대장 가져오기 에러"
+                                            ])
+                        errorPointer?.pointee = error
+                        return nil
+                    }
+                    
+                    if invitation.isUsed {
+                        errorPointer?.pointee = AlreadyUsedError() as NSError
+                        return nil
+                    }
+                    
+                    let userRef = self.db.collection("users")
+                        .document(member.uid)
+                    let userDoc = try transaction.getDocument(userRef)
+                    let groups = (userDoc.data()?["groups"] as? [String]) ?? []
+//                    else {
+//                        let error = NSError(domain: "requestInvitation",
+//                                            code: -2,
+//                                            userInfo: [
+//                                                NSLocalizedDescriptionKey: "그룹 가져오기 에러"
+//                                            ])
+//                        errorPointer?.pointee = error
+//                        return nil
+//                    }
+                    
+                    let memberRef = self.db.collection("groups")
+                        .document(invitation.gid)
+                        .collection("members")
+                        .document()
+                    try transaction.setData(from: member, forDocument: memberRef)
+                    
+                    transaction.updateData(["groups": groups + [invitation.gid]], forDocument: userRef)
+                } catch let error as NSError {
+                    errorPointer?.pointee = error
+                    return nil
+                }
+                
+                transaction.updateData(["isUsed": true], forDocument: invitationRef)
+                
+                return nil
+            }) { object, error in
+                if let error = error {
+                    completable(.error(error))
+                } else {
+                    completable(.completed)
+                }
+            }
 
+            return Disposables.create { }
+        }
+    }
+ 
+    func registerIfNewUser(uid: String) -> Completable {
+        return Completable.create { completable in
+            let docRef = self.db.collection("users").document(uid)
+            docRef.getDocument() { document, error in
+                if let document = document, document.exists {
+                    completable(.completed)
+                } else {
+                    docRef.setData([
+                        "groups": [String]()
+                    ]) { err in
+                        if let err = err {
+                            completable(.error(err))
+                        } else {
+                            completable(.completed)
+                        }
+                    }
+                }
+            }
+            
+            return Disposables.create { }
+        }
+    }
+    
+}

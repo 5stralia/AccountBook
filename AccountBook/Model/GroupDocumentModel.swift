@@ -61,7 +61,9 @@ enum FeeType: String, Codable {
 
 enum GroupRole: String, Codable {
     case admin
-    case manager
+    case manage
+    case write
+    case read
 }
 
 struct InvitationModel: Codable {

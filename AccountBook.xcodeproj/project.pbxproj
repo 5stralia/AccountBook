@@ -31,6 +31,7 @@
 		05D918F427B3FE7700553890 /* ProfileMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D918F327B3FE7700553890 /* ProfileMembersViewController.swift */; };
 		05D918F727B400CD00553890 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 05D918F627B400CD00553890 /* RxGesture */; };
 		05F7370128338EA20092F115 /* RxSwift+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F7370028338EA20092F115 /* RxSwift+Mapping.swift */; };
+		05F737032833C5390092F115 /* SchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F737022833C5390092F115 /* SchemeManager.swift */; };
 		FB1CEE99272ACFE80004DEF9 /* ListFilterViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */; };
 		FB1CEE9C272AD0380004DEF9 /* ListFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */; };
 		FB1CEE9D272AD0380004DEF9 /* ListFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */; };
@@ -185,6 +186,7 @@
 		05D918F127B3FD1C00553890 /* ProfileMembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMembersViewModel.swift; sourceTree = "<group>"; };
 		05D918F327B3FE7700553890 /* ProfileMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMembersViewController.swift; sourceTree = "<group>"; };
 		05F7370028338EA20092F115 /* RxSwift+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift+Mapping.swift"; sourceTree = "<group>"; };
+		05F737022833C5390092F115 /* SchemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeManager.swift; sourceTree = "<group>"; };
 		FB1CEE98272ACFE80004DEF9 /* ListFilterViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewModel.swift.swift; sourceTree = "<group>"; };
 		FB1CEE9A272AD0380004DEF9 /* ListFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterViewController.swift; sourceTree = "<group>"; };
 		FB1CEE9B272AD0380004DEF9 /* ListFilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFilterViewController.xib; sourceTree = "<group>"; };
@@ -594,6 +596,7 @@
 				FB8BF38F26D67CE20091CC58 /* Info.plist */,
 				FB8BF38C26D67CE20091CC58 /* LaunchScreen.storyboard */,
 				FB8BF37E26D67CDE0091CC58 /* AppDelegate.swift */,
+				05F737022833C5390092F115 /* SchemeManager.swift */,
 				FB41430426DA9C79003C6468 /* GoogleService-Info.plist */,
 			);
 			path = AccountBook;
@@ -1073,6 +1076,7 @@
 				FB6ACFB226DD177000F3099F /* EdittingGroupViewController.swift in Sources */,
 				FBD38C5A26DBCB3E00E9365F /* TableViewCellViewModel.swift in Sources */,
 				FBC12AB62703222F00EE698F /* AccountDetailSection.swift in Sources */,
+				05F737032833C5390092F115 /* SchemeManager.swift in Sources */,
 				FBD38C0D26DAB2B500E9365F /* SignInViewController.swift in Sources */,
 				FB8BF3C726D931530091CC58 /* UIView+Design.swift in Sources */,
 				FB6ACFB926DFC89000F3099F /* ABAPI.swift in Sources */,

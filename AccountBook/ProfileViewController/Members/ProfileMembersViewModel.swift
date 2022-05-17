@@ -42,7 +42,7 @@ extension ProfileMembersViewModel: ViewModelType {
                   let userIndex = members.firstIndex(where: { $0.uid == user.uid })
             else { return false }
             
-            return members[userIndex].role.contains(.manager)
+            return members[userIndex].role.contains(.manage)
         }
         
         let members = provier.group.members
