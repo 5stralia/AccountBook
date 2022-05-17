@@ -53,6 +53,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if url.scheme == "gati",
+           let component = URLComponents(string: url.absoluteString) {
+            let queryItems = component.queryItems ?? []
+            let parameters = Dictionary(grouping: queryItems, by: { $0.name })
+                .mapValues({ $0.first!.value! })
+            
+            switch url.host {
+            case "invite":
+                if let id = parameters["id"] {
+                    print("invite: ", id)
+                }
+            default:
+                break
+            }
+        }
         return GIDSignIn.sharedInstance.handle(url)
             || ApplicationDelegate.shared.application(
                 app,

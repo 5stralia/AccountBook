@@ -50,7 +50,8 @@ class ProfileMembersCell: UICollectionViewCell {
         contentView.addSubview(nameLabel)
         
         profileImageView.snp.makeConstraints { make in
-            make.leading.bottom.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.bottom.equalToSuperview()
             make.top.equalToSuperview().offset(20)
             make.width.equalTo(60)
         }
